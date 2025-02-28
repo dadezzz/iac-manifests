@@ -27,14 +27,12 @@ caching:
   prefetching: true
 customDNS:
   mapping:
-    grafana.zarantonello.net: 100.84.15.88,fd7a:115c:a1e0::df01:f5b
-    minio.zarantonello.dev: 100.84.15.88,fd7a:115c:a1e0::df01:f5b
-    photos.zarantonello.net: 100.84.15.88,fd7a:115c:a1e0::df01:f5b
-    vault.zarantonello.net: 100.84.15.88,fd7a:115c:a1e0::df01:f5b
+    grafana.zarantonello.net: 100.99.201.25,fd7a:115c:a1e0::7401:c91c
+    minio.zarantonello.dev: 100.99.201.25,fd7a:115c:a1e0::7401:c91c
+    photos.zarantonello.net: 100.99.201.25,fd7a:115c:a1e0::7401:c91c
+    vault.zarantonello.net: 100.99.201.25,fd7a:115c:a1e0::7401:c91c
 fqdnOnly:
   enable: true
-log:
-  format: json
 ports:
   dns: 53
   http: 8080
