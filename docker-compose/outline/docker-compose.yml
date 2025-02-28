@@ -56,7 +56,7 @@ services:
       - no-new-privileges:true
     user: 21127:21127
     volumes:
-      - data:/var/lib/outline/data
+      - $HOME/volumes/outline-data:/var/lib/outline/data
 
   # Recurrent job that runs twice a day.
   outline-cron:
@@ -104,7 +104,7 @@ services:
     # volume but fails due to insufficient permissions.
     user: 70:70
     volumes:
-      - postgres:/var/lib/postgresql/data
+      - $HOME/volumes/outline-postgres:/var/lib/postgresql/data
 
   redis:
     cap_drop:
@@ -124,9 +124,4 @@ services:
       - no-new-privileges:true
     user: 24056:24056
     volumes:
-      - redis:/data
-
-volumes:
-  data: {}
-  postgres: {}
-  redis: {}
+      - $HOME/volumes/outline-redis:/data
