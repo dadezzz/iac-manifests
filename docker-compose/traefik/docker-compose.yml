@@ -24,7 +24,7 @@ services:
         target: /etc/traefik/traefik.yml
     env_file: .env
     group_add:
-      - "993"
+      - "992"
     healthcheck:
       interval: 10s
       retries: 5

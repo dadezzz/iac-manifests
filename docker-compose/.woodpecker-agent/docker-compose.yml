@@ -13,7 +13,7 @@ services:
       WOODPECKER_SERVER: 100.106.32.89:9000
     # Add to docker group to use the docker socket.
     group_add:
-      - "993"
+      - "992"
     healthcheck:
       interval: 10s
       retries: 5

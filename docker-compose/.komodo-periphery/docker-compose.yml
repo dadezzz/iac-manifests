@@ -35,7 +35,7 @@ services:
       PERIPHERY_STACK_DIR: /var/lib/komodo/stacks
     # Add to docker group to use the docker socket.
     group_add:
-      - "993"
+      - "992"
     # Used by services like caddy that load different configs based on server
     # hostname.
     hostname: ${HOSTNAME}

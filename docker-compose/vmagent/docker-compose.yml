@@ -20,7 +20,7 @@ services:
     extra_hosts:
       - hosts.docker.internal:host-gateway
     group_add:
-      - "993"
+      - "992"
     image: docker.io/victoriametrics/vmagent:v1.112.0-scratch@sha256:a3e3181a141599d2968dcaff13663240652d834e1ab815b7952a85db5fd5fd3a
     labels:
       victoriametrics.job: vmagent
