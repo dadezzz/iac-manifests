@@ -6,7 +6,7 @@ jobs:
   check-commitizen:
     env:
       # renovate: datasource=pypi depName=commitizen versioning=pep440
-      COMMITIZEN_VERSION: 4.3.0
+      COMMITIZEN_VERSION: 4.4.1
       PR_TITLE: ${{ github.event.pull_request.title }}
     runs-on: ubuntu-24.04
     steps:
