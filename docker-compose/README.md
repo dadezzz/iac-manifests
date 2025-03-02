@@ -8,7 +8,7 @@ Create the file `/etc/docker/daemon.json` with contents:
 
 ```json
 {
-  "logging-driver": "local"
+  "log-driver": "local"
 }
 ```
 
