@@ -5,7 +5,8 @@
     ":semanticCommits",
     "config:best-practices",
     "customManagers:dockerfileVersions",
-    "customManagers:githubActionsVersions"
+    "customManagers:githubActionsVersions",
+    "customManagers:biomeVersions"
   ],
   "ignorePaths": [".unmaintained/**", "docker-compose/.*/**"],
   "kubernetes": {
