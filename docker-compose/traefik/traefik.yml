@@ -32,7 +32,6 @@ global:
   checkNewVersion: false
   sendAnonymousUsage: true
 log:
-  format: json
   level: INFO
 metrics:
   prometheus:

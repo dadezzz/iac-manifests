@@ -60,8 +60,8 @@ identity_providers:
       - key: |
           {{ mustEnv "OIDC_JWKS_PRIVATE_KEY_BASE64" | trim | b64dec | indent 10 | trim }}
 log:
-  format: json
   level: info
+  
 notifier:
   smtp:
     address: submissions://smtp.purelymail.com:465
