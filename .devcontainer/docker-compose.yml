@@ -3,9 +3,9 @@ name: iac-manifests-devcontainer
 services:
   devcontainer:
     build: .
-    environment:
+    # environment:
       # Tell sops where to find the secret key for age decryption.
-      SOPS_AGE_KEY_FILE: /workspace/age-secret-key.txt
+      # SOPS_AGE_KEY_FILE: /workspace/age-secret-key.txt
     volumes:
       - ..:/workspace:cached
-      - $HOME/.kube:/root/.kube
+      # - $HOME/.kube:/root/.kube

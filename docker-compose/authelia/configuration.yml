@@ -29,7 +29,8 @@ identity_providers:
         client_name: Minio
         client_secret: '{{ mustEnv "MINIO_CLIENT_SECRET" | trim }}'
         redirect_uris:
-          - https://minio.zarantonello.dev/oauth_callback
+          - https://minio-0.zarantonello.dev/oauth_callback
+          - https://minio-1.zarantonello.dev/oauth_callback
         scopes:
           - openid
           - email
@@ -59,7 +60,6 @@ identity_providers:
       - key: |
           {{ mustEnv "OIDC_JWKS_PRIVATE_KEY_BASE64" | trim | b64dec | indent 10 | trim }}
 log:
-  format: json
   level: info
 notifier:
   smtp:

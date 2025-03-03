@@ -1,11 +1,7 @@
 {
   "customizations": {
     "vscode": {
-      "extensions": [
-        "esbenp.prettier-vscode",
-        "hangxingliu.vscode-systemd-support",
-        "redhat.vscode-yaml"
-      ]
+      "extensions": ["biomejs.biome", "redhat.vscode-yaml"]
     }
   },
   "dockerComposeFile": "docker-compose.yml",

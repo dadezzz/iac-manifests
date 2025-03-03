@@ -53,7 +53,4 @@ services:
       - no-new-privileges:true
     user: 53382:53382
     volumes:
-      - data:/data
-
-volumes:
-  data: {}
+      - $HOME/volumes/vaultwarden-data:/data
