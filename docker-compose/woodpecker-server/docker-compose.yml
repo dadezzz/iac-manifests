@@ -31,7 +31,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.woodpecker-grpc.entrypoints: http
-      traefik.http.routers.woodpecker-grpc.rule: Host(`woodpecker.zarantonello.dev`)
+      traefik.http.routers.woodpecker-grpc.rule: Host(`100.99.201.25`)
       traefik.http.routers.woodpecker-grpc.service: woodpecker-grpc
       traefik.http.routers.woodpecker-http.entrypoints: cloudflared
       traefik.http.routers.woodpecker-http.rule: Host(`ci.zarantonello.dev`)
