@@ -7,31 +7,13 @@
 # - WOODPECKER_GITHUB_SECRET
 
 networks:
-  cloudflared_default:
+  traefik_default:
     external: true
 
 services:
-  # kics-scan ignore-block
-  chown-volumes:
-    entrypoint:
-      - sh
-      - -c
-      - chown -R 4518:4518 /volumes/data
-    image: docker.io/library/busybox:1.37.0-musl@sha256:37ccc05112d0a7162b605c375f5c0f5cfbc6e6c4fc8030ead6ae26a18c28a542
-    read_only: true
-    restart: "no"
-    security_opt:
-      - no-new-privileges:true
-    user: 0:0
-    volumes:
-      - data:/volumes/data
-
   woodpecker-server:
     cap_drop:
       - ALL
-    depends_on:
-      chown-volumes:
-        condition: service_completed_successfully
     env_file: .env
     environment:
       - WOODPECKER_ADMIN=dvdzara
@@ -46,19 +28,21 @@ services:
         - ping
       timeout: 5s
     image: docker.io/woodpeckerci/woodpecker-server:v3.1.0@sha256:18a5f50427d20f2930d4aa35941f0fe6cb8f2740471a6182f05f92d67897aba3
+    labels:
+      traefik.enable: true
+      traefik.http.routers.woodpecker-grpc.entrypoints: http
+      traefik.http.routers.woodpecker-grpc.rule: Host(`woodpecker.zarantonello.dev`)
+      traefik.http.routers.woodpecker-http.entrypoints: cloudflared
+      traefik.http.routers.woodpecker-http.rule: Host(`ci.zarantonello.dev`)
+      traefik.http.services.woodpecker-grpc.loadbalancer.server.port: 9000
+      traefik.http.services.woodpecker-grpc.loadbalancer.server.scheme: h2c
+      traefik.http.services.woodpecker-http.loadbalancer.server.port: 8000
     networks:
-      cloudflared_default:
-        aliases:
-          - woodpecker
-    ports:
-      - 100.106.32.89:9000:9000
+      - traefik_default
     read_only: true
     restart: always
     security_opt:
       - no-new-privileges:true
     user: 4518:4518
     volumes:
-      - data:/var/lib/woodpecker
-
-volumes:
-  data: {}
+      - $HOME/volumes/woodpecker-data:/var/lib/woodpecker
