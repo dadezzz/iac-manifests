@@ -1,4 +1,4 @@
-service:
+services:
   traefik:
     ports:
       - "[fd7a:115c:a1e0::7401:c91c]:443:8443/tcp"

@@ -1,4 +1,4 @@
-service:
+services:
   blocky:
     ports:
       - "[fd7a:115c:a1e0::7401:c91c]:53:53/tcp"
