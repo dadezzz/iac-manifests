@@ -103,7 +103,7 @@ services:
     # volume but fails due to insufficient permissions.
     user: 70:70
     volumes:
-      - postgres:/var/lib/postgresql/data
+      - $HOME/volumes/authelia-postgres:/var/lib/postgresql/data
 
   redis:
     cap_drop:
@@ -123,8 +123,4 @@ services:
       - no-new-privileges:true
     user: 46406:46406
     volumes:
-      - redis:/data
-
-volumes:
-  postgres: {}
-  redis: {}
+      - $HOME/volumes/authelia-redis:/data

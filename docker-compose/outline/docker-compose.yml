@@ -2,6 +2,8 @@
 #
 # Create a .env file with:
 #
+# - AWS_ACCESS_KEY_ID
+# - AWS_SECRET_ACCESS_KEY
 # - OIDC_CLIENT_ID
 # - OIDC_CLIENT_SECRET
 # - POSTGRES_DB
@@ -27,11 +29,15 @@ services:
         condition: service_healthy
     env_file: .env
     environment:
+      AWS_REGION: auto
+      AWS_S3_UPLOAD_BUCKET_NAME: outline
+      AWS_S3_UPLOAD_BUCKET_URL: https://s3.zarantonello.dev
       DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DATABASE}
-      FILE_STORAGE: local
+      FILE_STORAGE: s3
       OIDC_AUTH_URI: https://auth.zarantonello.dev/api/oidc/authorization
       OIDC_DISABLE_REDIRECT: true
       OIDC_DISPLAY_NAME: Authelia
+      OIDC_LOGOUT_URI: https://auth.zaratonello.dev/logout
       OIDC_TOKEN_URI: https://auth.zarantonello.dev/api/oidc/token
       OIDC_USERINFO_URI: https://auth.zarantonello.dev/api/oidc/userinfo
       OIDC_USERNAME_CLAIM: preferred_username
@@ -55,8 +61,6 @@ services:
     security_opt:
       - no-new-privileges:true
     user: 21127:21127
-    volumes:
-      - data:/var/lib/outline/data
 
   # Recurrent job that runs twice a day.
   outline-cron:
@@ -70,7 +74,7 @@ services:
       - -c
       - while true ; do wget "https://docs.zarantonello.dev/api/cron.daily?token=${UTILS_SECRET}" ; sleep 43200 ; done
     env_file: .env
-    image: docker.io/library/alpine:3.21.3@sha256:a8560b36e8b8210634f77d9f7f9efd7ffa463e380b75e2e74aff4511df3ef88c
+    image: docker.io/library/busybox:1.37.0-musl
     networks:
       - default
     restart: always
@@ -104,7 +108,7 @@ services:
     # volume but fails due to insufficient permissions.
     user: 70:70
     volumes:
-      - postgres:/var/lib/postgresql/data
+      - $HOME/volumes/outline-postgres:/var/lib/postgresql/data
 
   redis:
     cap_drop:
@@ -124,9 +128,4 @@ services:
       - no-new-privileges:true
     user: 24056:24056
     volumes:
-      - redis:/data
-
-volumes:
-  data: {}
-  postgres: {}
-  redis: {}
+      - $HOME/volumes/outline-redis:/data

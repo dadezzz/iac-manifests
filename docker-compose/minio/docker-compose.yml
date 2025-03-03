@@ -22,29 +22,27 @@ services:
       - server
     env_file: .env
     environment:
-      MINIO_BROWSER_REDIRECT_URL: https://minio.zarantonello.dev
+      MINIO_API_ROOT_ACCESS: off
+      MINIO_BROWSER_REDIRECT: false
+      MINIO_COMPRESSION_ENABLE: on
       MINIO_CONSOLE_ADDRESS: :9001
       MINIO_IDENTITY_OPENID_CLAIM_NAME: groups
       MINIO_IDENTITY_OPENID_CONFIG_URL: https://auth.zarantonello.dev/.well-known/openid-configuration
       MINIO_IDENTITY_OPENID_DISPLAY_NAME: Authelia
       MINIO_IDENTITY_OPENID_SCOPES: email,profile,groups,openid
-      MINIO_STORAGE_CLASS_STANDARD: EC:1
-      MINIO_VOLUMES: /mnt/disk1 /mnt/disk2 /mnt/disk3 /mnt/disk4
-    image: quay.io/minio/minio:RELEASE.2025-02-03T21-03-04Z-cpuv1@sha256:247b3ab5a7c817f2b9d4fe6b7261aa71c016da447c14d9e1f8fcfdf1fc9d2480
+    # Host specific configuration for volumes, image and http host.
+    extends:
+      file: ./${HOSTNAME}.docker-compose.yml
+      service: minio
     labels:
       traefik.enable: true
       traefik.http.routers.minio-dashboard.entrypoints: https
-      traefik.http.routers.minio-dashboard.rule: Host(`minio.zarantonello.dev`)
       traefik.http.routers.minio-dashboard.service: minio-dashboard
       traefik.http.services.minio-dashboard.loadbalancer.server.port: 9001
     networks:
       - traefik_default
-    ports:
-      - 9000:9000
     read_only: true
     restart: always
     security_opt:
       - no-new-privileges:true
     user: 29349:29349
-    volumes:
-      - /mnt/minio:/mnt:z
