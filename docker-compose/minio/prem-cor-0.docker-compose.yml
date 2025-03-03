@@ -1,0 +1,13 @@
+services:
+  minio:
+    environment:
+      MINIO_BROWSER_REDIRECT_URL: https://minio-1.zarantonello.dev
+      MINIO_VOLUMES: /mnt/disk1 /mnt/disk2 /mnt/disk3 /mnt/disk4
+    image: quay.io/minio/minio:RELEASE.2025-02-28T09-55-16Z-cpuv1
+    labels:
+      traefik.http.routers.minio-dashboard.rule: Host(`minio-1.zarantonello.dev`)
+    volumes:
+      - /mnt/minio/disk1:/mnt/disk1
+      - /mnt/minio/disk2:/mnt/disk2
+      - /mnt/minio/disk3:/mnt/disk3
+      - /mnt/minio/disk4:/mnt/disk4
