@@ -74,7 +74,7 @@ services:
       - -c
       - while true ; do wget "https://docs.zarantonello.dev/api/cron.daily?token=${UTILS_SECRET}" ; sleep 43200 ; done
     env_file: .env
-    image: docker.io/library/busybox:1.37.0-musl
+    image: docker.io/library/busybox:1.37.0-musl@sha256:5b2531a497e1f4f0994272e72168d765cc54dc5da760e7bbac9c95aec383b137
     networks:
       - default
     restart: always
