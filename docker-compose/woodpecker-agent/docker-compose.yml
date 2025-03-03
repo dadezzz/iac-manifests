@@ -10,7 +10,7 @@ services:
       - ALL
     env_file: .env
     environment:
-      WOODPECKER_SERVER: 100.106.32.89:9000
+      WOODPECKER_SERVER: 100.99.201.25:80
     # Add to docker group to use the docker socket.
     group_add:
       - "992"
@@ -29,5 +29,4 @@ services:
       - no-new-privileges:true
     user: 36307:36307
     volumes:
-      # kics-scan ignore-line
-      - /var/run/docker.sock:/var/run/docker.sock:z
+      - /var/run/docker.sock:/var/run/docker.sock

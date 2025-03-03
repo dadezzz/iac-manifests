@@ -53,6 +53,7 @@ services:
       traefik.enable: true
       traefik.http.routers.outline.entrypoints: cloudflared
       traefik.http.routers.outline.rule: Host(`docs.zarantonello.dev`)
+      traefik.http.routers.outline.service: outline
       traefik.http.services.outline.loadbalancer.server.port: 3000
     networks:
       - default

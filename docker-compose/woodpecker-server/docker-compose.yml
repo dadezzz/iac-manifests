@@ -1,0 +1,50 @@
+# SETUP:
+#
+# Create a .env file with:
+#
+# - WOODPECKER_AGENT_SECRET
+# - WOODPECKER_GITHUB_CLIENT
+# - WOODPECKER_GITHUB_SECRET
+
+networks:
+  traefik_default:
+    external: true
+
+services:
+  woodpecker-server:
+    cap_drop:
+      - ALL
+    env_file: .env
+    environment:
+      - WOODPECKER_ADMIN=dvdzara
+      - WOODPECKER_HOST=https://ci.zarantonello.dev
+      - WOODPECKER_GITHUB=true
+    healthcheck:
+      interval: 10s
+      retries: 5
+      test:
+        - CMD
+        - woodpecker-server
+        - ping
+      timeout: 5s
+    image: docker.io/woodpeckerci/woodpecker-server:v3.1.0@sha256:18a5f50427d20f2930d4aa35941f0fe6cb8f2740471a6182f05f92d67897aba3
+    labels:
+      traefik.enable: true
+      traefik.http.routers.woodpecker-grpc.entrypoints: http
+      traefik.http.routers.woodpecker-grpc.rule: Host(`100.99.201.25`)
+      traefik.http.routers.woodpecker-grpc.service: woodpecker-grpc
+      traefik.http.routers.woodpecker-http.entrypoints: cloudflared
+      traefik.http.routers.woodpecker-http.rule: Host(`ci.zarantonello.dev`)
+      traefik.http.routers.woodpecker-http.service: woodpecker-http
+      traefik.http.services.woodpecker-grpc.loadbalancer.server.port: 9000
+      traefik.http.services.woodpecker-grpc.loadbalancer.server.scheme: h2c
+      traefik.http.services.woodpecker-http.loadbalancer.server.port: 8000
+    networks:
+      - traefik_default
+    read_only: true
+    restart: always
+    security_opt:
+      - no-new-privileges:true
+    user: 4518:4518
+    volumes:
+      - $HOME/volumes/woodpecker-data:/var/lib/woodpecker
