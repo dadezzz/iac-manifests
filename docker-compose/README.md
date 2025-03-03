@@ -8,7 +8,8 @@ Create the file `/etc/docker/daemon.json` with contents:
 
 ```json
 {
-  "log-driver": "local"
+  "log-driver": "local",
+  "metrics-addr": "127.0.0.1:9323"
 }
 ```
 

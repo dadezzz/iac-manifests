@@ -26,6 +26,10 @@
       "matchPackageNames": ["docker.io/woodpeckerci/*"],
       "groupSlug": "woodpecker",
       "groupName": "woodpecker"
+    },
+    {
+      "packagePatterns": ["quay.io/minio/minio"],
+      "versioning": "regex:^RELEASE\\.(?<major>\\d{4})-(?<minor>\\d{2})-(?<patch>\\d{2})T(?<build>\\d{2})-(?<revision>\\d{2})-\\d{2}Z(?:-(?<compatibility>.+))?$"
     }
   ]
 }

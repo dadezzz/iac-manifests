@@ -30,6 +30,7 @@ services:
       MINIO_IDENTITY_OPENID_CONFIG_URL: https://auth.zarantonello.dev/.well-known/openid-configuration
       MINIO_IDENTITY_OPENID_DISPLAY_NAME: Authelia
       MINIO_IDENTITY_OPENID_SCOPES: email,profile,groups,openid
+    # Host specific configuration for volumes, image and http host.
     extends:
       file: ./${HOSTNAME}.docker-compose.yml
       service: minio

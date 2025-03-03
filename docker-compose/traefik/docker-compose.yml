@@ -23,6 +23,9 @@ services:
       - source: traefik
         target: /etc/traefik/traefik.yml
     env_file: .env
+    extends:
+      file: ${HOSTNAME}.docker-compose.yml
+      service: traefik
     group_add:
       - "992"
     healthcheck:
@@ -42,10 +45,6 @@ services:
         aliases:
           - traefik
       vmagent_default: {}
-    ports:
-      - 80:8080
-      - 443:8443/tcp
-      - 443:8443/udp
     read_only: true
     restart: always
     security_opt:
@@ -53,4 +52,4 @@ services:
     user: 51664:51664
     volumes:
       - $HOME/volumes/traefik-certificates:/var/lib/traefik/certificates
-      - /var/run/docker.sock:/var/run/docker.sock:z
+      - /var/run/docker.sock:/var/run/docker.sock
