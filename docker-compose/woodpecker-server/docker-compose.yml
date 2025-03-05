@@ -27,7 +27,7 @@ services:
         - woodpecker-server
         - ping
       timeout: 5s
-    image: docker.io/woodpeckerci/woodpecker-server:v3.1.0@sha256:18a5f50427d20f2930d4aa35941f0fe6cb8f2740471a6182f05f92d67897aba3
+    image: docker.io/woodpeckerci/woodpecker-server:v3.3.0@sha256:8c9e9c7235db95c9d119e2cca986f88a768d2efae4b2a02d361eaa5457a1d461
     labels:
       traefik.enable: true
       traefik.http.routers.woodpecker-grpc.entrypoints: http
