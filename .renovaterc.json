@@ -18,7 +18,11 @@
   "packageRules": [
     {
       "automerge": true,
-      "matchFileNames": [".github/workflows/**", ".devcontainer/**"]
+      "matchFileNames": [
+        ".devcontainer/**",
+        ".github/workflows/**",
+        ".woodpecker/**"
+      ]
     },
     {
       "matchPackageNames": ["ghcr.io/immich-app/*"],
