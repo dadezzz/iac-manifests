@@ -14,48 +14,6 @@ networks:
     external: true
 
 services:
-  authelia:
-    cap_drop:
-      - ALL
-    command:
-      - start-from-init --masterkey "${ZITADEL_MASTERKEY}"
-    depends_on:
-      postgres:
-        condition: service_healthy
-    env_file: .env
-    environment:
-      ZITADEL_DATABASE_POSTGRES_DATABASE: ${POSTGRES_DB}
-      ZITADEL_DATABASE_POSTGRES_HOST: postgres
-      ZITADEL_DATABASE_POSTGRES_PORT: 5432
-      ZITADEL_DATABASE_POSTGRES_USER_PASSWORD: ${POSTGRES_PASSWORD}
-      ZITADEL_DATABASE_POSTGRES_USER_USERNAME: ${POSTGRES_USER}
-      ZITADEL_EXTERNALDOMAIN: auth.zarantonello.dev
-      ZITADEL_TLS_ENABLED: false
-    healthcheck:
-      interval: 10s
-      retries: 5
-      test:
-        - CMD
-        - /app/zitadel
-        - ready
-      timeout: 5s
-    image: ghcr.io/zitadel/zitadel
-    labels:
-      traefik.enable: true
-      traefik.http.routers.zitadel.entrypoints: cloudflared
-      traefik.http.routers.zitadel.rule: Host(`auth.zarantonello.dev`)
-      traefik.http.services.zitadel.loadbalancer.server.port: 8080
-      victoriametrics.job: zitadel
-      victoriametrics.port: 8080
-    networks:
-      - default
-      - traefik_default
-      - vmagent_default
-    restart: always
-    security_opt:
-      - no-new-privileges:true
-    user: 27218:27218
-
   postgres:
     cap_drop:
       - ALL
@@ -83,3 +41,45 @@ services:
     user: 70:70
     volumes:
       - $HOME/volumes/zitadel-postgres:/var/lib/postgresql/data
+
+  zitadel:
+    cap_drop:
+      - ALL
+    command:
+      - start-from-init --masterkey "${ZITADEL_MASTERKEY}"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file: .env
+    environment:
+      ZITADEL_DATABASE_POSTGRES_DATABASE: ${POSTGRES_DB}
+      ZITADEL_DATABASE_POSTGRES_HOST: postgres
+      ZITADEL_DATABASE_POSTGRES_PORT: 5432
+      ZITADEL_DATABASE_POSTGRES_USER_PASSWORD: ${POSTGRES_PASSWORD}
+      ZITADEL_DATABASE_POSTGRES_USER_USERNAME: ${POSTGRES_USER}
+      ZITADEL_EXTERNALDOMAIN: auth.zarantonello.dev
+      ZITADEL_TLS_ENABLED: false
+    healthcheck:
+      interval: 10s
+      retries: 5
+      test:
+        - CMD
+        - /app/zitadel
+        - ready
+      timeout: 5s
+    image: ghcr.io/zitadel/zitadel:v2.71.1
+    labels:
+      traefik.enable: true
+      traefik.http.routers.zitadel.entrypoints: cloudflared
+      traefik.http.routers.zitadel.rule: Host(`auth.zarantonello.dev`)
+      traefik.http.services.zitadel.loadbalancer.server.port: 8080
+      victoriametrics.job: zitadel
+      victoriametrics.port: 8080
+    networks:
+      - default
+      - traefik_default
+      - vmagent_default
+    restart: always
+    security_opt:
+      - no-new-privileges:true
+    user: 27218:27218
