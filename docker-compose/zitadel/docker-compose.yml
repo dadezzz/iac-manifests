@@ -63,6 +63,7 @@ services:
       ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE: disable
       ZITADEL_DATABASE_POSTGRES_USER_USERNAME: ${POSTGRES_USER}
       ZITADEL_EXTERNALDOMAIN: auth.zarantonello.dev
+      ZITADEL_EXTERNALPORT: 443
       ZITADEL_TLS_ENABLED: false
     healthcheck:
       interval: 10s
