@@ -46,7 +46,8 @@ services:
     cap_drop:
       - ALL
     command:
-      - start-from-init --masterkey "${ZITADEL_MASTERKEY}"
+      - start-from-init
+      - --masterkey=${ZITADEL_MASTERKEY}
     depends_on:
       postgres:
         condition: service_healthy
