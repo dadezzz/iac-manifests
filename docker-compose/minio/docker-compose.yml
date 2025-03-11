@@ -26,10 +26,10 @@ services:
       MINIO_BROWSER_REDIRECT: false
       MINIO_COMPRESSION_ENABLE: on
       MINIO_CONSOLE_ADDRESS: :9001
-      MINIO_IDENTITY_OPENID_CLAIM_NAME: groups
+      MINIO_IDENTITY_OPENID_CLAIM_NAME: minio_policy
       MINIO_IDENTITY_OPENID_CONFIG_URL: https://auth.zarantonello.dev/.well-known/openid-configuration
-      MINIO_IDENTITY_OPENID_DISPLAY_NAME: Authelia
-      MINIO_IDENTITY_OPENID_SCOPES: email,profile,groups,openid
+      MINIO_IDENTITY_OPENID_DISPLAY_NAME: Zitadel
+      MINIO_IDENTITY_OPENID_SCOPES: email,profile,minio_policy,openid
     # Host specific configuration for volumes, image and http host.
     extends:
       file: ./${HOSTNAME}.docker-compose.yml
