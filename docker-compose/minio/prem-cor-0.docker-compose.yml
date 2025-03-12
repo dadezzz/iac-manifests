@@ -3,7 +3,7 @@ services:
     environment:
       MINIO_BROWSER_REDIRECT_URL: https://minio-1.zarantonello.dev
       MINIO_VOLUMES: /mnt/disk1 /mnt/disk2 /mnt/disk3 /mnt/disk4
-    image: quay.io/minio/minio:RELEASE.2025-02-28T09-55-16Z-cpuv1@sha256:6053f20bd03b2473563e7e066716fa55f004820f173fb8c152fb96d01312eb50
+    image: quay.io/minio/minio:RELEASE.2025-03-12T18-04-18Z-cpuv1@sha256:3166e27a12c2a4ab5be28fd328ef8243635c1ae36c46060d962f704f5618416b
     labels:
       traefik.http.routers.minio-dashboard.rule: Host(`minio-1.zarantonello.dev`)
     volumes:
