@@ -3,6 +3,7 @@
 # Create a .env file with:
 #
 # - ADMIN_USER
+# - OAUTH_CLIENT_ID
 # - POSTGRES_DB
 # - POSTGRES_PASSWORD
 # - POSTGRES_USER
