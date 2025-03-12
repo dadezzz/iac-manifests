@@ -4,7 +4,7 @@ services:
       MINIO_BROWSER_REDIRECT_URL: https://minio-0.zarantonello.dev
       MINIO_DOMAIN: s3.zarantonello.dev
       MINIO_VOLUMES: /data
-    image: quay.io/minio/minio:RELEASE.2025-02-28T09-55-16Z@sha256:a929054ae025fa7997857cd0e2a2e3029238e31ad89877326dc032f4c1a14259
+    image: quay.io/minio/minio:RELEASE.2025-03-12T18-04-18Z@sha256:46b3009bf7041eefbd90bd0d2b38c6ddc24d20a35d609551a1802c558c1c958f
     labels:
       traefik.http.routers.minio-dashboard.rule: Host(`minio-0.zarantonello.dev`)
       traefik.http.routers.minio-s3.entrypoints: https,cloudflared
