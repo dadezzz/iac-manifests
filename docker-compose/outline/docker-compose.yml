@@ -36,7 +36,7 @@ services:
       FILE_STORAGE: s3
       OIDC_AUTH_URI: https://auth.zarantonello.dev/oauth/v2/authorize
       OIDC_DISABLE_REDIRECT: true
-      OIDC_DISPLAY_NAME: Authelia
+      OIDC_DISPLAY_NAME: Zitadel
       OIDC_LOGOUT_URI: https://auth.zarantonello.dev/oidc/v1/end_session
       OIDC_TOKEN_URI: https://auth.zarantonello.dev/oauth/v2/token
       OIDC_USERINFO_URI: https://auth.zarantonello.dev/oidc/v1/userinfo
