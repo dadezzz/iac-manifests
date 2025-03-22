@@ -29,7 +29,7 @@ services:
       KC_HOSTNAME: https://auth.zarantonello.dev
       KC_PROXY_HEADERS: xforwarded
       KC_PROXY_TRUSTED_ADDRESSES: 172.16.0.0/12
-    image: quay.io/keycloak/keycloak:26.1.4
+    image: quay.io/keycloak/keycloak:26.1.4@sha256:044a457e04987e1fff756be3d2fa325a4ef420fa356b7034ecc9f1b693c32761
     labels:
       traefik.enable: true
       traefik.http.routers.keycloack-public.entrypoints: cloudflared
