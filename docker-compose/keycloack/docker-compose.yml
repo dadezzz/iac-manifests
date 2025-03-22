@@ -2,11 +2,11 @@
 #
 # Create a .env file with:
 #
+# - KC_BOOTSTRAP_ADMIN_PASSWORD
+# - KC_BOOTSTRAP_ADMIN_USERNAME
 # - POSTGRES_DB
 # - POSTGRES_PASSWORD
 # - POSTGRES_USER
-# - KC_BOOTSTRAP_ADMIN_USERNAME
-# - KC_BOOTSTRAP_ADMIN_PASSWORD
 
 networks:
   traefik_default:
@@ -17,7 +17,8 @@ services:
     cap_drop:
       - ALL
     command:
-     - --http-enabled=true
+      - start
+      - --http-enabled=true
     depends_on:
       postgres:
         condition: service_healthy
