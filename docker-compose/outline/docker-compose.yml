@@ -34,13 +34,13 @@ services:
       AWS_S3_UPLOAD_BUCKET_URL: https://s3.zarantonello.dev
       DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DATABASE}
       FILE_STORAGE: s3
-      OIDC_AUTH_URI: https://auth.zarantonello.dev/oauth/v2/authorize
+      OIDC_AUTH_URI: https://auth.zarantonello.dev/realms/homelab/protocol/openid-connect/auth
       OIDC_DISABLE_REDIRECT: true
-      OIDC_DISPLAY_NAME: Zitadel
-      OIDC_LOGOUT_URI: https://auth.zarantonello.dev/oidc/v1/end_session
-      OIDC_TOKEN_URI: https://auth.zarantonello.dev/oauth/v2/token
-      OIDC_USERINFO_URI: https://auth.zarantonello.dev/oidc/v1/userinfo
-      OIDC_USERNAME_CLAIM: preferred_username
+      OIDC_DISPLAY_NAME: Keycloak
+      OIDC_LOGOUT_URI: https://auth.zarantonello.dev/realms/homelab/protocol/openid-connect/logout
+      OIDC_TOKEN_URI: https://auth.zarantonello.dev/realms/homelab/protocol/openid-connect/token
+      OIDC_USERINFO_URI: https://auth.zarantonello.dev/realms/homelab/protocol/openid-connect/userinfo
+      OIDC_USERNAME_CLAIM: email
       PGSSLMODE: disable
       RATE_LIMITER_ENABLED: true
       REDIS_URL: redis://redis:6379
