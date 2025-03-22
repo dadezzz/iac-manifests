@@ -33,8 +33,10 @@ services:
       traefik.enable: true
       traefik.http.routers.keycloack-public.entrypoints: cloudflared
       traefik.http.routers.keycloack-public.rule: Host(`auth.zarantonello.dev`) && (PathPrefix(`/realms`)  || PathPrefix(`/resources`))
+      traefik.http.routers.keycloack-public.service: keycloack-public
       traefik.http.routers.keycloack.entrypoints: https
       traefik.http.routers.keycloack.rule: Host(`auth.zarantonello.dev`)
+      traefik.http.routers.keycloack.service: keycloack
       traefik.http.services.keycloack-public.loadbalancer.server.port: 8080
       traefik.http.services.keycloack.loadbalancer.server.port: 8080
     networks:
