@@ -43,7 +43,6 @@ services:
     restart: always
     security_opt:
       - no-new-privileges:true
-    user: 47048:47048
 
   postgres:
     cap_drop:
