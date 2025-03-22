@@ -14,8 +14,6 @@ networks:
 
 services:
   keycloak:
-    cap_drop:
-      - ALL
     command:
       - start
       - --http-enabled=true
