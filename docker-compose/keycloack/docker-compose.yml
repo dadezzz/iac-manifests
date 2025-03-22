@@ -28,6 +28,7 @@ services:
       KC_DB_USERNAME: ${POSTGRES_USER}
       KC_HOSTNAME: https://auth.zarantonello.dev
       KC_PROXY_HEADERS: xforwarded
+      KC_PROXY_TRUSTED_ADDRESSES: 172.16.0.0/12
     image: quay.io/keycloak/keycloak:26.1.4
     labels:
       traefik.enable: true
