@@ -38,7 +38,7 @@ services:
       DB_USERNAME: ${POSTGRES_USER}
       IMMICH_TELEMETRY_INCLUDE: all
       REDIS_HOSTNAME: redis
-    image: ghcr.io/immich-app/immich-server:v1.130.3@sha256:eb5e28de53461e9c328d86fdccfddde579cf9b10ebb3105a2a194115b79ad8a9
+    image: ghcr.io/immich-app/immich-server:v1.131.0@sha256:3d2b2ebf4fec7975dd36139bb06e861f90d0c2364887f8f62cf53ca13069c86d
     labels:
       traefik.enable: true
       # The app connects via http, it's less resource intensive and encryption
