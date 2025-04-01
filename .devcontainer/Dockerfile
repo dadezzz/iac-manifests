@@ -16,7 +16,7 @@ COPY --from=node /usr/local/lib/node_modules/ /usr/local/lib/node_modules/
 # Install and setup pnpm.
 
 # renovate: datasource=npm depName=pnpm versioning=npm
-ENV PNPM_VERSION="10.7.0"
+ENV PNPM_VERSION="10.7.1"
 RUN corepack enable pnpm && corepack prepare "pnpm@$PNPM_VERSION"
 
 ENV PNPM_HOME="/usr/local/share/pnpm"
