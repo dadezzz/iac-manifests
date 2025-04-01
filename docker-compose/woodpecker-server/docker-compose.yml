@@ -17,7 +17,7 @@ services:
     env_file: .env
     environment:
       WOODPECKER_ADMIN: dadezzz
-      WOODPECKER_ENVIRONMENT: CI_CACHE_VOLUME_BASE_DIR:${HOME}
+      WOODPECKER_ENVIRONMENT: CI_CACHE_VOLUME_BASE_DIR:${HOME}/volumes/woodpecker-agent
       WOODPECKER_GITHUB: true
       WOODPECKER_HOST: https://ci.zarantonello.dev
     healthcheck:
