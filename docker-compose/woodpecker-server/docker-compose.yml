@@ -16,9 +16,10 @@ services:
       - ALL
     env_file: .env
     environment:
-      - WOODPECKER_ADMIN=dvdzara
-      - WOODPECKER_HOST=https://ci.zarantonello.dev
-      - WOODPECKER_GITHUB=true
+      WOODPECKER_ADMIN: dadezzz
+      WOODPECKER_ENVIRONMENT: CI_CACHE_VOLUME_BASE_DIR:${HOME}
+      WOODPECKER_GITHUB: true
+      WOODPECKER_HOST: https://ci.zarantonello.dev
     healthcheck:
       interval: 10s
       retries: 5
@@ -47,4 +48,4 @@ services:
       - no-new-privileges:true
     user: 4518:4518
     volumes:
-      - $HOME/volumes/woodpecker-data:/var/lib/woodpecker
+      - ${HOME}/volumes/woodpecker-server/data:/var/lib/woodpecker
