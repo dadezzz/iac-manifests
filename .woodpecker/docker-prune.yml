@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/woodpecker-ci/woodpecker/main/pipeline/frontend/yaml/linter/schema/schema.json
+
+# Prune unused docker images and containers every night at midnight.
+
+steps:
+  docker-prune:
+    commands:
+      - docker system prune -fa
+    image: docker.io/library/docker:28.0.4-cli@sha256:c5e0b27a15f49b571f968defe19cc9a072d531ee90300ba5a1d2ea4dffa760e4
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+when:
+  - event: manual
+  - cron: docker-prune
+    event: cron
