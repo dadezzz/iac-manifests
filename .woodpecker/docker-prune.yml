@@ -2,6 +2,8 @@
 
 # Prune unused docker images and containers every night at midnight.
 
+skip_clone: true
+
 steps:
   docker-prune:
     commands:
