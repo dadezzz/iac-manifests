@@ -1,12 +1,3 @@
-# SETUP:
-#
-# Create a .env file with
-#
-# - MINIO_IDENTITY_OPENID_CLIENT_ID
-# - MINIO_IDENTITY_OPENID_CLIENT_SECRET
-# - MINIO_ROOT_PASSWORD
-# - MINIO_ROOT_USER
-#
 # TIP: In the host's /etc/fstab file mount the 4 data disks with the nofail
 # option to make the system boot even if one the data drives fails.
 
@@ -26,10 +17,10 @@ services:
       MINIO_BROWSER_REDIRECT: false
       MINIO_COMPRESSION_ENABLE: on
       MINIO_CONSOLE_ADDRESS: :9001
-      MINIO_IDENTITY_OPENID_CLAIM_NAME: minio-policy
+      MINIO_IDENTITY_OPENID_CLAIM_NAME: roles
       MINIO_IDENTITY_OPENID_CONFIG_URL: https://auth.zarantonello.dev/realms/homelab/.well-known/openid-configuration
       MINIO_IDENTITY_OPENID_DISPLAY_NAME: Keycloak
-      MINIO_IDENTITY_OPENID_SCOPES: email,profile,openid
+      MINIO_IDENTITY_OPENID_SCOPES: email,profile,openid,roles
     # Host specific configuration for volumes, image and http host.
     extends:
       file: ./${HOSTNAME}.docker-compose.yml
