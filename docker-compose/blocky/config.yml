@@ -1,4 +1,8 @@
 blocking:
+  allowlists:
+    default:
+      # Whitelist push notification providers for mobile phones.
+      - https://badblock.celenity.dev/wildcards-star/push_whitelist.txt
   blockType: nxDomain
   clientGroupsBlock:
     default:
