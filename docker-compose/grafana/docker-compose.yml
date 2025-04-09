@@ -37,7 +37,7 @@ services:
     user: 31904:31904
     volumes:
       - ./provisioning:/etc/grafana/provisioning:z
-      - data:/var/lib/grafana
+      - $HOME/volumes/grafana/data:/var/lib/grafana
 
   postgres:
     cap_drop:
@@ -65,8 +65,4 @@ services:
     # volume but fails due to insufficient permissions.
     user: 70:70
     volumes:
-      - postgres:/var/lib/postgresql/data
-
-volumes:
-  data: {}
-  postgres: {}
+      - $HOME/volumes/outline-postgres:/var/lib/postgresql/data
