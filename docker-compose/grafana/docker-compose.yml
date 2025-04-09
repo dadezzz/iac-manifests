@@ -65,4 +65,4 @@ services:
     # volume but fails due to insufficient permissions.
     user: 70:70
     volumes:
-      - $HOME/volumes/outline-postgres:/var/lib/postgresql/data
+      - $HOME/volumes/grafana/postgres:/var/lib/postgresql/data
