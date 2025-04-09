@@ -1,6 +1,7 @@
 {
   "files.associations": {
-    "*.env": "properties"
+    ".env": "properties",
+    ".env.*": "properties"
   },
   "yaml.keyOrdering": true,
   "[json]": { "editor.defaultFormatter": "biomejs.biome" },
