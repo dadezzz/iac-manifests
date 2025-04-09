@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "assignees": ["dvdzara"],
+  "assignees": ["dadezzz"],
   "extends": [
     ":semanticCommits",
     "config:best-practices",
@@ -11,9 +11,6 @@
   "ignorePaths": [".unmaintained/**", "docker-compose/.*/**"],
   "kubernetes": {
     "fileMatch": ["kubernetes/.+\\.yaml$"]
-  },
-  "docker-compose": {
-    "fileMatch": ["(^|/)(?:.+\\.)?(?:docker-)?compose[^/]*\\.ya?ml$"]
   },
   "packageRules": [
     {
