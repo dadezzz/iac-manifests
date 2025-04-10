@@ -12,7 +12,8 @@ services:
   init:
     cap_drop:
       - ALL
-    command:
+    entrypoint:
+      - /bin/sh
       - -c
       - |
         set -ex
