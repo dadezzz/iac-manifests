@@ -5,6 +5,9 @@ services:
     env_file: .env
     environment:
       WOODPECKER_SERVER: ci-grpc.zarantonello.dev:80
+    # Docker containers cannot use blocky for dns apparently?
+    extra_hosts:
+      ci-grpc.zarantonello.dev: 100.99.201.25
     # Add to docker group to use the docker socket.
     group_add:
       - "992"
