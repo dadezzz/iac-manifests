@@ -58,9 +58,9 @@ services:
         rm /var/lib/grafana/plugins/vl-plugin.tar.gz
     environment:
       # renovate: depName=https://github.com/VictoriaMetrics/victorialogs-datasource datasource=github-releases versioning=semver-coerced
-      VL_DATASOURCE_VERSION: 0.16.2
+      VL_DATASOURCE_VERSION: v0.16.2
       # renovate: depName=https://github.com/VictoriaMetrics/victoriametrics-datasource datasource=github-releases versioning=semver-coerced
-      VM_DATASOURCE_VERSION: 0.14.0
+      VM_DATASOURCE_VERSION: v0.14.0
     image: docker.io/curlimages/curl:8.13.0
     restart: "no"
     security_opt:
