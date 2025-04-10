@@ -3,5 +3,5 @@ apiVersion: 1
 datasources:
   - isDefault: false
     name: VictoriaLogs
-    type: loki
+    type: victoriametrics-logs-datasource
     url: http://victorialogs.zarantonello.net
