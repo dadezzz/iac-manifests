@@ -28,7 +28,7 @@ services:
       - no-new-privileges:true
     user: 54433:54433
     volumes:
-      - $HOME/victoriametrics/logs:/victoria-logs-data
+      - $HOME/volumes/victoriametrics/logs:/victoria-logs-data
 
   victoriametrics:
     cap_drop:
@@ -54,4 +54,4 @@ services:
       - no-new-privileges:true
     user: 34866:34866
     volumes:
-      - $HOME/victoriametrics/metrics:/victoria-metrics-data
+      - $HOME/volumes/victoriametrics/metrics:/victoria-metrics-data
