@@ -1,0 +1,7 @@
+apiVersion: 1
+
+datasources:
+  - isDefault: true
+    name: VictoriaLogs
+    type: loki
+    url: http://victorialogs.zarantonello.net

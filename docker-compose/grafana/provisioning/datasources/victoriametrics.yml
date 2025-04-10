@@ -4,4 +4,4 @@ datasources:
   - isDefault: true
     name: VictoriaMetrics
     type: prometheus
-    url: http://victoriametrics.zarantonello.dev
+    url: http://victoriametrics.zarantonello.net
