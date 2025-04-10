@@ -16,11 +16,11 @@ services:
       - source: grafana
         target: /etc/grafana/grafana.ini
     depends_on:
-      init:
-        condition: service_completed_successfully
       postgres:
         condition: service_healthy
     env_file: .env
+    environment:
+      GF_INSTALL_PLUGINS: victoriametrics-logs-datasource,victoriametrics-metrics-datasource
     image: docker.io/grafana/grafana:11.6.0@sha256:62d2b9d20a19714ebfe48d1bb405086081bc602aa053e28cf6d73c7537640dfb
     labels:
       traefik.enable: true
@@ -39,34 +39,6 @@ services:
     user: 31904:31904
     volumes:
       - ./provisioning:/etc/grafana/provisioning:ro
-      - $HOME/volumes/grafana/data:/var/lib/grafana
-
-  init:
-    cap_drop:
-      - ALL
-    entrypoint:
-      - /bin/sh
-      - -c
-      - |
-        set -ex
-        mkdir -p /var/lib/grafana/plugins/
-        curl -L https://github.com/VictoriaMetrics/victoriametrics-datasource/releases/download/$$VM_DATASOURCE_VERSION/victoriametrics-metrics-datasource-$$VM_DATASOURCE_VERSION.tar.gz -o /var/lib/grafana/plugins/vm-plugin.tar.gz
-        tar -xzf /var/lib/grafana/plugins/vm-plugin.tar.gz -C /var/lib/grafana/plugins/
-        rm /var/lib/grafana/plugins/vm-plugin.tar.gz
-        curl -L https://github.com/VictoriaMetrics/victorialogs-datasource/releases/download/$$VL_DATASOURCE_VERSION/victoriametrics-logs-datasource-$$VL_DATASOURCE_VERSION.tar.gz -o /var/lib/grafana/plugins/vl-plugin.tar.gz
-        tar -xzf /var/lib/grafana/plugins/vl-plugin.tar.gz -C /var/lib/grafana/plugins/
-        rm /var/lib/grafana/plugins/vl-plugin.tar.gz
-    environment:
-      # renovate: depName=https://github.com/VictoriaMetrics/victorialogs-datasource datasource=github-releases versioning=semver-coerced
-      VL_DATASOURCE_VERSION: v0.16.2
-      # renovate: depName=https://github.com/VictoriaMetrics/victoriametrics-datasource datasource=github-releases versioning=semver-coerced
-      VM_DATASOURCE_VERSION: v0.14.0
-    image: docker.io/curlimages/curl:8.13.0
-    restart: "no"
-    security_opt:
-      - no-new-privileges:true
-    user: 31904:31904
-    volumes:
       - $HOME/volumes/grafana/data:/var/lib/grafana
 
   postgres:
