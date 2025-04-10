@@ -7,5 +7,5 @@ services:
       - 100.99.201.25:53:53/udp
       # docker containers use localhost. Disable systemd-resolved on systems
       # where it is running.
-      - 127.0.0.1:53/udp
-      - 127.0.0.1:53/tcp
+      - 127.0.0.1:53:53/udp
+      - 127.0.0.1:53:53/tcp
