@@ -50,10 +50,10 @@ services:
       - |
         set -ex
         mkdir -p /var/lib/grafana/plugins/
-        curl -L https://github.com/VictoriaMetrics/victoriametrics-datasource/releases/download/$VM_DATASOURCE_VERSION/victoriametrics-metrics-datasource-$VM_DATASOURCE_VERSION.tar.gz -o /var/lib/grafana/plugins/vm-plugin.tar.gz
+        curl -L https://github.com/VictoriaMetrics/victoriametrics-datasource/releases/download/$$VM_DATASOURCE_VERSION/victoriametrics-metrics-datasource-$$VM_DATASOURCE_VERSION.tar.gz -o /var/lib/grafana/plugins/vm-plugin.tar.gz
         tar -xzf /var/lib/grafana/plugins/vm-plugin.tar.gz -C /var/lib/grafana/plugins/
         rm /var/lib/grafana/plugins/vm-plugin.tar.gz
-        curl -L https://github.com/VictoriaMetrics/victorialogs-datasource/releases/download/$VL_DATASOURCE_VERSION/victoriametrics-logs-datasource-$VL_DATASOURCE_VERSION.tar.gz -o /var/lib/grafana/plugins/vl-plugin.tar.gz
+        curl -L https://github.com/VictoriaMetrics/victorialogs-datasource/releases/download/$$VL_DATASOURCE_VERSION/victoriametrics-logs-datasource-$$VL_DATASOURCE_VERSION.tar.gz -o /var/lib/grafana/plugins/vl-plugin.tar.gz
         tar -xzf /var/lib/grafana/plugins/vl-plugin.tar.gz -C /var/lib/grafana/plugins/
         rm /var/lib/grafana/plugins/vl-plugin.tar.gz
     environment:
