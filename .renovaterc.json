@@ -1,16 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "assignees": ["dadezzz"],
-  "customManagers": [
-    {
-      "customType": "regex",
-      "description": "Update dependency versions specified as environment variables",
-      "fileMatch": ["(^|/)(?:docker-)?compose[^/]*\\.ya?ml$"],
-      "matchStrings": [
-        "# renovate: datasource=(?<datasource>[a-zA-Z0-9-._]+?) depName=(?<depName>[^\\s]+?)(?: (?:lookupName|packageName)=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[^\\s]+?))?(?: extractVersion=(?<extractVersion>[^\\s]+?))?\\s+[A-Za-z0-9_]+?_VERSION\\s*:\\s*[\"']?(?<currentValue>.+?)[\"']?\\s"
-      ]
-    }
-  ],
   "extends": [
     ":semanticCommits",
     "config:best-practices",
