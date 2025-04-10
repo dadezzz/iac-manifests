@@ -9,31 +9,6 @@ networks:
     external: true
 
 services:
-  init:
-    cap_drop:
-      - ALL
-    entrypoint:
-      - /bin/sh
-      - -c
-      - |
-        set -ex
-        mkdir -p /var/lib/grafana/plugins/
-        ver=$(curl -s https://api.github.com/repos/VictoriaMetrics/victoriametrics-datasource/releases/latest | grep -oE 'v[0-9]+\.[0-9]+\.[0-9]+' | head -1)
-        curl -L https://github.com/VictoriaMetrics/victoriametrics-datasource/releases/download/$$ver/victoriametrics-metrics-datasource-$$ver.tar.gz -o /var/lib/grafana/plugins/vm-plugin.tar.gz
-        tar -xzf /var/lib/grafana/plugins/vm-plugin.tar.gz -C /var/lib/grafana/plugins/
-        rm /var/lib/grafana/plugins/vm-plugin.tar.gz
-        ver=$(curl -s https://api.github.com/repos/VictoriaMetrics/victorialogs-datasource/releases/latest | grep -oE 'v[0-9]+\.[0-9]+\.[0-9]+' | head -1)
-        curl -L https://github.com/VictoriaMetrics/victorialogs-datasource/releases/download/$$ver/victoriametrics-logs-datasource-$$ver.tar.gz -o /var/lib/grafana/plugins/vl-plugin.tar.gz
-        tar -xzf /var/lib/grafana/plugins/vl-plugin.tar.gz -C /var/lib/grafana/plugins/
-        rm /var/lib/grafana/plugins/vl-plugin.tar.gz
-    image: docker.io/curlimages/curl:8.13.0
-    restart: "no"
-    security_opt:
-      - no-new-privileges:true
-    user: 31904:31904
-    volumes:
-      - $HOME/volumes/grafana/data:/var/lib/grafana
-
   grafana:
     cap_drop:
       - ALL
@@ -63,7 +38,35 @@ services:
       - no-new-privileges:true
     user: 31904:31904
     volumes:
-      - ./provisioning:/etc/grafana/provisioning:z
+      - ./provisioning:/etc/grafana/provisioning:ro
+      - $HOME/volumes/grafana/data:/var/lib/grafana
+
+  init:
+    cap_drop:
+      - ALL
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        set -ex
+        mkdir -p /var/lib/grafana/plugins/
+        curl -L https://github.com/VictoriaMetrics/victoriametrics-datasource/releases/download/$VM_DATASOURCE_VERSION/victoriametrics-metrics-datasource-$VM_DATASOURCE_VERSION.tar.gz -o /var/lib/grafana/plugins/vm-plugin.tar.gz
+        tar -xzf /var/lib/grafana/plugins/vm-plugin.tar.gz -C /var/lib/grafana/plugins/
+        rm /var/lib/grafana/plugins/vm-plugin.tar.gz
+        curl -L https://github.com/VictoriaMetrics/victorialogs-datasource/releases/download/$VL_DATASOURCE_VERSION/victoriametrics-logs-datasource-$VL_DATASOURCE_VERSION.tar.gz -o /var/lib/grafana/plugins/vl-plugin.tar.gz
+        tar -xzf /var/lib/grafana/plugins/vl-plugin.tar.gz -C /var/lib/grafana/plugins/
+        rm /var/lib/grafana/plugins/vl-plugin.tar.gz
+    environment:
+      # renovate: depName=https://github.com/VictoriaMetrics/victorialogs-datasource datasource=github-releases versioning=semver-coerced
+      VL_DATASOURCE_VERSION: 0.16.2
+      # renovate: depName=https://github.com/VictoriaMetrics/victoriametrics-datasource datasource=github-releases versioning=semver-coerced
+      VM_DATASOURCE_VERSION: 0.14.0
+    image: docker.io/curlimages/curl:8.13.0
+    restart: "no"
+    security_opt:
+      - no-new-privileges:true
+    user: 31904:31904
+    volumes:
       - $HOME/volumes/grafana/data:/var/lib/grafana
 
   postgres:

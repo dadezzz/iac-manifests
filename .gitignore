@@ -1,4 +1,4 @@
-# They usually store secrets for docker compose.
+# Used to store secrets for docker compose.
 **/.env
 
 # Don't publish your age secret key.
