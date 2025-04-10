@@ -14,9 +14,9 @@ services:
     image: docker.io/victoriametrics/victoria-logs:v1.17.0-victorialogs-scratch@sha256:1667a1fbffb96c74083b1610ed92756b544be9ef95ee578489cdf6258e7fb197
     labels:
       traefik.enable: true
-      traefik.http.routers.victoriametrics.entrypoints: http
-      traefik.http.routers.victoriametrics.rule: Host(`victorialogs.zarantonello.net`)
-      traefik.http.services.victoriametrics.loadbalancer.server.port: 9428
+      traefik.http.routers.victorialogs.entrypoints: http
+      traefik.http.routers.victorialogs.rule: Host(`victorialogs.zarantonello.net`)
+      traefik.http.services.victorialogs.loadbalancer.server.port: 9428
       victoriametrics.job: victorialogs
       victoriametrics.port: 9428
     networks:
