@@ -11,7 +11,7 @@ services:
     command:
       # Logs occupy more space so we store them for a shorter amount of time.
       - -retentionPeriod=30d
-    image: docker.io/victoriametrics/victoria-logs:v1.17.0-victorialogs-scratch@sha256:1667a1fbffb96c74083b1610ed92756b544be9ef95ee578489cdf6258e7fb197
+    image: docker.io/victoriametrics/victoria-logs:v1.18.0-victorialogs-scratch@sha256:be7b28b49d92e29599a85bb69d5b78ed48157d4e787184ad305dbb4502df0096
     labels:
       traefik.enable: true
       traefik.http.routers.victorialogs.entrypoints: http
