@@ -20,7 +20,7 @@ services:
       MINIO_IDENTITY_OPENID_CLAIM_NAME: roles
       MINIO_IDENTITY_OPENID_CONFIG_URL: https://auth.zarantonello.dev/realms/homelab/.well-known/openid-configuration
       MINIO_IDENTITY_OPENID_DISPLAY_NAME: Keycloak
-      MINIO_IDENTITY_OPENID_SCOPES: email,profile,openid,roles
+      MINIO_IDENTITY_OPENID_SCOPES: email,profile,openid
     # Host specific configuration for volumes, image and http host.
     extends:
       file: ./${HOSTNAME}.docker-compose.yml
