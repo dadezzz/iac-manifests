@@ -1,16 +1,10 @@
-# SETUP:
-#
-# Create a .env file with:
-#
-# - WOODPECKER_AGENT_SECRET
-
 services:
   woodpecker-agent:
     cap_drop:
       - ALL
     env_file: .env
     environment:
-      WOODPECKER_SERVER: 100.99.201.25:80
+      WOODPECKER_SERVER: ci-grpc.zarantonello.dev:80
     # Add to docker group to use the docker socket.
     group_add:
       - "992"
