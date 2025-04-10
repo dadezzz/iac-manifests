@@ -19,6 +19,8 @@ services:
       postgres:
         condition: service_healthy
     env_file: .env
+    environment:
+      GF_INSTALL_PLUGINS: victoriametrics-logs-datasource,victoriametrics-metrics-datasource
     image: docker.io/grafana/grafana:11.6.0@sha256:62d2b9d20a19714ebfe48d1bb405086081bc602aa053e28cf6d73c7537640dfb
     labels:
       traefik.enable: true
@@ -36,7 +38,7 @@ services:
       - no-new-privileges:true
     user: 31904:31904
     volumes:
-      - ./provisioning:/etc/grafana/provisioning:z
+      - ./provisioning:/etc/grafana/provisioning:ro
       - $HOME/volumes/grafana/data:/var/lib/grafana
 
   postgres:

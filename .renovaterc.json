@@ -8,9 +8,9 @@
     "customManagers:githubActionsVersions",
     "customManagers:biomeVersions"
   ],
-  "ignorePaths": [".unmaintained/**", "docker-compose/.*/**"],
+  "ignorePaths": ["**/.*/**"],
   "kubernetes": {
-    "fileMatch": ["kubernetes/.+\\.yaml$"]
+    "fileMatch": [".unmaintained/kubernetes/.+\\.yaml$"]
   },
   "packageRules": [
     {
@@ -22,16 +22,17 @@
       ]
     },
     {
-      "matchPackageNames": ["ghcr.io/immich-app/*"],
-      "groupSlug": "immich",
-      "groupName": "immich"
+      "groupName": "immich monorepo",
+      "groupSlug": "immich-monorepo",
+      "matchPackageNames": ["ghcr.io/immich-app/*"]
     },
     {
-      "matchPackageNames": ["docker.io/woodpeckerci/*"],
-      "groupSlug": "woodpecker",
-      "groupName": "woodpecker"
+      "groupName": "woodpecker monorepo",
+      "groupSlug": "woodpecker-monorepo",
+      "matchPackageNames": ["docker.io/woodpeckerci/*"]
     },
     {
+      "description": "Detect version changes using minio's custom scheme",
       "matchPackageNames": ["quay.io/minio/minio"],
       "versioning": "regex:^RELEASE\\.(?<major>\\d{4})-(?<minor>\\d{2})-(?<patch>\\d{2})T(?<build>\\d{2})-(?<revision>\\d{2})-\\d{2}Z(?:-(?<compatibility>.+))?$"
     }
