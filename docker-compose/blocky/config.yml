@@ -31,11 +31,13 @@ caching:
   prefetching: true
 customDNS:
   mapping:
-    ci-grpc.zarantonello.dev: 100.99.201.25,fd7a:115c:a1e0::7401:c91c
+    ci-grpc-prem-0.zarantonello.dev: 100.99.201.25,fd7a:115c:a1e0::7401:c91c
     grafana.zarantonello.net: 100.99.201.25,fd7a:115c:a1e0::7401:c91c
-    minio-0.zarantonello.dev: 100.99.201.25,fd7a:115c:a1e0::7401:c91c
-    minio-1.zarantonello.dev: 100.81.212.20,fd7a:115c:a1e0::7301:d415
+    minio-prem-0.zarantonello.dev: 100.99.201.25,fd7a:115c:a1e0::7401:c91c
+    minio-prem-2.zarantonello.dev: 100.81.212.20,fd7a:115c:a1e0::7301:d415
     photos.zarantonello.net: 100.99.201.25,fd7a:115c:a1e0::7401:c91c
+    s3-prem-0.zarantonello.dev: 100.99.201.25,fd7a:115c:a1e0::7401:c91c
+    s3-prem-2.zarantonello.dev: 100.81.212.20,fd7a:115c:a1e0::7301:d415
     vault.zarantonello.net: 100.99.201.25,fd7a:115c:a1e0::7401:c91c
     victorialogs.zarantonello.net: 100.99.201.25,fd7a:115c:a1e0::7401:c91c
     victoriametrics.zarantonello.net: 100.99.201.25,fd7a:115c:a1e0::7401:c91c
