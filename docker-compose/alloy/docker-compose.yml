@@ -37,5 +37,6 @@ services:
     volumes:
       - $HOME/volumes/alloy:/var/lib/alloy
       - /var/run/docker.sock:/var/run/docker.sock
+      - /:/rootfs:ro
     ports:
       - 12345:12345

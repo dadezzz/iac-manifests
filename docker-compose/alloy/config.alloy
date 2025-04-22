@@ -55,16 +55,6 @@ loki.source.docker "docker_logs" {
     forward_to = [loki.write.victorialogs.receiver]
 }
 
-prometheus.remote_write "victoriametrics" {
-    endpoint {
-        url = "http://victoriametrics.zarantonello.net/prometheus/api/v1/write"
-    }
-}
-
-prometheus.exporter.cadvisor "cadvisor" {
-    docker_host = "unix:///var/run/docker.sock"
-}
-
 prometheus.scrape "docker_metrics_scraper" {
     targets = discovery.relabel.docker_metrics.output
     forward_to = [prometheus.remote_write.victoriametrics.receiver]
@@ -73,4 +63,25 @@ prometheus.scrape "docker_metrics_scraper" {
 prometheus.scrape "cadvisor_scraper" {
     targets = prometheus.exporter.cadvisor.cadvisor.targets
     forward_to = [prometheus.remote_write.victoriametrics.receiver]
+}
+
+prometheus.exporter.cadvisor "cadvisor" {
+    docker_host = "unix:///var/run/docker.sock"
+    allowlisted_container_labels = ["__meta_docker_container_name"]
+}
+
+prometheus.scrape "node_exporter_scraper" {
+    targets = prometheus.exporter.unix.node_exporter.targets
+    forward_to = [prometheus.remote_write.victoriametrics.receiver]
+}
+
+prometheus.exporter.unix "node_exporter" {
+    procfs_path = "/rootfs/proc"
+    rootfs_path = "/rootfs"
+}
+
+prometheus.remote_write "victoriametrics" {
+    endpoint {
+        url = "http://victoriametrics.zarantonello.net/prometheus/api/v1/write"
+    }
 }
