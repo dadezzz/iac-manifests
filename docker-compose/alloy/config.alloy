@@ -25,6 +25,12 @@ discovery.relabel "docker_targets" {
         source_labels = ["__address__", "__meta_docker_container_label_metrics_port"]
         target_label = "__address__"
     }
+
+    rule {
+        action = "replace"
+        replacement = constants.hostname
+        target_label = "instance"
+    }
 }
 
 loki.write "victorialogs" {
