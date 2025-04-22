@@ -15,7 +15,7 @@ services:
     environment:
       AWS_REGION: auto
       AWS_S3_UPLOAD_BUCKET_NAME: outline
-      AWS_S3_UPLOAD_BUCKET_URL: https://s3.zarantonello.dev
+      AWS_S3_UPLOAD_BUCKET_URL: https://s3-prem-0.zarantonello.dev
       DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DATABASE}
       FILE_STORAGE: s3
       OIDC_AUTH_URI: https://auth.zarantonello.dev/realms/homelab/protocol/openid-connect/auth
