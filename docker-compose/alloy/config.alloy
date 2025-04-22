@@ -1,0 +1,54 @@
+discovery.docker "docker_targets" {
+    host = "unix:///var/run/docker.sock"
+    host_networking_host = "hosts.docker.internal"
+}
+
+discovery.relabel "docker_targets" {
+    targets = discovery.docker.docker_targets.targets
+
+    rule {
+        action = "labelmap"
+        regex = "__meta_docker_container_label_metrics_job"
+        replacement = "job"
+    }
+
+    rule {
+        action = "replace"
+        regex = "([^:]+):[0-9]+;([0-9]+)"
+        replacement = "$1:$2"
+        source_labels = ["__address__", "__meta_docker_container_label_metrics_port"]
+        target_label = "__address__"
+    }
+}
+
+loki.write "victorialogs" {
+    endpoint {
+        url = "http://victorialogs.zarantonello.net/insert/loki/api/v1/push"
+    }
+}
+
+loki.source.docker "docker_logs" {
+    host = "unix:///var/run/docker.sock"
+    targets = discovery.relabel.docker_targets.output
+    forward_to = [loki.write.victorialogs.receiver]
+}
+
+prometheus.remote_write "victoriametrics" {
+    endpoint {
+        url = "http://victoriametrics.zarantonello.net/prometheus/api/v1/write"
+    }
+}
+
+prometheus.exporter.cadvisor "cadvisor" {
+    docker_host = "unix:///var/run/docker.sock"
+}
+
+prometheus.scrape "docker_metrics_scraper" {
+    targets = discovery.relabel.docker_targets.output
+    forward_to = [prometheus.remote_write.victoriametrics.receiver]
+}
+
+prometheus.scrape "cadvisor_scraper" {
+    targets = prometheus.exporter.cadvisor.cadvisor.targets
+    forward_to = [prometheus.remote_write.victoriametrics.receiver]
+}
