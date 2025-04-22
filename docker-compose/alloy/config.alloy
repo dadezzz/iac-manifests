@@ -55,8 +55,13 @@ loki.source.docker "docker_logs" {
     forward_to = [loki.write.victorialogs.receiver]
 }
 
-prometheus.scrape "docker_metrics_scraper" {
+prometheus.scrape "docker_metrics" {
     targets = discovery.relabel.docker_metrics.output
+    forward_to = [prometheus.remote_write.victoriametrics.receiver]
+}
+
+prometheus.scrape "docker_daemon" {
+    targets = [{"__address__" = "hosts.containers.internal:9323", "instance" = constants.hostname}]
     forward_to = [prometheus.remote_write.victoriametrics.receiver]
 }
 
