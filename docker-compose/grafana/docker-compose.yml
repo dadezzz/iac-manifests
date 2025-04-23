@@ -23,12 +23,12 @@ services:
       GF_INSTALL_PLUGINS: victoriametrics-logs-datasource,victoriametrics-metrics-datasource
     image: docker.io/grafana/grafana:11.6.0@sha256:62d2b9d20a19714ebfe48d1bb405086081bc602aa053e28cf6d73c7537640dfb
     labels:
+      metrics.job: grafana
+      metrics.port: 3000
       traefik.enable: true
       traefik.http.routers.grafana.entrypoints: https
       traefik.http.routers.grafana.rule: Host(`grafana.zarantonello.net`)
       traefik.http.services.grafana.loadbalancer.server.port: 3000
-      metrics.job: grafana
-      metrics.port: 3000
     networks:
       - default
       - traefik_default
