@@ -1,4 +1,6 @@
 networks:
+  alloy_default:
+    external: true
   traefik_default:
     external: true
 
@@ -31,9 +33,10 @@ services:
       traefik.http.routers.keycloack.service: keycloack
       traefik.http.services.keycloack-public.loadbalancer.server.port: 8080
       traefik.http.services.keycloack.loadbalancer.server.port: 8080
-      victoriametrics.job: keycloak
-      victoriametrics.port: 8080
+      metrics.job: keycloak
+      metrics.port: 8080
     networks:
+      - alloy_default
       - default
       - traefik_default
     restart: always

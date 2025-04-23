@@ -1,7 +1,7 @@
 networks:
-  traefik_default:
+  alloy_default:
     external: true
-  vmagent_default:
+  traefik_default:
     external: true
 
 services:
@@ -67,12 +67,12 @@ services:
       traefik.http.services.woodpecker-grpc.loadbalancer.server.port: 9000
       traefik.http.services.woodpecker-grpc.loadbalancer.server.scheme: h2c
       traefik.http.services.woodpecker-http.loadbalancer.server.port: 8000
-      victoriametrics.job: woodpecker-server
-      victoriametrics.port: 9001
+      metrics.job: woodpecker-server
+      metrics.port: 9001
     networks:
       - default
       - traefik_default
-      - vmagent_default
+      - alloy_default
     read_only: true
     restart: always
     security_opt:

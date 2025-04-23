@@ -12,7 +12,7 @@ configs:
 networks:
   traefik_default:
     name: traefik_default
-  vmagent_default:
+  alloy_default:
     external: true
 
 services:
@@ -38,13 +38,14 @@ services:
       timeout: 5s
     image: docker.io/library/traefik:v3.3.6@sha256:83f3c843133530e4aa45e6ddc415488583a8a01c88adc5022d415c6e97ceeaae
     labels:
-      victoriametrics.job: traefik
-      victoriametrics.port: 8082
+      metrics.job: traefik
+      metrics.port: 8082
     networks:
+      alloy_default: {}
+      # We need to set an alias for cloudflared to redirect to traefik.
       traefik_default:
         aliases:
           - traefik
-      vmagent_default: {}
     read_only: true
     restart: always
     security_opt:

@@ -7,7 +7,7 @@
 networks:
   traefik_default:
     external: true
-  vmagent_default:
+  alloy_default:
     external: true
 
 services:
@@ -47,8 +47,8 @@ services:
       traefik.http.routers.immich.rule: Host(`photos.zarantonello.net`)
       traefik.http.routers.immich.service: immich
       traefik.http.services.immich.loadbalancer.server.port: 2283
-      victoriametrics.job: immich
-      victoriametrics.port: 8081
+      metrics.job: immich
+      metrics.port: 8081
     networks:
       - default
       - traefik_default
