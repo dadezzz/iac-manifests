@@ -16,8 +16,8 @@ services:
       NO_AUTOUPDATE: true
     image: docker.io/cloudflare/cloudflared:2025.4.0@sha256:522827fe6220249d72ade9a85cf5bdcc52c18ef1d13c7a3bb7480f56a0fd36e6
     labels:
-      metrics.job: cloudflared
-      metrics.port: 20241
+      monitoring.collect: true
+      monitoring.metrics.port: 20241
     networks:
       - alloy_default
       - traefik_default

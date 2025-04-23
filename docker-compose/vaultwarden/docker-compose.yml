@@ -41,6 +41,7 @@ services:
       timeout: 5s
     image: quay.io/vaultwarden/server:1.33.2-alpine@sha256:63cce7624f655f83ad5bab66ef62bc3e3327116b068704bfbbda5d0c1b3003be
     labels:
+      monitoring.collect: true
       traefik.enable: true
       traefik.http.routers.vaultwarden.entrypoints: https
       traefik.http.routers.vaultwarden.rule: Host(`vault.zarantonello.net`)

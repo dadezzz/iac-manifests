@@ -13,8 +13,8 @@ services:
       - -retentionPeriod=30d
     image: docker.io/victoriametrics/victoria-logs:v1.20.0-victorialogs-scratch@sha256:00f7eaf67de89c37d0734e36256184df3075344ad2e80799a26c794185f4d1d5
     labels:
-      metrics.job: victorialogs
-      metrics.port: 9428
+      monitoring.collect: true
+      monitoring.metrics.port: 9428
       traefik.enable: true
       traefik.http.routers.victorialogs.entrypoints: http
       traefik.http.routers.victorialogs.rule: Host(`victorialogs.zarantonello.net`)
@@ -39,8 +39,8 @@ services:
       - -retentionPeriod=180d
     image: docker.io/victoriametrics/victoria-metrics:v1.115.0-scratch@sha256:c5edcbd537bb3a8389558c407fceaf0254d071b5fa56b90d811e0a6e63247f05
     labels:
-      metrics.job: victoriametrics
-      metrics.port: 8428
+      monitoring.collect: true
+      monitoring.metrics.port: 8428
       traefik.enable: true
       traefik.http.routers.victoriametrics.entrypoints: http
       traefik.http.routers.victoriametrics.rule: Host(`victoriametrics.zarantonello.net`)

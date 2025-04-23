@@ -15,6 +15,8 @@ services:
     cap_drop:
       - ALL
     image: ghcr.io/immich-app/immich-machine-learning:v1.131.2@sha256:29836cf73146057ac388546021fff3e00c923e22a28587cceb5108a5e537987d
+    labels:
+      monitoring.collect: true
     restart: always
     security_opt:
       - no-new-privileges:true
@@ -40,8 +42,8 @@ services:
       REDIS_HOSTNAME: redis
     image: ghcr.io/immich-app/immich-server:v1.131.3@sha256:7e5b6729b12b5e5cc5d98bcc6f7c27f723fabae4ee77696855808ebd5200bbf8
     labels:
-      metrics.job: immich
-      metrics.port: 8081
+      monitoring.collect: true
+      monitoring.metrics.port: 8081
       traefik.enable: true
       # The app connects via http, it's less resource intensive and encryption
       # is provided by tailscale anyway.
@@ -50,9 +52,9 @@ services:
       traefik.http.routers.immich.service: immich
       traefik.http.services.immich.loadbalancer.server.port: 2283
     networks:
+      - alloy_default
       - default
       - traefik_default
-      - vmagent_default
     restart: always
     security_opt:
       - no-new-privileges:true
@@ -75,6 +77,8 @@ services:
         - pg_isready
       timeout: 5s
     image: docker.io/tensorchord/pgvecto-rs:pg16-v0.3.0-rootless@sha256:3c08766716081c81477928ddcc34fbffce0e046ff2b532f4f3419d8e5da639a1
+    labels:
+      monitoring.collect: true
     read_only: true
     restart: always
     security_opt:
@@ -100,6 +104,8 @@ services:
         - ping
       timeout: 5s
     image: docker.io/library/redis:7.4.2-alpine@sha256:02419de7eddf55aa5bcf49efb74e88fa8d931b4d77c07eff8a6b2144472b6952
+    labels:
+      monitoring.collect: true
     read_only: true
     restart: always
     security_opt:
