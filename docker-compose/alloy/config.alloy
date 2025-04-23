@@ -61,7 +61,7 @@ prometheus.scrape "docker_metrics" {
 }
 
 prometheus.scrape "docker_daemon" {
-    targets = [{"__address__" = "hosts.containers.internal:9323", "instance" = constants.hostname}]
+    targets = [{"__address__" = "hosts.docker.internal:9323", "instance" = constants.hostname}]
     forward_to = [prometheus.remote_write.victoriametrics.receiver]
 }
 
