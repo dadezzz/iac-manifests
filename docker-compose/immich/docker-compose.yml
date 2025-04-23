@@ -5,9 +5,9 @@
 # POSTGRES_USER=
 
 networks:
-  traefik_default:
+  alloy_default:
     external: true
-  vmagent_default:
+  traefik_default:
     external: true
 
 services:
@@ -40,6 +40,8 @@ services:
       REDIS_HOSTNAME: redis
     image: ghcr.io/immich-app/immich-server:v1.131.3@sha256:7e5b6729b12b5e5cc5d98bcc6f7c27f723fabae4ee77696855808ebd5200bbf8
     labels:
+      metrics.job: immich
+      metrics.port: 8081
       traefik.enable: true
       # The app connects via http, it's less resource intensive and encryption
       # is provided by tailscale anyway.
@@ -47,8 +49,6 @@ services:
       traefik.http.routers.immich.rule: Host(`photos.zarantonello.net`)
       traefik.http.routers.immich.service: immich
       traefik.http.services.immich.loadbalancer.server.port: 2283
-      victoriametrics.job: immich
-      victoriametrics.port: 8081
     networks:
       - default
       - traefik_default

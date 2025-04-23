@@ -39,8 +39,8 @@ customDNS:
     s3-prem-0.zarantonello.dev: 100.99.201.25,fd7a:115c:a1e0::7401:c91c
     s3-prem-2.zarantonello.dev: 100.81.212.20,fd7a:115c:a1e0::7301:d415
     vault.zarantonello.net: 100.99.201.25,fd7a:115c:a1e0::7401:c91c
-    victorialogs.zarantonello.net: 100.99.201.25,fd7a:115c:a1e0::7401:c91c
-    victoriametrics.zarantonello.net: 100.99.201.25,fd7a:115c:a1e0::7401:c91c
+    victorialogs.zarantonello.net: 100.117.119.101,fd7a:115c:a1e0::d901:7769
+    victoriametrics.zarantonello.net: 100.117.119.101,fd7a:115c:a1e0::d901:7769
 fqdnOnly:
   enable: true
 ports:

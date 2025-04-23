@@ -3,7 +3,7 @@ configs:
     file: ./config.yml
 
 networks:
-  vmagent_default:
+  alloy_default:
     external: true
 
 services:
@@ -28,8 +28,10 @@ services:
         - healthcheck
     image: ghcr.io/0xerr0r/blocky:0.25@sha256:347f8c6addc1775ef74b83dfc609c28436a67f812ef0ee7e2602569dc0e56cd1
     labels:
-      victoriametrics.job: blocky
-      victoriametrics.port: 8080
+      metrics.job: blocky
+      metrics.port: 8080
+    networks:
+      - alloy_default
     read_only: true
     restart: always
     security_opt:

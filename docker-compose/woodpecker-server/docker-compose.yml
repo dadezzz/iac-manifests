@@ -1,7 +1,7 @@
 networks:
-  traefik_default:
+  alloy_default:
     external: true
-  vmagent_default:
+  traefik_default:
     external: true
 
 services:
@@ -57,6 +57,8 @@ services:
       timeout: 5s
     image: docker.io/woodpeckerci/woodpecker-server:v3.5.2@sha256:bd6da75efcdad14e13257e42a9aa91f342da346a4e6729985d12c75d25302056
     labels:
+      metrics.job: woodpecker-server
+      metrics.port: 9001
       traefik.enable: true
       traefik.http.routers.woodpecker-grpc.entrypoints: http
       traefik.http.routers.woodpecker-grpc.rule: Host(`ci-grpc-prem-0.zarantonello.dev`)
@@ -67,12 +69,10 @@ services:
       traefik.http.services.woodpecker-grpc.loadbalancer.server.port: 9000
       traefik.http.services.woodpecker-grpc.loadbalancer.server.scheme: h2c
       traefik.http.services.woodpecker-http.loadbalancer.server.port: 8000
-      victoriametrics.job: woodpecker-server
-      victoriametrics.port: 9001
     networks:
       - default
       - traefik_default
-      - vmagent_default
+      - alloy_default
     read_only: true
     restart: always
     security_opt:

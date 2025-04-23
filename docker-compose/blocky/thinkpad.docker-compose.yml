@@ -1,10 +1,10 @@
 services:
   blocky:
     ports:
-      - "[fd7a:115c:a1e0::601:4623]:53:53/tcp"
-      - "[fd7a:115c:a1e0::601:4623]:53:53/udp"
-      - 100.65.70.35:53:53/tcp
-      - 100.65.70.35:53:53/udp
+      - "[fd7a:115c:a1e0::c801:4a03]:53:53/tcp"
+      - "[fd7a:115c:a1e0::c801:4a03]:53:53/udp"
+      - 100.92.74.3:53:53/tcp
+      - 100.92.74.3:53:53/udp
       # docker containers use localhost. Disable systemd-resolved on systems
       # where it is running.
       - 127.0.0.1:53:53/udp

@@ -1,4 +1,6 @@
 networks:
+  alloy_default:
+    external: true
   traefik_default:
     external: true
 
@@ -22,6 +24,8 @@ services:
       KC_PROXY_TRUSTED_ADDRESSES: 172.16.0.0/12
     image: quay.io/keycloak/keycloak:26.2.1@sha256:9869b88191392727f0be7301e53573cc39c13c9d9b9b08492c97d1ea40366eae
     labels:
+      metrics.job: keycloak
+      metrics.port: 8080
       traefik.enable: true
       traefik.http.routers.keycloack-public.entrypoints: cloudflared
       traefik.http.routers.keycloack-public.rule: Host(`auth.zarantonello.dev`) && (PathPrefix(`/realms`)  || PathPrefix(`/resources`))
@@ -31,9 +35,8 @@ services:
       traefik.http.routers.keycloack.service: keycloack
       traefik.http.services.keycloack-public.loadbalancer.server.port: 8080
       traefik.http.services.keycloack.loadbalancer.server.port: 8080
-      victoriametrics.job: keycloak
-      victoriametrics.port: 8080
     networks:
+      - alloy_default
       - default
       - traefik_default
     restart: always
