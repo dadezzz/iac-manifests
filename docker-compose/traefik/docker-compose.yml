@@ -38,8 +38,8 @@ services:
       timeout: 5s
     image: docker.io/library/traefik:v3.3.6@sha256:83f3c843133530e4aa45e6ddc415488583a8a01c88adc5022d415c6e97ceeaae
     labels:
-      metrics.job: traefik
-      metrics.port: 8082
+      monitoring.collect: true
+      monitoring.metrics.port: 8082
     networks:
       alloy_default: {}
       # We need to set an alias for cloudflared to redirect to traefik.

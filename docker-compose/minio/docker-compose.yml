@@ -34,6 +34,7 @@ services:
         - http://localhost:9000/minio/health/live
       timeout: 5s
     labels:
+      monitoring.collect: true
       traefik.enable: true
       traefik.http.routers.minio-dashboard.entrypoints: https
       traefik.http.routers.minio-dashboard.service: minio-dashboard

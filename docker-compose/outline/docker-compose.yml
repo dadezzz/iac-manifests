@@ -34,6 +34,7 @@ services:
       URL: https://docs.zarantonello.dev
     image: docker.io/outlinewiki/outline:0.83.0@sha256:8998d433bf50355c06cea9860786a350372a4efc7984c95a044b748ebd1aab34
     labels:
+      monitoring.collect: true
       traefik.enable: true
       traefik.http.routers.outline.entrypoints: cloudflared
       traefik.http.routers.outline.rule: Host(`docs.zarantonello.dev`)
@@ -60,8 +61,8 @@ services:
       - while true ; do wget "https://docs.zarantonello.dev/api/cron.daily?token=${UTILS_SECRET}" ; sleep 43200 ; done
     env_file: .env
     image: docker.io/library/busybox:1.37.0-musl@sha256:5b2531a497e1f4f0994272e72168d765cc54dc5da760e7bbac9c95aec383b137
-    networks:
-      - default
+    labels:
+      monitoring.collect: true
     restart: always
     security_opt:
       - no-new-privileges:true
@@ -82,6 +83,8 @@ services:
         - pg_isready
       timeout: 5s
     image: docker.io/library/postgres:17.4-alpine@sha256:7062a2109c4b51f3c792c7ea01e83ed12ef9a980886e3b3d380a7d2e5f6ce3f5
+    labels:
+      monitoring.collect: true
     read_only: true
     restart: always
     security_opt:
@@ -107,6 +110,8 @@ services:
         - ping
       timeout: 5s
     image: docker.io/library/redis:7.4.2-alpine@sha256:02419de7eddf55aa5bcf49efb74e88fa8d931b4d77c07eff8a6b2144472b6952
+    labels:
+      monitoring.collect: true
     read_only: true
     restart: always
     security_opt:
