@@ -18,8 +18,6 @@ services:
     configs:
       - source: alloy
         target: /etc/alloy/config.alloy
-    devices:
-      - /dev/kmsg
     extra_hosts:
       - hosts.docker.internal:host-gateway
     group_add:
@@ -58,4 +56,3 @@ services:
     user: 3095:3095
     volumes:
       - /:/host:ro,rslave
-
