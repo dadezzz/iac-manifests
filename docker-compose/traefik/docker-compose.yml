@@ -10,10 +10,10 @@ configs:
     file: ./traefik.yml
 
 networks:
-  traefik_default:
-    name: traefik_default
   alloy_default:
     external: true
+  traefik_default:
+    name: traefik_default
 
 services:
   traefik:
