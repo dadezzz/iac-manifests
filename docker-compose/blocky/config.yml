@@ -3,6 +3,9 @@ blocking:
     default:
       # Whitelist push notification providers for mobile phones.
       - https://badblock.celenity.dev/wildcards-star/push_whitelist.txt
+      # Allow alloy and grafana telemetry data.
+      - |
+        stats.grafana.org
   blockType: nxDomain
   clientGroupsBlock:
     default:
