@@ -9,4 +9,4 @@ services:
       traefik.http.routers.minio-dashboard.rule: Host(`minio-prem-0.zarantonello.dev`)
       traefik.http.routers.minio-s3.rule: Host(`s3-prem-0.zarantonello.dev`)
     volumes:
-      - $HOME/volumes/minio-data:/data
+      - $HOME/volumes/minio:/data

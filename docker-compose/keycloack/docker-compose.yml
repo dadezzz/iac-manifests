@@ -71,4 +71,4 @@ services:
     # volume but fails due to insufficient permissions.
     user: 70:70
     volumes:
-      - $HOME/volumes/keycloak-postgres:/var/lib/postgresql/data
+      - $HOME/volumes/keycloak/postgres:/var/lib/postgresql/data

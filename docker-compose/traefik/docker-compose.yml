@@ -1,10 +1,3 @@
-# SETUP:
-#
-# Create .env file with:
-#
-# - CF_DNS_API_TOKEN
-# - TRAEFIK_CERTIFICATESRESOLVERS_LETSENCRYPT_ACME_EMAIL
-
 configs:
   traefik:
     file: ./traefik.yml
@@ -52,5 +45,5 @@ services:
       - no-new-privileges:true
     user: 51664:51664
     volumes:
-      - $HOME/volumes/traefik-certificates:/var/lib/traefik/certificates
+      - $HOME/volumes/traefik/var/lib/traefik
       - /var/run/docker.sock:/var/run/docker.sock
