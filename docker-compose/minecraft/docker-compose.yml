@@ -1,0 +1,25 @@
+services:
+  server:
+    cap_drop:
+      - ALL
+    # Download the fabric launcher jar from https://fabricmc.net/use/server and
+    # copy the file into the root folder of the minecraft volume as fabric.jar.
+    entrypoint:
+      - java
+      - -jar
+      - fabric.jar
+    image: docker.io/library/eclipse-temurin:24-jre-alpine
+    labels:
+      monitoring.collect: true
+    ports:
+      - 25565:25565
+    read_only: true
+    restart: always
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp:uid=42428,gid=42428
+    user: 42428:42428
+    volumes:
+      - $HOME/volumes/minecraft:/srv
+    working_dir: /srv
