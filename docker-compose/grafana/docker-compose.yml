@@ -15,9 +15,6 @@ services:
     configs:
       - source: grafana
         target: /etc/grafana/grafana.ini
-    depends_on:
-      postgres:
-        condition: service_healthy
     env_file: .env
     environment:
       GF_INSTALL_PLUGINS: victoriametrics-logs-datasource,victoriametrics-metrics-datasource
