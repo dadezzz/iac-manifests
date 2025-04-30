@@ -8,9 +8,6 @@ services:
   woodpecker-server:
     cap_drop:
       - ALL
-    depends_on:
-      postgres:
-        condition: service_healthy
     env_file: .env
     environment:
       WOODPECKER_ENVIRONMENT: CI_VOLUMES_DIR:${HOME}/volumes/woodpecker-agent
