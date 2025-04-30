@@ -8,7 +8,7 @@ services:
       - java
       - -jar
       - fabric.jar
-    image: docker.io/library/eclipse-temurin:24-jre-alpine
+    image: docker.io/library/eclipse-temurin:24-jre-alpine@sha256:dbc9b392f33b2aca2c3d47de4534f3453e75d3b6dd27e08a555a47369be9b49c
     labels:
       monitoring.collect: true
     ports:
