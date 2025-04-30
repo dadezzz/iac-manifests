@@ -15,6 +15,8 @@ services:
     restart: always
     security_opt:
       - no-new-privileges:true
+    tmpfs:
+      - /tmp:uid=42428,gid=42428
     user: 42428:42428
     volumes:
       - $HOME/volumes/minecraft:/srv
