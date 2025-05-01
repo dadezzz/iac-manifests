@@ -17,7 +17,7 @@ services:
         target: /etc/traefik/traefik.yml
     env_file: .env
     extends:
-      file: ${HOSTNAME}.docker-compose.yml
+      file: docker-compose.${HOSTNAME}.yml
       service: traefik
     group_add:
       - "992"

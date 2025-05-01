@@ -23,7 +23,7 @@ services:
       MINIO_IDENTITY_OPENID_SCOPES: email,profile,openid
     # Host specific configuration for volumes, image and http host.
     extends:
-      file: ./${HOSTNAME}.docker-compose.yml
+      file: docker-compose.${HOSTNAME}.yml
       service: minio
     healthcheck:
       interval: 10s
