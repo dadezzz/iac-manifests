@@ -7,7 +7,7 @@ services:
     image: quay.io/minio/minio:RELEASE.2025-04-22T22-12-26Z-cpuv1@sha256:8494c615f45cd6726f048dce162da5826582c2ce67d420428200d9d3cccf6e25
     labels:
       traefik.http.routers.minio-dashboard.rule: Host(`minio-prem-2.zarantonello.dev`)
-      traefik.http.routers.minio-s3.rule: Host(`s3-prem-1.zarantonello.dev`)
+      traefik.http.routers.minio-s3.rule: Host(`s3-prem-2.zarantonello.dev`)
     volumes:
       - /mnt/minio/disk1:/mnt/disk1
       - /mnt/minio/disk2:/mnt/disk2
