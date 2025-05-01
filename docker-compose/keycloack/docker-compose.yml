@@ -9,7 +9,6 @@ services:
     command:
       - start
       - --http-enabled=true
-      - --metrics-enabled=true
     depends_on:
       postgres:
         condition: service_healthy
@@ -20,12 +19,13 @@ services:
       KC_DB_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB}
       KC_DB_USERNAME: ${POSTGRES_USER}
       KC_HOSTNAME: https://auth.zarantonello.dev
+      KC_METRICS_ENABLED: true
       KC_PROXY_HEADERS: xforwarded
       KC_PROXY_TRUSTED_ADDRESSES: 172.16.0.0/12
     image: quay.io/keycloak/keycloak:26.2.2@sha256:df40860c716d0c2f941967e8ac3ca5e74094c09988298b2eb0ae9335ed34f8f6
     labels:
       monitoring.collect: true
-      monitoring.metrics.port: 8080
+      monitoring.metrics.port: 9000
       traefik.enable: true
       traefik.http.routers.keycloack-public.entrypoints: cloudflared
       traefik.http.routers.keycloack-public.rule: Host(`auth.zarantonello.dev`) && (PathPrefix(`/realms`)  || PathPrefix(`/resources`))
