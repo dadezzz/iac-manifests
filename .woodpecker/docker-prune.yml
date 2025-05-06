@@ -2,6 +2,14 @@
 
 # Prune unused docker images and containers every night at midnight.
 
+labels:
+  hostname: ${HOSTNAME}
+
+matrix:
+  HOSTNAME:
+    - prem-0
+    - prem-1
+
 skip_clone: true
 
 steps:
