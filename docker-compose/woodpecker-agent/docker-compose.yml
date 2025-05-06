@@ -4,7 +4,7 @@ services:
       - ALL
     env_file: .env
     environment:
-      WOODPECKER_KEEPALIVE_TIME: 2m
+      WOODPECKER_HOSTNAME: $HOSTNAME
       WOODPECKER_SERVER: ci-grpc-prem-0.zarantonello.dev:80
     # Add to docker group to use the docker socket.
     group_add:
