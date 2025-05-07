@@ -17,7 +17,7 @@ services:
         - woodpecker-agent
         - ping
       timeout: 5s
-    image: docker.io/woodpeckerci/woodpecker-agent:v3.5.2@sha256:d02f6aac77ee63195c9bf5a53a008527aa5de99424733613d419b897f143bb86
+    image: docker.io/woodpeckerci/woodpecker-agent:v3.6.0@sha256:a9a9ec6f0812d731d2c54a934890e233cfa1304e899e60fbed991e0c882bd0a6
     labels:
       monitoring.collect: true
     read_only: true
