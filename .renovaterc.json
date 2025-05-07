@@ -1,8 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "assignees": [
-    "dadezzz"
-  ],
+  "assignees": ["dadezzz"],
   "extends": [
     ":semanticCommits",
     "config:best-practices",
@@ -10,13 +8,9 @@
     "customManagers:githubActionsVersions",
     "customManagers:biomeVersions"
   ],
-  "ignorePaths": [
-    "**/.*/**"
-  ],
+  "ignorePaths": ["**/.*/**"],
   "kubernetes": {
-    "managerFilePatterns": [
-      "/.unmaintained/kubernetes/.+\\.yaml$/"
-    ]
+    "managerFilePatterns": ["/.unmaintained/kubernetes/.+\\.yaml$/"]
   },
   "packageRules": [
     {
@@ -30,21 +24,15 @@
     {
       "groupName": "immich monorepo",
       "groupSlug": "immich-monorepo",
-      "matchPackageNames": [
-        "ghcr.io/immich-app/*"
-      ]
+      "matchPackageNames": ["ghcr.io/immich-app/*"]
     },
     {
       "groupName": "woodpecker monorepo",
       "groupSlug": "woodpecker-monorepo",
-      "matchPackageNames": [
-        "docker.io/woodpeckerci/*"
-      ]
+      "matchPackageNames": ["docker.io/woodpeckerci/*"]
     },
     {
-      "matchPackageNames": [
-        "quay.io/minio/minio"
-      ],
+      "matchPackageNames": ["quay.io/minio/minio"],
       "versioning": "regex:^RELEASE\\.(?<major>\\d{4})-(?<minor>\\d{2})-(?<patch>\\d{2})T(?<build>\\d{2})-(?<revision>\\d{2})-\\d{2}Z(?:-(?<compatibility>.+))?$"
     }
   ]
