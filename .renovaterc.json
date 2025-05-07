@@ -10,7 +10,7 @@
   ],
   "ignorePaths": ["**/.*/**"],
   "kubernetes": {
-    "fileMatch": [".unmaintained/kubernetes/.+\\.yaml$"]
+    "managerFilePatterns": ["/.unmaintained/kubernetes/.+\\.yaml$/"]
   },
   "packageRules": [
     {
