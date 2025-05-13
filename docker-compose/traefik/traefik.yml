@@ -12,6 +12,11 @@ entryPoints:
         - 172.16.0.0/12
   http:
     address: :8080
+    transport:
+      respondingTimeouts:
+        # Disable request reading timeout since large uploads on slow
+        # connections tend to fail.
+        readTimeout: 0
   https:
     address: :8443
     http:
@@ -26,6 +31,9 @@ entryPoints:
               - "*.zarantonello.net"
     http3:
       advertisedPort: 443
+    transport:
+      respondingTimeouts:
+        readTimeout: 0
   traefik:
     address: :8082
 global:
