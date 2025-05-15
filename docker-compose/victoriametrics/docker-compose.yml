@@ -37,7 +37,7 @@ services:
       # We don't injest many metrics so we can store them for a long time time
       # to be able to do long term analysis.
       - -retentionPeriod=180d
-    image: docker.io/victoriametrics/victoria-metrics:v1.117.1-scratch@sha256:ae961e6f7870a7a0d156363bc086aae085e6cd2c2434d7c086e786481cc6b902
+    image: docker.io/victoriametrics/victoria-metrics:v1.117.1-scratch@sha256:c7debeee4bc55d5ca27e94d321b2288a8cc1324c46b3f424916e65af90771727
     labels:
       monitoring.collect: true
       monitoring.metrics.port: 8428
