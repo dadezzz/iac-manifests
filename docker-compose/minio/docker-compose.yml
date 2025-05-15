@@ -38,7 +38,7 @@ services:
       traefik.enable: true
       traefik.http.routers.minio-dashboard.entrypoints: https
       traefik.http.routers.minio-dashboard.service: minio-dashboard
-      traefik.http.routers.minio-s3.entrypoints: https,cloudflared
+      traefik.http.routers.minio-s3.entrypoints: http,https,cloudflared
       traefik.http.routers.minio-s3.service: minio-s3
       traefik.http.services.minio-dashboard.loadbalancer.server.port: 9001
       traefik.http.services.minio-s3.loadbalancer.server.port: 9000
