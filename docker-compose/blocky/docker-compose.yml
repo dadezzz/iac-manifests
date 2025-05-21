@@ -26,7 +26,7 @@ services:
         - CMD
         - /app/blocky
         - healthcheck
-    image: ghcr.io/0xerr0r/blocky:0.26:sha256:b259ada3f943e73283f1fc5e84ac39a791afec7de86515d1aeccc03d2c39e595
+    image: ghcr.io/0xerr0r/blocky:0.26@sha256:b259ada3f943e73283f1fc5e84ac39a791afec7de86515d1aeccc03d2c39e595
     labels:
       monitoring.collect: true
       monitoring.metrics.port: 8080
