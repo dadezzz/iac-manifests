@@ -5,7 +5,7 @@ networks:
     external: true
 
 services:
-  immich-machine-learning:
+  machine-learning:
     cap_drop:
       - ALL
     image: ghcr.io/immich-app/immich-machine-learning:v1.133.0@sha256:4e2f17bf9a368201e8641af1d73722cddf7a71da9afc3c14e4e9d144e3c57f67
@@ -18,7 +18,7 @@ services:
     volumes:
       - $HOME/volumes/immich/machine-learning-cache:/cache
 
-  immich-server:
+  server:
     cap_drop:
       - ALL
     depends_on:
