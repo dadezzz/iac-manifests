@@ -28,9 +28,12 @@ Create the file `/etc/docker/daemon.json` with contents:
 
 ### Sysctl
 
-Create the file `/etc/sysctl.d/80-quic.conf` with contents:
+Create the file `/etc/sysctl.d/80-docker.conf` with contents:
 
 ```ini
+# Recommended by traefik and cloudflared.
 net.core.rmem_max=7500000
 net.core.wmem_max=7500000
+# Recommended by redis.
+vm.overcommit_memory=1
 ```
