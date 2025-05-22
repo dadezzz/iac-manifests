@@ -4,4 +4,4 @@ FROM ghcr.io/immich-app/postgres:16-vectorchord0.3.0-pgvectors0.3.0
 # writing permissions on the /etc/postgresql folder.
 RUN cp /etc/postgresql/postgresql.ssd.conf /etc/postgresql/postgresql.conf
 
-ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh", "postgres", "-c", "config_file=/etc/postgresql/postgresql.conf"]
