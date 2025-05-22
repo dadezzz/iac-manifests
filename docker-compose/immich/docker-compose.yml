@@ -57,6 +57,8 @@ services:
       - $HOME/volumes/immich/data:/usr/src/app/upload
 
   postgres:
+    build:
+      dockerfile: postgres.Dockerfile
     cap_drop:
       - ALL
     env_file: .env
@@ -70,7 +72,6 @@ services:
         - CMD
         - pg_isready
       timeout: 5s
-    image: ghcr.io/immich-app/postgres:16-vectorchord0.3.0-pgvectors0.3.0
     labels:
       monitoring.collect: true
     read_only: true
