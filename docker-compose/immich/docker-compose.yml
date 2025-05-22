@@ -5,10 +5,10 @@ networks:
     external: true
 
 services:
-  immich-machine-learning:
+  machine-learning:
     cap_drop:
       - ALL
-    image: ghcr.io/immich-app/immich-machine-learning:v1.131.2@sha256:29836cf73146057ac388546021fff3e00c923e22a28587cceb5108a5e537987d
+    image: ghcr.io/immich-app/immich-machine-learning:v1.133.0@sha256:4e2f17bf9a368201e8641af1d73722cddf7a71da9afc3c14e4e9d144e3c57f67
     labels:
       monitoring.collect: true
     restart: always
@@ -18,45 +18,9 @@ services:
     volumes:
       - $HOME/volumes/immich/machine-learning-cache:/cache
 
-  immich-server:
-    cap_drop:
-      - ALL
-    depends_on:
-      postgres:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-    env_file: .env
-    environment:
-      DB_DATABASE_NAME: ${POSTGRES_DB}
-      DB_HOSTNAME: postgres
-      DB_PASSWORD: ${POSTGRES_PASSWORD}
-      DB_USERNAME: ${POSTGRES_USER}
-      IMMICH_TELEMETRY_INCLUDE: all
-      REDIS_HOSTNAME: redis
-    image: ghcr.io/immich-app/immich-server:v1.133.0@sha256:4d667c5fd6ffac0395c429fc8a335c607272587643f29fb2ddd9bfe16f1f874e
-    labels:
-      monitoring.collect: true
-      monitoring.metrics.port: 8081
-      traefik.enable: true
-      # The app connects via http, it's less resource intensive and encryption
-      # is provided by tailscale anyway.
-      traefik.http.routers.immich.entrypoints: https,http
-      traefik.http.routers.immich.rule: Host(`photos.zarantonello.net`)
-      traefik.http.routers.immich.service: immich
-      traefik.http.services.immich.loadbalancer.server.port: 2283
-    networks:
-      - alloy_default
-      - default
-      - traefik_default
-    restart: always
-    security_opt:
-      - no-new-privileges:true
-    user: 5551:5551
-    volumes:
-      - $HOME/volumes/immich/data:/usr/src/app/upload
-
   postgres:
+    build:
+      dockerfile: postgres.Dockerfile
     cap_drop:
       - ALL
     env_file: .env
@@ -70,7 +34,6 @@ services:
         - CMD
         - pg_isready
       timeout: 5s
-    image: docker.io/tensorchord/pgvecto-rs:pg16-v0.3.0-rootless@sha256:3c08766716081c81477928ddcc34fbffce0e046ff2b532f4f3419d8e5da639a1
     labels:
       monitoring.collect: true
     read_only: true
@@ -107,3 +70,41 @@ services:
     user: 9243:9243
     volumes:
       - $HOME/volumes/immich/redis:/data
+
+  server:
+    cap_drop:
+      - ALL
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    env_file: .env
+    environment:
+      DB_DATABASE_NAME: ${POSTGRES_DB}
+      DB_HOSTNAME: postgres
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_USERNAME: ${POSTGRES_USER}
+      IMMICH_TELEMETRY_INCLUDE: all
+      REDIS_HOSTNAME: redis
+    image: ghcr.io/immich-app/immich-server:v1.133.0@sha256:4d667c5fd6ffac0395c429fc8a335c607272587643f29fb2ddd9bfe16f1f874e
+    labels:
+      monitoring.collect: true
+      monitoring.metrics.port: 8081
+      traefik.enable: true
+      # The app connects via http, it's less resource intensive and encryption
+      # is provided by tailscale anyway.
+      traefik.http.routers.immich.entrypoints: https,http
+      traefik.http.routers.immich.rule: Host(`photos.zarantonello.net`)
+      traefik.http.routers.immich.service: immich
+      traefik.http.services.immich.loadbalancer.server.port: 2283
+    networks:
+      - alloy_default
+      - default
+      - traefik_default
+    restart: always
+    security_opt:
+      - no-new-privileges:true
+    user: 5551:5551
+    volumes:
+      - $HOME/volumes/immich/data:/usr/src/app/upload
