@@ -8,7 +8,7 @@ services:
   immich-machine-learning:
     cap_drop:
       - ALL
-    image: ghcr.io/immich-app/immich-machine-learning:v1.131.2@sha256:29836cf73146057ac388546021fff3e00c923e22a28587cceb5108a5e537987d
+    image: ghcr.io/immich-app/immich-machine-learning:v1.133.0@sha256:4e2f17bf9a368201e8641af1d73722cddf7a71da9afc3c14e4e9d144e3c57f67
     labels:
       monitoring.collect: true
     restart: always
@@ -70,7 +70,7 @@ services:
         - CMD
         - pg_isready
       timeout: 5s
-    image: docker.io/tensorchord/pgvecto-rs:pg16-v0.3.0-rootless@sha256:3c08766716081c81477928ddcc34fbffce0e046ff2b532f4f3419d8e5da639a1
+    image: ghcr.io/immich-app/postgres:16-vectorchord0.3.0-pgvectors0.3.0
     labels:
       monitoring.collect: true
     read_only: true
