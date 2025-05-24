@@ -4,7 +4,7 @@ services:
       MINIO_BROWSER_REDIRECT_URL: https://minio-prem-2.zarantonello.dev
       MINIO_DOMAIN: s3-prem-2.zarantonello.dev
       MINIO_VOLUMES: /mnt/disk1 /mnt/disk2 /mnt/disk3 /mnt/disk4
-    image: quay.io/minio/minio:RELEASE.2025-04-22T22-12-26Z-cpuv1@sha256:8494c615f45cd6726f048dce162da5826582c2ce67d420428200d9d3cccf6e25
+    image: quay.io/minio/minio:RELEASE.2025-05-24T17-08-30Z-cpuv1@sha256:e05d6141e56326024cb8049bc9a594e26f7ac79a4505e9465c211b522b91461a
     labels:
       traefik.http.routers.minio-dashboard.rule: Host(`minio-prem-2.zarantonello.dev`)
       traefik.http.routers.minio-s3.rule: Host(`s3-prem-2.zarantonello.dev`)
