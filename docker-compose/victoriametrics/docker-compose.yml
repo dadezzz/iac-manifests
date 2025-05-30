@@ -11,7 +11,7 @@ services:
     command:
       # Logs occupy more space so we store them for a shorter amount of time.
       - -retentionPeriod=30d
-    image: docker.io/victoriametrics/victoria-logs:v1.23.0-victorialogs-scratch@sha256:d3813df474ecdc21c7c25c653b64124f4ccfdf8da3a8b72ac1c31ed3fa736b2f
+    image: docker.io/victoriametrics/victoria-logs:v1.23.2-victorialogs-scratch@sha256:09bc9d2edbc35b250fddd2153118e0cd01632506e8d0f9bf709c514baa3722f2
     labels:
       monitoring.collect: true
       monitoring.metrics.port: 9428
