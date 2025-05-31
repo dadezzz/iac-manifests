@@ -60,7 +60,7 @@ services:
       - -c
       - while true ; do wget -q -O /dev/stdout "https://docs.zarantonello.dev/api/cron.daily?token=${UTILS_SECRET}" ; sleep 43200 ; done
     env_file: .env
-    image: docker.io/library/busybox:1.37.0-musl@sha256:5b2531a497e1f4f0994272e72168d765cc54dc5da760e7bbac9c95aec383b137
+    image: docker.io/library/busybox:1.37.0-musl@sha256:597bf7e5e8faf26b8efc4cb558eea5dc14d9cc97d5b4c8cdbe6404a7432d5a67
     labels:
       monitoring.collect: true
     restart: always
