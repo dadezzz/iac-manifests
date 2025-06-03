@@ -45,5 +45,8 @@ services:
       - no-new-privileges:true
     user: 51664:51664
     volumes:
-      - $HOME/volumes/traefik:/var/lib/traefik
+      - traefik:/var/lib/traefik
       - /var/run/docker.sock:/var/run/docker.sock
+
+volumes:
+  traefik: {}
