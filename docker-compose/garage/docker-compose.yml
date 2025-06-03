@@ -23,7 +23,7 @@ services:
     image: docker.io/dxflrs/garage:v1.1.0
     labels:
       monitoring.collect: true
-      monitoring.port: 3903
+      monitoring.metrics.port: 3903
       traefik.enable: true
       traefik.http.routers.garage-s3.entrypoints: http,https,cloudflared
       traefik.http.routers.garage-s3.service: garage-s3
