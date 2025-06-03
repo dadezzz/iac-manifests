@@ -35,7 +35,7 @@ services:
       - no-new-privileges:true
     user: 58210:58210
     volumes:
-      - $HOME/volumes/alloy:/var/lib/alloy
+      - alloy:/var/lib/alloy
       - /var/run/docker.sock:/var/run/docker.sock
 
   node-exporter:
@@ -56,3 +56,6 @@ services:
     user: 3095:3095
     volumes:
       - /:/host:ro,rslave
+
+volumes:
+  alloy: {}
