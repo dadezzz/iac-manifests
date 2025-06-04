@@ -3,9 +3,9 @@ configs:
     file: ./${HOSTNAME}.garage.toml
 
 networks:
-  traefik_default:
-    external: true
   alloy_default:
+    external: true
+  traefik_default:
     external: true
 
 services:
