@@ -1,0 +1,9 @@
+services:
+  garage:
+    labels:
+      traefik.http.routers.garage-s3.rule: Host(`s3-prem-2.zarantonello.dev`)
+    volumes:
+      - /mnt/minio/disk1:/mnt/disk1
+      - /mnt/minio/disk2:/mnt/disk2
+      - /mnt/minio/disk3:/mnt/disk3
+      - /mnt/minio/disk4:/mnt/disk4
