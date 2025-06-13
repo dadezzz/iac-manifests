@@ -20,7 +20,7 @@ services:
     extends:
       file: docker-compose.${HOSTNAME}.yml
       service: garage
-    image: docker.io/dxflrs/garage:v1.1.0@sha256:fdb8272fcbe643eef830ee17874d5d4ed623a86501f1acbac8012583113b1c26
+    image: docker.io/dxflrs/garage:v1.2.0@sha256:7f363c83e534964f50922ec2a791a994a081c866d30b7d567ecc0cc76058943f
     labels:
       monitoring.collect: true
       monitoring.metrics.port: 3903
