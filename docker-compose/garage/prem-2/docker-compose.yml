@@ -1,0 +1,46 @@
+configs:
+  garage-0:
+    file: ./garage-0.toml
+  garage-1:
+    file: ./garage-1.toml
+
+networks:
+  alloy_default:
+    external: true
+  traefik_default:
+    external: true
+
+services:
+  garage-0:
+    configs:
+      - source: garage-0
+        target: /etc/garage.toml
+    extends:
+      file: ../docker-compose.base.yml
+      service: garage
+    labels:
+      traefik.http.routers.garage-s3-0.entrypoints: http,https,cloudflared
+      traefik.http.routers.garage-s3-0.rule: Host(`s3-prem-2.zarantonello.dev`)
+      traefik.http.routers.garage-s3-0.service: garage-s3-0
+      traefik.http.services.garage-s3-0.loadbalancer.server.port: 3900
+    volumes:
+      - $HOME/volumes/garage/0/data/1:/var/lib/garage/data/1
+      - $HOME/volumes/garage/0/data/2:/var/lib/garage/data/2
+      - $HOME/volumes/garage/0/metadata:/var/lib/garage/metadata
+
+  garage-1:
+    configs:
+      - source: garage-1
+        target: /etc/garage.toml
+    extends:
+      file: ../docker-compose.base.yml
+      service: garage
+    labels:
+      traefik.http.routers.garage-s3-1.entrypoints: http,https,cloudflared
+      traefik.http.routers.garage-s3-1.rule: Host(`s3-prem-2.zarantonello.dev`)
+      traefik.http.routers.garage-s3-1.service: garage-s3-1
+      traefik.http.services.garage-s3-1.loadbalancer.server.port: 3900
+    volumes:
+      - $HOME/volumes/garage/1/data/1:/var/lib/garage/data/1
+      - $HOME/volumes/garage/1/data/2:/var/lib/garage/data/2
+      - $HOME/volumes/garage/1/metadata:/var/lib/garage/metadata

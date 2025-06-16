@@ -1,0 +1,20 @@
+metadata_dir = "/var/lib/garage/metadata"
+data_dir = [
+  { path = "/var/lib/garage/data/1", capacity = "465g" },
+  { path = "/var/lib/garage/data/2", capacity = "434g" },
+]
+db_engine = "lmdb"
+metadata_auto_snapshot_interval = "6h"
+
+replication_factor = 2
+consistency_mode = "consistent"
+
+rpc_bind_addr = "[::]:3901"
+rpc_public_addr = "garage-1:3901"
+
+[s3_api]
+s3_region = "default"
+api_bind_addr = "[::]:3900"
+
+[admin]
+api_bind_addr = "[::]:3903"

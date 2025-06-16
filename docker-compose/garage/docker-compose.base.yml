@@ -1,0 +1,18 @@
+services:
+  garage:
+    cap_drop:
+      - ALL
+    env_file: .env
+    image: docker.io/dxflrs/garage:v2.0.0@sha256:15b40e0dddd2e611aa746ff6f7c3bfe9f22735e4a2cc29e0abd89c268e9b79d9
+    labels:
+      monitoring.collect: true
+      monitoring.metrics.port: 3903
+      traefik.enable: true
+    networks:
+      - alloy_default
+      - traefik_default
+    read_only: true
+    restart: always
+    security_opt:
+      - no-new-privileges:true
+    user: 18781:18781

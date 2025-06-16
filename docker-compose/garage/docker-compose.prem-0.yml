@@ -1,6 +1,0 @@
-services:
-  garage:
-    labels:
-      traefik.http.routers.garage-s3.rule: Host(`s3-prem-0.zarantonello.dev`)
-    volumes:
-      - $HOME/volumes/garage/data:/var/lib/garage/data
