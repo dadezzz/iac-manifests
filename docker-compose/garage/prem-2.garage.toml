@@ -1,14 +1,14 @@
 metadata_dir = "/var/lib/garage/meta"
 data_dir = [
-  { path = "/var/lib/garage/data/1", capacity = "" },
-  { path = "/var/lib/garage/data/2", capacity = "" },
-  { path = "/var/lib/garage/data/3", capacity = "" },
-  { path = "/var/lib/garage/data/4", capacity = "" },
+  { path = "/var/lib/garage/data/disk1", capacity = "434g" },
+  { path = "/var/lib/garage/data/disk2", capacity = "465g" },
+  { path = "/var/lib/garage/data/disk3", capacity = "465g" },
+  { path = "/var/lib/garage/data/disk4", capacity = "465g" },
 ]
 db_engine = "lmdb"
 metadata_auto_snapshot_interval = "6h"
 
-replication_factor = 1
+replication_factor = 2
 consistency_mode = "consistent"
 
 rpc_bind_addr = "127.0.0.1:3901"
