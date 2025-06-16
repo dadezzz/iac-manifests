@@ -1,9 +1,0 @@
-services:
-  garage:
-    labels:
-      traefik.http.routers.garage-s3.rule: Host(`s3-prem-2.zarantonello.dev`)
-    volumes:
-      - /home/davide/volumes/garage/data/disk1:/var/lib/garage/data/disk1
-      - /home/davide/volumes/garage/data/disk2:/var/lib/garage/data/disk2
-      - /home/davide/volumes/garage/data/disk3:/var/lib/garage/data/disk3
-      - /home/davide/volumes/garage/data/disk4:/var/lib/garage/data/disk4
