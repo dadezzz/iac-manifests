@@ -4,6 +4,8 @@ configs:
   garage-1:
     file: ./garage-1.toml
 
+name: garage
+
 networks:
   alloy_default:
     external: true
