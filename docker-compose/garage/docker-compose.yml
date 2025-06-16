@@ -36,3 +36,5 @@ services:
     security_opt:
       - no-new-privileges:true
     user: 18781:18781
+    volumes:
+      - $HOME/volumes/garage/metadata:/var/lib/garage/meta
