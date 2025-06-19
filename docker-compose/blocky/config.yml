@@ -30,16 +30,17 @@ blocking:
     refreshPeriod: 72h
 bootstrapDns:
   - tcp+udp:1.1.1.1
+  - tcp+udp:1.0.0.1
 caching:
   prefetching: true
 customDNS:
   mapping:
-    ci-grpc-prem-0.zarantonello.dev: 100.99.201.25,fd7a:115c:a1e0::7401:c91c
+    ci-grpc-prem-0.zarantonello.dev: 100.125.56.122,fd7a:115c:a1e0::b001:387b
     grafana.zarantonello.net: 100.117.119.101,fd7a:115c:a1e0::d901:7769
-    minio-prem-0.zarantonello.dev: 100.99.201.25,fd7a:115c:a1e0::7401:c91c
+    minio-prem-0.zarantonello.dev: 100.125.56.122,fd7a:115c:a1e0::b001:387b
     minio-prem-2.zarantonello.dev: 100.81.212.20,fd7a:115c:a1e0::7301:d415
-    photos.zarantonello.net: 100.99.201.25,fd7a:115c:a1e0::7401:c91c
-    s3-prem-0.zarantonello.dev: 100.99.201.25,fd7a:115c:a1e0::7401:c91c
+    photos.zarantonello.net: 100.125.56.122,fd7a:115c:a1e0::b001:387b
+    s3-prem-0.zarantonello.dev: 100.125.56.122,fd7a:115c:a1e0::b001:387b
     s3-prem-2.zarantonello.dev: 100.81.212.20,fd7a:115c:a1e0::7301:d415
     vault.zarantonello.net: 100.117.119.101,fd7a:115c:a1e0::d901:7769
     victorialogs.zarantonello.net: 100.117.119.101,fd7a:115c:a1e0::d901:7769
@@ -58,5 +59,7 @@ queryLog:
 upstreams:
   groups:
     default:
-      - tcp-tls:one.one.one.one:853
-  strategy: random
+      - tcp-tls:1.1.1.1:853#one.one.one.one
+      - tcp-tls:1.0.0.1:853#one.one.one.one
+      - tcp-tls:2606:4700:4700::1111:853#one.one.one.one
+      - tcp-tls:2606:4700:4700::1001:853#one.one.one.one
