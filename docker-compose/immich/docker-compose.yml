@@ -8,7 +8,7 @@ services:
   machine-learning:
     cap_drop:
       - ALL
-    image: ghcr.io/immich-app/immich-machine-learning:v1.135.1@sha256:8970f5c904ed6acae0926992670101a17ee67bd8d71f631d8423bb382a3d1d10
+    image: ghcr.io/immich-app/immich-machine-learning:v1.135.3@sha256:9f2f61d86af82d04926f9b896c995c502303052905517c5485dd26bf1e42a44e
     labels:
       monitoring.collect: true
     restart: always
@@ -87,7 +87,7 @@ services:
       DB_USERNAME: ${POSTGRES_USER}
       IMMICH_TELEMETRY_INCLUDE: all
       REDIS_HOSTNAME: redis
-    image: ghcr.io/immich-app/immich-server:v1.135.1@sha256:346ff2c420e9fe71140392a2270bf5a7d29e50fd9615d1981de4a8e564f3c0a2
+    image: ghcr.io/immich-app/immich-server:v1.135.3@sha256:df5bbf4e29eff4688063a005708f8b96f13073200b4a7378f7661568459b31e9
     labels:
       monitoring.collect: true
       monitoring.metrics.port: 8081
