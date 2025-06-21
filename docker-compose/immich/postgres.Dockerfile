@@ -1,4 +1,4 @@
-FROM ghcr.io/immich-app/postgres:17-vectorchord0.4.2@sha256:38df86a4ebd4b7d2c6187e779580f36d54e0bc42a584c3ab7bdfb6bd2ba3c5fd
+FROM ghcr.io/immich-app/postgres:17-vectorchord0.4.3@ sha256:24839c5690608334e252ea9d6fe954be836ef4b981a5a51c273107ba2c9c951c
 
 # Copy the ssd configuration here and avoid immich entrypoint since it requires
 # writing permissions on the /etc/postgresql folder.
