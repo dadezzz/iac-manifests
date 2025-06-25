@@ -12,6 +12,7 @@ services:
         - wget
         - -q
         - -O
+        - /dev/stdout
         - http://localhost:3903/health
     labels:
       monitoring.collect: true
