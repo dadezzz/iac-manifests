@@ -1,7 +1,7 @@
 metadata_dir = "/var/lib/garage/metadata"
 data_dir = [
-  { path = "/var/lib/garage/data/0", capacity = "465g" },
-  { path = "/var/lib/garage/data/1", capacity = "465g" },
+  { path = "/var/lib/garage/data/sdc", capacity = "500g" },
+  { path = "/var/lib/garage/data/sdd", capacity = "500g" },
 ]
 db_engine = "lmdb"
 metadata_auto_snapshot_interval = "6h"

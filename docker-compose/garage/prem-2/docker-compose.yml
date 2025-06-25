@@ -26,9 +26,7 @@ services:
       traefik.http.routers.garage-s3-0.service: garage-s3-0
       traefik.http.services.garage-s3-0.loadbalancer.server.port: 3900
     volumes:
-      - $HOME/volumes/garage/0/data/0:/var/lib/garage/data/0
-      - $HOME/volumes/garage/0/data/1:/var/lib/garage/data/1
-      - $HOME/volumes/garage/0/metadata:/var/lib/garage/metadata
+      - $HOME/volumes/garage/0:/var/lib/garage
 
   garage-1:
     configs:
@@ -43,6 +41,4 @@ services:
       traefik.http.routers.garage-s3-1.service: garage-s3-1
       traefik.http.services.garage-s3-1.loadbalancer.server.port: 3900
     volumes:
-      - $HOME/volumes/garage/1/data/0:/var/lib/garage/data/0
-      - $HOME/volumes/garage/1/data/1:/var/lib/garage/data/1
-      - $HOME/volumes/garage/1/metadata:/var/lib/garage/metadata
+      - $HOME/volumes/garage/1:/var/lib/garage
