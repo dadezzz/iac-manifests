@@ -1,3 +1,31 @@
+# Example /etc/fstab with 4 disks:
+#
+# ## garage 0 ##
+# 
+# # sda
+# UUID=your-fs-uuid /home/user/volumes/garage/0/data/sda btrfs subvol=@data,nofail 0 0
+# 
+# # sdb
+# UUID=your-fs-uuid /home/user/volumes/garage/0/data/sdb btrfs subvol=@data,nofail 0 0
+# UUID=your-fs-uuid /home/user/volumes/garage/0/metadata btrfs subvol=@metadata,nofail 0 0
+# 
+# ## garage 1 ##
+# 
+# # sdc
+# UUID=your-fs-uuid /home/user/volumes/garage/1/data/sdc btrfs subvol=@data,nofail 0 0
+# UUID=your-fs-uuid /home/user/volumes/garage/1/metadata btrfs subvol=@metadata,nofail 0 0
+# 
+# # sdd
+# UUID=your-fs-uuid /home/user/volumes/garage/1/data/sdd btrfs subvol=@data,nofail 0 0
+# 
+# ## garage snapshots ##
+# 
+# # sda
+# UUID=your-fs-uuid /home/user/volumes/garage/0/snapshots btrfs subvol=@snapshots,nofail 0 0
+# 
+# # sdd
+# UUID=your-fs-uuid /home/user/volumes/garage/1/snapshots btrfs subvol=@snapshots,nofail 0 0
+
 configs:
   garage-0:
     file: ./garage-0.toml

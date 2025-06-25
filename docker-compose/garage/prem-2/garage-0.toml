@@ -1,10 +1,13 @@
+db_engine = "lmdb"
+
 metadata_dir = "/var/lib/garage/metadata"
+metadata_snapshots_dir = "/var/lib/garage/snapshots"
+metadata_auto_snapshot_interval = "6h"
+
 data_dir = [
   { path = "/var/lib/garage/data/sda", capacity = "500g" },
   { path = "/var/lib/garage/data/sdb", capacity = "500g" },
 ]
-db_engine = "lmdb"
-metadata_auto_snapshot_interval = "6h"
 
 replication_factor = 2
 consistency_mode = "consistent"
