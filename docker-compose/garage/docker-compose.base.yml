@@ -18,6 +18,8 @@ services:
       monitoring.collect: true
       monitoring.metrics.port: 3903
       traefik.enable: true
+      traefik.http.routers.garage-s3.service: garage-s3
+      traefik.http.services.garage-s3.loadbalancer.server.port: 3900
     networks:
       - alloy_default
       - traefik_default

@@ -21,7 +21,5 @@ services:
     labels:
       traefik.http.routers.garage-s3.entrypoints: http,https,cloudflared
       traefik.http.routers.garage-s3.rule: Host(`s3-prem-0.zarantonello.dev`)
-      traefik.http.routers.garage-s3.service: garage-s3
-      traefik.http.services.garage-s3.loadbalancer.server.port: 3900
     volumes:
       - $HOME/volumes/garage:/var/lib/garage
