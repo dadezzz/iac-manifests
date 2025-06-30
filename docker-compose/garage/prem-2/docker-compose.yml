@@ -1,30 +1,38 @@
 # Example /etc/fstab with 4 disks:
 #
+# We assume that the root partition of the system is located in /dev/sda, or in
+# another disk, so we use /dev/sdb and /dev/sdc to store garage metadata since
+# disk io is a bottleneck for the database.
+#
+# The nofail option is useful so that the system can boot even if one of the
+# data disks has failed.
+#
+# The noatime option reduces the need to write to the filesystem everytime
+# a file is accessed, especially increasing the performance of the metadata
+# database.
+#
 # ## garage 0 ##
 #
 # # sda
-# UUID=your-fs-uuid /home/user/volumes/garage/0/data/sda btrfs subvol=@data,nofail 0 0
-#
+# UUID=your-fs-uuid /home/user/volumes/garage/0/data/sda btrfs subvol=@data,nofail,noatime 0 0
 # # sdb
-# UUID=your-fs-uuid /home/user/volumes/garage/0/data/sdb btrfs subvol=@data,nofail 0 0
-# UUID=your-fs-uuid /home/user/volumes/garage/0/metadata btrfs subvol=@metadata,nofail 0 0
+# UUID=your-fs-uuid /home/user/volumes/garage/0/data/sdb btrfs subvol=@data,nofail,noatime 0 0
+# UUID=your-fs-uuid /home/user/volumes/garage/0/metadata btrfs subvol=@metadata,nofail,noatime 0 0
 #
 # ## garage 1 ##
 #
 # # sdc
-# UUID=your-fs-uuid /home/user/volumes/garage/1/data/sdc btrfs subvol=@data,nofail 0 0
-# UUID=your-fs-uuid /home/user/volumes/garage/1/metadata btrfs subvol=@metadata,nofail 0 0
-#
+# UUID=your-fs-uuid /home/user/volumes/garage/1/data/sdc btrfs subvol=@data,nofail,noatime 0 0
+# UUID=your-fs-uuid /home/user/volumes/garage/1/metadata btrfs subvol=@metadata,nofail,noatime 0 0
 # # sdd
-# UUID=your-fs-uuid /home/user/volumes/garage/1/data/sdd btrfs subvol=@data,nofail 0 0
+# UUID=your-fs-uuid /home/user/volumes/garage/1/data/sdd btrfs subvol=@data,nofail,noatime 0 0
 #
 # ## garage snapshots ##
 #
 # # sda
-# UUID=your-fs-uuid /home/user/volumes/garage/0/snapshots btrfs subvol=@snapshots,nofail 0 0
-#
+# UUID=your-fs-uuid /home/user/volumes/garage/0/snapshots btrfs subvol=@snapshots,nofail,noatime 0 0
 # # sdd
-# UUID=your-fs-uuid /home/user/volumes/garage/1/snapshots btrfs subvol=@snapshots,nofail 0 0
+# UUID=your-fs-uuid /home/user/volumes/garage/1/snapshots btrfs subvol=@snapshots,nofail,noatime 0 0
 
 configs:
   garage-0:
