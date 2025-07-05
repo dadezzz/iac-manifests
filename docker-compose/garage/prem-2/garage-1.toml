@@ -1,5 +1,8 @@
 db_engine = "lmdb"
 
+block_size = "50M"
+compression_level = 10
+
 metadata_dir = "/var/lib/garage/metadata"
 metadata_snapshots_dir = "/var/lib/garage/snapshots"
 metadata_auto_snapshot_interval = "6h"
