@@ -5,12 +5,44 @@ networks:
     external: true
 
 services:
+  postgres:
+    cap_drop:
+      - ALL
+    env_file: .env
+    environment:
+      # Configures the user used for healthchecking.
+      PGUSER: ${POSTGRES_USER}
+    healthcheck:
+      interval: 10s
+      retries: 5
+      test:
+        - CMD
+        - pg_isready
+      timeout: 5s
+    image: docker.io/library/postgres:17.5-alpine@sha256:fbe21607052bb5c298674f2fd8cf044a63aa3ddf50b81627f894f91f40f50bcb
+    labels:
+      monitoring.collect: true
+    read_only: true
+    restart: always
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp:uid=70,gid=70
+      - /var/run/postgresql:uid=70,gid=70
+    # User has to be 70, otherwise the container tries to chown the postgres
+    # volume but fails due to insufficient permissions.
+    user: 70:70
+    volumes:
+      - $HOME/volumes/woodpecker/postgres:/var/lib/postgresql/data
+
   woodpecker-server:
     cap_drop:
       - ALL
     env_file: .env
     environment:
-      WOODPECKER_ENVIRONMENT: CI_VOLUMES_DIR:${HOME}/volumes/woodpecker-agent
+      WOODPECKER_DATABASE_DATASOURCE: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?sslmode=disable
+      WOODPECKER_DATABASE_DRIVER: postgres
+      WOODPECKER_ENVIRONMENT: CI_VOLUMES_DIR:${HOME}/volumes/woodpecker/agent
       WOODPECKER_GITHUB: true
       WOODPECKER_HOST: https://ci.zarantonello.dev
       WOODPECKER_METRICS_SERVER_ADDR: :9001
@@ -37,12 +69,12 @@ services:
       traefik.http.services.woodpecker-grpc.loadbalancer.server.scheme: h2c
       traefik.http.services.woodpecker-http.loadbalancer.server.port: 8000
     networks:
-      - traefik_default
       - alloy_default
+      - default
+      - traefik_default
     read_only: true
     restart: always
     security_opt:
       - no-new-privileges:true
     user: 4518:4518
-    volumes:
-      - $HOME/volumes/woodpecker-server:/var/lib/woodpecker
+
