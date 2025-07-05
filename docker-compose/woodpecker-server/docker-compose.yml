@@ -38,6 +38,9 @@ services:
   woodpecker-server:
     cap_drop:
       - ALL
+    depends_on:
+      postgres:
+        condition: service_healthy
     env_file: .env
     environment:
       WOODPECKER_DATABASE_DATASOURCE: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?sslmode=disable
