@@ -77,4 +77,3 @@ services:
     security_opt:
       - no-new-privileges:true
     user: 4518:4518
-
