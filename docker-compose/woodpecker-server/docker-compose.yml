@@ -22,7 +22,7 @@ services:
         - woodpecker-server
         - ping
       timeout: 5s
-    image: docker.io/woodpeckerci/woodpecker-server:v3.7.0@sha256:910944e4c60ce3989a5fe4af05567db501e7b60af4d2078fe0dc7c3a3772b8e5
+    image: docker.io/woodpeckerci/woodpecker-server:v3.8.0@sha256:40bbd034462ec370d98078fbc31b50f951ca44cc02630eb22cd35d48afc3f037
     labels:
       monitoring.collect: true
       monitoring.metrics.port: 9001
