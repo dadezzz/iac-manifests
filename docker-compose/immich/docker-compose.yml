@@ -58,7 +58,7 @@ services:
         - redis-cli
         - ping
       timeout: 5s
-    image: docker.io/library/redis:8.0.3-alpine@sha256:25c0ae32c6c2301798579f5944af53729766a18eff5660bbef196fc2e6214a9c
+    image: docker.io/library/redis:8.2.0-alpine@sha256:372dbfde9208182552a4048b7a110757c1a3bbe8f396bcb729d2d59260fd80c0
     labels:
       monitoring.collect: true
     read_only: true
