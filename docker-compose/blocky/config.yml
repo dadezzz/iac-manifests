@@ -37,6 +37,7 @@ customDNS:
   mapping:
     ci-grpc-prem-0.zarantonello.dev: 100.125.56.122,fd7a:115c:a1e0::b001:387b
     grafana.zarantonello.net: 100.117.119.101,fd7a:115c:a1e0::d901:7769
+    immich-machine-learning.zarantonello.net: 100.117.119.101,fd7a:115c:a1e0::d901:7769
     photos.zarantonello.net: 100.125.56.122,fd7a:115c:a1e0::b001:387b
     s3-prem-0.zarantonello.dev: 100.125.56.122,fd7a:115c:a1e0::b001:387b
     s3-prem-2.zarantonello.dev: 100.81.212.20,fd7a:115c:a1e0::7301:d415
