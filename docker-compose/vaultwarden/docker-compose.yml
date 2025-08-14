@@ -41,7 +41,7 @@ services:
     read_only: true
     restart: always
     security_opt:
-      - no-new-privileges:true
+      - no-new-privileges=true
     user: 53382:53382
     volumes:
       - $HOME/volumes/vaultwarden:/data

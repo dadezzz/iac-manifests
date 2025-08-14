@@ -25,7 +25,7 @@ services:
     read_only: true
     restart: always
     security_opt:
-      - no-new-privileges:true
+      - no-new-privileges=true
     user: 54433:54433
     volumes:
       - $HOME/volumes/victoriametrics/logs:/victoria-logs-data
@@ -51,7 +51,7 @@ services:
     read_only: true
     restart: always
     security_opt:
-      - no-new-privileges:true
+      - no-new-privileges=true
     user: 34866:34866
     volumes:
       - $HOME/volumes/victoriametrics/metrics:/victoria-metrics-data

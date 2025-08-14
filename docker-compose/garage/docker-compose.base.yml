@@ -24,5 +24,5 @@ services:
     read_only: true
     restart: always
     security_opt:
-      - no-new-privileges:true
+      - no-new-privileges=true
     user: 18781:18781

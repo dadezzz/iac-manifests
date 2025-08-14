@@ -26,7 +26,7 @@ services:
     read_only: true
     restart: always
     security_opt:
-      - no-new-privileges:true
+      - no-new-privileges=true
     tmpfs:
       - /tmp:uid=70,gid=70
       - /var/run/postgresql:uid=70,gid=70
@@ -54,7 +54,7 @@ services:
     read_only: true
     restart: always
     security_opt:
-      - no-new-privileges:true
+      - no-new-privileges=true
     user: 9243:9243
     volumes:
       - $HOME/volumes/immich/redis:/data
@@ -92,7 +92,7 @@ services:
       - traefik_default
     restart: always
     security_opt:
-      - no-new-privileges:true
+      - no-new-privileges=true
     user: 5551:5551
     volumes:
       - $HOME/volumes/immich/data:/usr/src/app/upload

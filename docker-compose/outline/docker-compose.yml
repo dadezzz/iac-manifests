@@ -45,7 +45,7 @@ services:
       - traefik_default
     restart: always
     security_opt:
-      - no-new-privileges:true
+      - no-new-privileges=true
     user: 21127:21127
 
   # Recurrent job that runs twice a day.
@@ -65,7 +65,7 @@ services:
       monitoring.collect: true
     restart: always
     security_opt:
-      - no-new-privileges:true
+      - no-new-privileges=true
     user: 22219:22219
 
   postgres:
@@ -88,7 +88,7 @@ services:
     read_only: true
     restart: always
     security_opt:
-      - no-new-privileges:true
+      - no-new-privileges=true
     tmpfs:
       - /tmp:uid=70,gid=70
       - /var/run/postgresql:uid=70,gid=70
@@ -116,7 +116,7 @@ services:
     read_only: true
     restart: always
     security_opt:
-      - no-new-privileges:true
+      - no-new-privileges=true
     user: 24056:24056
     volumes:
       - $HOME/volumes/outline/redis:/data
