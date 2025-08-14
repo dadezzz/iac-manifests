@@ -12,8 +12,8 @@ services:
     labels:
       monitoring.collect: true
     ports:
-      - "[fd7a:115c:a1e0::d901:7769]:25565:25565"
-      - 100.117.119.101:25565:25565
+      - "[fd7a:115c:a1e0::d501:aa13]:25565:25565"
+      - 100.65.170.18:25565:25565
     read_only: true
     restart: always
     security_opt:
