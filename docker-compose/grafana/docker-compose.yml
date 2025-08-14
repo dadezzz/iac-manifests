@@ -32,7 +32,7 @@ services:
       - alloy_default
     restart: always
     security_opt:
-      - no-new-privileges:true
+      - no-new-privileges=true
     user: 31904:31904
     volumes:
       - ./provisioning:/etc/grafana/provisioning:ro
