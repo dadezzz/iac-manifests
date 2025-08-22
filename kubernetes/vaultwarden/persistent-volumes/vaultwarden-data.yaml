@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: vaultwarden-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 100M
+  local:
+    path: /var/mnt/local-storage/vaultwarden-data
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - prem-1

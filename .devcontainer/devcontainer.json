@@ -1,7 +1,12 @@
 {
   "customizations": {
     "vscode": {
-      "extensions": ["biomejs.biome", "redhat.vscode-yaml"]
+      "extensions": [
+        "biomejs.biome",
+        "esbenp.prettier-vscode",
+        "ms-kubernetes-tools.vscode-kubernetes-tools",
+        "redhat.vscode-yaml"
+      ]
     }
   },
   "dockerComposeFile": "docker-compose.yml",

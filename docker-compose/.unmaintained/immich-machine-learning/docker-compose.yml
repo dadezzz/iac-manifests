@@ -1,0 +1,21 @@
+networks:
+  traefik_default:
+    external: true
+
+services:
+  server:
+    image: ghcr.io/immich-app/immich-machine-learning:v1.138.0@sha256:25fca00128f10444303c93829516927bd14804ccbe9b7450eb41c64c722c5ac4
+    labels:
+      monitoring.collect: true
+      traefik.enable: true
+      traefik.http.routers.immich-machine-learning.entrypoints: http
+      traefik.http.routers.immich-machine-learning.rule: Host(`immich-machine-learning.zarantonello.net`)
+      traefik.http.routers.immich-machine-learning.service: immich-machine-learning
+      traefik.http.services.immich-machine-learning.loadbalancer.server.port: 3003
+    networks:
+      - traefik_default
+    restart: always
+    security_opt:
+      - no-new-privileges=true
+    volumes:
+      - $HOME/volumes/immich/machine-learning-cache:/cache

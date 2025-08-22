@@ -1,0 +1,27 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+configMapGenerator:
+  - envs:
+      - generated/configs/outline.env
+    name: outline-env
+kind: Kustomization
+namespace: outline
+resources:
+  - deployments/outline.yaml
+  - deployments/postgres.yaml
+  - deployments/redis.yaml
+  - namespace.yaml
+  - persistent-volume-claims/postgres-data.yaml
+  - persistent-volume-claims/redis-data.yaml
+  - persistent-volumes/outline-postgres-data.yaml
+  - persistent-volumes/outline-redis-data.yaml
+  - service-accounts/default.yml
+  - services/postgres.yaml
+  - services/redis.yaml
+  - services/web-ui.yaml
+secretGenerator:
+  - envs:
+      - generated/secrets/outline.env
+    name: outline-env
+  - envs:
+      - generated/secrets/postgres.env
+    name: postgres-env

@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stalwart
+spec:
+  selector:
+    matchLabels:
+      apps.zarantonello.dev/name: stalwart
+      apps.zarantonello.dev/namespace: stalwart
+  template:
+    metadata:
+      annotations:
+        monitoring.zarantonello.dev/metrics-0-id: d5007f02-b09e-4a1f-b5aa-78fecd8f5fc9
+        monitoring.zarantonello.dev/metrics-0-port: "3000"
+      labels:
+        apps.zarantonello.dev/name: stalwart
+        apps.zarantonello.dev/namespace: stalwart
+    spec:
+      containers:
+        envFrom:
+          - secretRef:
+              name: stalwart-env
+        image: docker.io/stalwart/stalwart:12.1.1@sha256:a1701c2180249361737a99a01bc770db39381640e4d631825d38ff4535efa47d
+        name: stalwart
+        ports:
+          - containerPort: 25
+            name: smtp
+          - containerPort: 465
+            name: smpts
+          - containerPort: 993
+            name: imaps
+          - containerPort:
+            name: http
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
+          readOnlyRootFilesystem: true
+        volumeMounts:
+          - mountPath: /etc/stalwart
+            name: config
+      enableServiceLinks: false
+      securityContext:
+        runAsGroup: 31770
+        runAsNonRoot: true
+        runAsUser: 31770
+        seccompProfile:
+          type: RuntimeDefault
+      volumes:
+        - configMap:
+            name: stalwart
+          name: config
