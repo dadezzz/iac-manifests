@@ -7,7 +7,7 @@ RUN apk add --no-cache git gpg
 # Install and setup pnpm.
 
 # renovate: datasource=npm depName=pnpm versioning=npm
-ENV PNPM_VERSION="10.8.0"
+ENV PNPM_VERSION="10.15.0"
 RUN corepack enable pnpm && corepack prepare "pnpm@$PNPM_VERSION"
 
 ENV PNPM_HOME="/usr/local/share/pnpm"
