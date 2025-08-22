@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: alloy
+spec:
+  selector:
+    matchLabels:
+      apps.zarantonello.dev/name: alloy
+      apps.zarantonello.dev/namespace: alloy
+  template:
+    metadata:
+      annotations:
+        monitoring.zarantonello.dev/metrics-0-id: db859f46-f76a-4ba7-9bf8-b023a2953a66
+        monitoring.zarantonello.dev/metrics-0-port: "12345"
+      labels:
+        apps.zarantonello.dev/name: alloy
+        apps.zarantonello.dev/namespace: alloy
+    spec:
+      containers:
+        - args:
+            - run
+            # Required to use the loki.enrich beta component.
+            - --stability.level=experimental
+            - --server.http.listen-addr=[::]:12345
+            - --storage.path=/var/tmp/alloy
+            - /etc/alloy/alloy.alloy
+          env:
+            # Let alloy know what is the hostname of the node its running on.
+            - name: NODE_HOSTNAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+          image: docker.io/grafana/alloy:v1.10.1@sha256:582f5a5169cd67a2bdbf98777c1a6f596203f573cdef5c021749fd3279605768
+          name: alloy
+          ports:
+            - containerPort: 12345
+              name: http
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+          volumeMounts:
+            - mountPath: /etc/alloy/alloy.alloy
+              name: config
+              subPath: alloy.alloy
+            # Data is stored here if alloy cannot send it to victoria{logs,metrics}.
+            - mountPath: /var/tmp/alloy
+              name: tmp
+            - mountPath: /rootfs
+              mountPropagation: HostToContainer
+              name: rootfs
+              readOnly: true
+      enableServiceLinks: false
+      hostPID: true
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+      serviceAccountName: alloy
+      volumes:
+        - configMap:
+            name: alloy
+          name: config
+        - emptyDir: {}
+          name: tmp
+        - hostPath:
+            path: /
+          name: rootfs

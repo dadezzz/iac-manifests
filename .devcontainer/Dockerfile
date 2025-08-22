@@ -1,17 +1,8 @@
-FROM docker.io/library/node:23.11.0-alpine@sha256:86703151a18fcd06258e013073508c4afea8e19cd7ed451554221dd00aea83fc AS node
-FROM docker.io/library/alpine:3.21.3@sha256:a8560b36e8b8210634f77d9f7f9efd7ffa463e380b75e2e74aff4511df3ef88c
+FROM docker.io/library/node:23.11.0-alpine@sha256:86703151a18fcd06258e013073508c4afea8e19cd7ed451554221dd00aea83fc
 
 # Add standard packages for devcontainer
 
 RUN apk add --no-cache git gpg
-
-# Copy nodejs binaries in the new image.
-
-# Required by nodejs.
-RUN apk add --no-cache libstdc++
-
-COPY --from=node /usr/local/bin/ /usr/local/bin/
-COPY --from=node /usr/local/lib/node_modules/ /usr/local/lib/node_modules/
 
 # Install and setup pnpm.
 
@@ -22,11 +13,17 @@ RUN corepack enable pnpm && corepack prepare "pnpm@$PNPM_VERSION"
 ENV PNPM_HOME="/usr/local/share/pnpm"
 ENV PATH="/usr/local/share/pnpm:$PATH"
 
-# Install biomejs
+# Install linting tools.
 
 # # renovate: datasource=npm depName=@biomejs/biome versioning=npm
 ENV BIOME_VERSION="1.9.4"
 RUN pnpm install -g "@biomejs/biome@$BIOME_VERSION"
+
+# # renovate: datasource=npm depName=prettier versioning=npm
+ENV PRETTIER_VERSION="3.6.2"
+RUN pnpm install -g "prettier@$PRETTIER_VERSION"
+
+RUN apk add --no-cache yamllint
 
 # Install tools to manage k8s.
 

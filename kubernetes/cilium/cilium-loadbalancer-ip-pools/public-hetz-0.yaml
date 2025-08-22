@@ -1,0 +1,7 @@
+apiVersion: cilium.io/v2
+kind: CiliumLoadBalancerIPPool
+metadata:
+  name: public-hetz-0
+spec:
+  blocks:
+    - cidr: 91.98.34.168/32

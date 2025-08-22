@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: maintenance
+spec:
+  selector:
+    matchLabels:
+      apps.zarantonello.dev/name: maintenance
+      apps.zarantonello.dev/namespace: maintenance
+  template:
+    metadata:
+      labels:
+        apps.zarantonello.dev/name: maintenance
+        apps.zarantonello.dev/namespace: maintenance
+    spec:
+      containers:
+        - command:
+            - sleep
+            - infinity
+          image: docker.io/library/alpine:3.22
+          name: shell
+          volumeMounts:
+            - mountPath: /data
+              name: data
+      enableServiceLinks: false
+      hostNetwork: true
+      hostPID: true
+      volumes:
+        - hostPath:
+            path: /var/mnt/local-storage
+          name: data

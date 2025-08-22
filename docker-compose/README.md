@@ -1,9 +1,7 @@
 # Docker compose
 
-Docker compose is the method that I currently use to deploy containers.
-
 Most of the containers are deployed only on one host except for those that would
-normally run as a DaemonSet in kubernetes. To set specific options for each set
+normally run as a DaemonSet in kubernetes. To set specific options for each host
 I extend base docker compose files with configurations based on the hostname of
 the targeted node.
 
@@ -19,10 +17,7 @@ Create the file `/etc/docker/daemon.json` with contents:
 ```json
 {
   "log-driver": "local",
-  "metrics-addr": "0.0.0.0:9323",
-  "features": {
-    "containerd-snapshotter": true
-  }
+  "metrics-addr": "0.0.0.0:9323"
 }
 ```
 
