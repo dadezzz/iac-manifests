@@ -3,7 +3,5 @@
     ".env": "properties",
     ".env.*": "properties"
   },
-  "yaml.keyOrdering": true,
-  "[json]": { "editor.defaultFormatter": "biomejs.biome" },
-  "[jsonc]": { "editor.defaultFormatter": "biomejs.biome" }
+  "yaml.keyOrdering": true
 }

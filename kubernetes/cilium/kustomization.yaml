@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: cilium
+resources:
+  # Get gateway api crds from the github repo.
+  # - https://github.com/kubernetes-sigs/gateway-api/config/crd/?ref=v1.3.0
+  - namespace.yaml
+  - service-accounts/default.yaml
+  - certificates/zarantonello-dev.yaml
+  - certificates/zarantonello-net.yaml
+  - helm-repositories/cilium.yaml
+  - helm-releases/cilium.yaml
+  - gateways/http-prem-1.yaml
+  - cilium-loadbalancer-ip-pools/tailscale-hetz-0.yaml
+  - cilium-loadbalancer-ip-pools/tailscale-prem-1.yaml
+  - cilium-clusterwide-network-policies/dns-visibility-coredns.yaml
+  - cilium-clusterwide-network-policies/dns-visibility-blocky.yaml

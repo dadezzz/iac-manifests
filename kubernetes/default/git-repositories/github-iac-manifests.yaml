@@ -1,0 +1,9 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: github-iac-manifests
+spec:
+  interval: 10m
+  ref:
+    branch: main
+  url: https://github.com/dadezzz/iac-manifests

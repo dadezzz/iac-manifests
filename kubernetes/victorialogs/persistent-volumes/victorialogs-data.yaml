@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: victorialogs-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 1G
+  local:
+    path: /var/mnt/local-storage/victorialogs-data
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - prem-1

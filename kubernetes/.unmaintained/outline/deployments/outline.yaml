@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: outline
+spec:
+  selector:
+    matchLabels:
+      apps.zarantonello.dev/name: outline
+      apps.zarantonello.dev/namespace: outline
+  template:
+    metadata:
+      labels:
+        apps.zarantonello.dev/name: outline
+        apps.zarantonello.dev/namespace: outline
+    spec:
+      containers:
+        - envFrom:
+            - configMapRef:
+                name: outline-env
+            - secretRef:
+                name: outline-env
+          image: docker.io/outlinewiki/outline:0.82.0@sha256:494dfb9249a6799ca3d38e2bb1bdf3c9f63632634737bd996ce0b3509fe93499
+          name: outline
+          ports:
+            - containerPort: 3000
+              name: http
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+          volumeMounts:
+            - mountPath: /tmp
+              name: tmp
+      enableServiceLinks: false
+      securityContext:
+        fsGroup: 21127
+        runAsGroup: 21127
+        runAsNonRoot: true
+        runAsUser: 21127
+        seccompProfile:
+          type: RuntimeDefault
+      volumes:
+        - emptyDir: {}
+          name: tmp

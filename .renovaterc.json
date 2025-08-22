@@ -8,7 +8,7 @@
     "customManagers:githubActionsVersions",
     "customManagers:biomeVersions"
   ],
-  "ignorePaths": ["**/.*/**"],
+  "ignorePaths": ["**/.unmaintained/**"],
   "kubernetes": {
     "managerFilePatterns": ["/kubernetes/.+\\.yaml$/"]
   },
@@ -24,7 +24,7 @@
     {
       "groupName": "immich monorepo",
       "groupSlug": "immich-monorepo",
-      "matchPackageNames": ["ghcr.io/immich-app/*"]
+      "matchPackageNames": ["ghcr.io/immich-app/immich-*"]
     },
     {
       "groupName": "woodpecker monorepo",

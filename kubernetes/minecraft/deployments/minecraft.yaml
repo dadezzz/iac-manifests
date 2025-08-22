@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minecraft
+spec:
+  selector:
+    matchLabels:
+      apps.zarantonello.dev/name: minecraft
+      apps.zarantonello.dev/namespace: minecraft
+  # Persistent volume cannot be read by 2 replicas.
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        apps.zarantonello.dev/name: minecraft
+        apps.zarantonello.dev/namespace: minecraft
+    spec:
+      containers:
+        # Download the fabric launcher jar from https://fabricmc.net/use/server and
+        # copy the file into the root folder of the minecraft volume as fabric.jar.
+        - command:
+            - java
+            - -jar
+            - fabric.jar
+          image: docker.io/library/eclipse-temurin:24-jre-alpine@sha256:4044b6c87cb088885bcd0220f7dc7a8a4aab76577605fa471945d2e98270741f
+          name: minecraft
+          ports:
+            - containerPort: 25565
+              name: minecraft
+              protocol: TCP
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+          volumeMounts:
+            - mountPath: /data
+              name: data
+            - mountPath: /tmp
+              name: tmp
+          workingDir: /data
+      enableServiceLinks: false
+      securityContext:
+        runAsGroup: 36506
+        runAsNonRoot: true
+        runAsUser: 36506
+        seccompProfile:
+          type: RuntimeDefault
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: data
+        - emptyDir: {}
+          name: tmp

@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: machine-learning
+spec:
+  selector:
+    matchLabels:
+      apps.zarantonello.dev/name: machine-learning
+      apps.zarantonello.dev/namespace: immich
+  template:
+    metadata:
+      labels:
+        apps.zarantonello.dev/name: machine-learning
+        apps.zarantonello.dev/namespace: immich
+    spec:
+      containers:
+        - image: ghcr.io/immich-app/immich-machine-learning:v1.138.0@sha256:25fca00128f10444303c93829516927bd14804ccbe9b7450eb41c64c722c5ac4
+          name: machine-learning
+          ports:
+            - containerPort: 3003
+              name: http
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+          volumeMounts:
+            - mountPath: /cache
+              name: cache
+            - mountPath: /.cache
+              name: tmp-cache
+            - mountPath: /.config
+              name: tmp-config
+      enableServiceLinks: false
+      securityContext:
+        runAsGroup: 56186
+        runAsNonRoot: true
+        runAsUser: 56186
+        seccompProfile:
+          type: RuntimeDefault
+      volumes:
+        - name: cache
+          persistentVolumeClaim:
+            claimName: machine-learning-cache
+        - emptyDir: {}
+          name: tmp-cache
+        - emptyDir: {}
+          name: tmp-config
