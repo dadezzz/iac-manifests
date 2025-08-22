@@ -1,4 +1,4 @@
-FROM docker.io/library/node:23.11.0-alpine@sha256:86703151a18fcd06258e013073508c4afea8e19cd7ed451554221dd00aea83fc
+FROM docker.io/library/node:23.11.1-alpine@sha256:a34e14ef1df25b58258956049ab5a71ea7f0d498e41d0b514f4b8de09af09456
 
 # Add standard packages for devcontainer
 
