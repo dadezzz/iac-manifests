@@ -14,7 +14,7 @@ spec:
         apps.zarantonello.dev/namespace: immich
     spec:
       containers:
-        - image: ghcr.io/immich-app/immich-machine-learning:v1.138.0@sha256:25fca00128f10444303c93829516927bd14804ccbe9b7450eb41c64c722c5ac4
+        - image: ghcr.io/immich-app/immich-machine-learning:v1.139.2@sha256:735cacb990861a2e8e69ee71389d5551d4ca1db426b330c7c5a83ab28901b3b0
           name: machine-learning
           ports:
             - containerPort: 3003
