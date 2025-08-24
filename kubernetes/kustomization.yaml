@@ -5,6 +5,7 @@ resources:
   - blocky
   - cert-manager
   - cilium
+  - coredns
   - default
   - fluxcd
   - grafana
