@@ -15,11 +15,6 @@
        max_concurrent 1000
     }
 
-    cache 30 {
-       disable success k8s.zarantonello.dev
-       disable denial k8s.zarantonello.dev
-    }
-
     loop
     loadbalance
 }

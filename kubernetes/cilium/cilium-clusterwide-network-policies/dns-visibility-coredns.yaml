@@ -6,8 +6,8 @@ spec:
   egress:
     - toEndpoints:
         - matchLabels:
-            io.kubernetes.pod.namespace: kube-system
-            k8s-app: kube-dns
+            apps.zarantonello.dev/name: coredns
+            apps.zarantonello.dev/namespace: coredns
       toPorts:
         - ports:
             - port: "53"
@@ -20,11 +20,11 @@ spec:
     ingress: false
   endpointSelector:
     matchExpressions:
-      - key: io.kubernetes.pod.namespace
+      - key: apps.zarantonello.dev/name
         operator: NotIn
         values:
-          - kube-system
-      - key: k8s-app
+          - coredns
+      - key: apps.zarantonello.dev/namespace
         operator: NotIn
         values:
-          - kube-dns
+          - coredns
