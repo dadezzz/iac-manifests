@@ -65,7 +65,6 @@ spec:
             - mountPath: /etc/coredns
               name: config
       enableServiceLinks: false
-      serviceAccountName: coredns
       nodeSelector:
         kubernetes.io/hostname: hetz-0
       securityContext:
@@ -74,6 +73,7 @@ spec:
         runAsUser: 19516
         seccompProfile:
           type: RuntimeDefault
+      serviceAccountName: coredns
       volumes:
         - configMap:
             name: coredns
