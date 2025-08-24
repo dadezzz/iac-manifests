@@ -22,6 +22,10 @@
       ]
     },
     {
+      "automerge": true,
+      "matchPackageNames": ["@biomejs/biome"]
+    },
+    {
       "groupName": "immich monorepo",
       "groupSlug": "immich-monorepo",
       "matchPackageNames": ["ghcr.io/immich-app/immich-*"]
