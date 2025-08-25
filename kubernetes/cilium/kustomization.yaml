@@ -3,15 +3,16 @@ kind: Kustomization
 namespace: cilium
 resources:
   # Get gateway api crds from the github repo.
-  # - https://github.com/kubernetes-sigs/gateway-api/config/crd/?ref=v1.3.0
-  - namespace.yaml
-  - service-accounts/default.yaml
+  - https://github.com/kubernetes-sigs/gateway-api/config/crd/?ref=v1.3.0
   - certificates/zarantonello-dev.yaml
   - certificates/zarantonello-net.yaml
-  - helm-repositories/cilium.yaml
-  - helm-releases/cilium.yaml
-  - gateways/http-prem-1.yaml
+  - cilium-clusterwide-network-policies/dns-visibility-blocky.yaml
+  - cilium-clusterwide-network-policies/dns-visibility-coredns.yaml
   - cilium-loadbalancer-ip-pools/tailscale-hetz-0.yaml
   - cilium-loadbalancer-ip-pools/tailscale-prem-1.yaml
-  - cilium-clusterwide-network-policies/dns-visibility-coredns.yaml
-  - cilium-clusterwide-network-policies/dns-visibility-blocky.yaml
+  - gateways/http-hetz-0.yaml
+  - gateways/http-prem-1.yaml
+  - helm-releases/cilium.yaml
+  - helm-repositories/cilium.yaml
+  - namespace.yaml
+  - service-accounts/default.yaml

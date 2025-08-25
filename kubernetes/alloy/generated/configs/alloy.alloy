@@ -112,7 +112,7 @@ discovery.relabel "kubelet_pods_for_metrics" {
     source_labels = ["__meta_kubernetes_pod_container_port_protocol"]
     regex = "TCP"
   }
-  
+
   // Keep metrics only for running pods.
   rule {
     action = "keep"
@@ -143,8 +143,19 @@ discovery.relabel "kubelet_pods_for_metrics_target_0" {
     regex = "__meta_kubernetes_pod_annotation_monitoring_zarantonello_dev_metrics_0_id"
     replacement = "podid"
   }
+
+  // Use custom metrics path if provided.
+  rule {
+    action = "replace"
+    regex = "(.+)"
+    replacement = "$1"
+    source_labels = ["__meta_kubernetes_pod_annotation_monitoring_zarantonello_dev_metrics_0_path"]
+    target_label = "__metrics_path__"
+  }
 }
 
+// This is a copy of the config above, in case the pod has a second metrics
+// target that needs to be scraped.
 discovery.relabel "kubelet_pods_for_metrics_target_1" {
   targets = discovery.relabel.kubelet_pods_for_metrics.output
   rule {
@@ -156,6 +167,13 @@ discovery.relabel "kubelet_pods_for_metrics_target_1" {
     action = "labelmap"
     regex = "__meta_kubernetes_pod_annotation_monitoring_zarantonello_dev_metrics_1_id"
     replacement = "podid"
+  }
+  rule {
+    action = "replace"
+    regex = "(.+)"
+    replacement = "$1"
+    source_labels = ["__meta_kubernetes_pod_annotation_monitoring_zarantonello_dev_metrics_1_path"]
+    target_label = "__metrics_path__"
   }
 }
 

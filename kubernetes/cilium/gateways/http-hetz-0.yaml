@@ -1,14 +1,14 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: http-prem-1
+  name: http-hetz-0
 spec:
   gatewayClassName: cilium
   infrastructure:
     annotations:
-      lbipam.cilium.io/ips: 100.94.195.11
+      lbipam.cilium.io/ips: 100.64.0.1
       lbipam.cilium.io/sharing-cross-namespace: "*"
-      lbipam.cilium.io/sharing-key: prem-1-tailscale
+      lbipam.cilium.io/sharing-key: hetz-0-tailscale
   listeners:
     - allowedRoutes: &allowedRoutes
         namespaces:

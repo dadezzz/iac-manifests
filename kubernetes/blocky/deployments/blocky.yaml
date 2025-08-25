@@ -68,5 +68,5 @@ spec:
           type: RuntimeDefault
       volumes:
         - configMap:
-            name: blocky
+            name: blocky-config
           name: config
