@@ -76,5 +76,5 @@ spec:
       serviceAccountName: coredns
       volumes:
         - configMap:
-            name: coredns
+            name: coredns-config
           name: config

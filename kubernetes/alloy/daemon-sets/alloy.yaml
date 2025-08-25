@@ -60,7 +60,7 @@ spec:
       serviceAccountName: alloy
       volumes:
         - configMap:
-            name: alloy
+            name: alloy-config
           name: config
         - emptyDir: {}
           name: tmp
