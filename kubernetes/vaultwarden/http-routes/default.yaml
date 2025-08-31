@@ -6,7 +6,7 @@ spec:
   hostnames:
     - vault.zarantonello.net
   parentRefs:
-    - name: http-prem-1
+    - name: srv-0-cor-home-http
       namespace: cilium
   rules:
     - backendRefs:
