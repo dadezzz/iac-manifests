@@ -6,6 +6,14 @@ creation_rules:
   - age: age10s8xudjc20ujqjsk0asex5vgxqtm3fzrx2g3lzt5lls4rsay6cpqx6rhcc
     encrypted_regex: ^(data|stringData)$
     path_regex: kubernetes/.+/secrets/.+\.yaml
+  - age: age10s8xudjc20ujqjsk0asex5vgxqtm3fzrx2g3lzt5lls4rsay6cpqx6rhcc
+    encrypted_regex: environment
+    path_regex: talos/patches/tailscale\.yaml
+  - age: age10s8xudjc20ujqjsk0asex5vgxqtm3fzrx2g3lzt5lls4rsay6cpqx6rhcc
+    path_regex: talos/secrets\.yaml
+  - age: age10s8xudjc20ujqjsk0asex5vgxqtm3fzrx2g3lzt5lls4rsay6cpqx6rhcc
+    encrypted_regex: privateKey
+    path_regex: talos/patches/servers/.+\.yaml
 
 stores:
   yaml:
