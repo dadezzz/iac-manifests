@@ -1,0 +1,9 @@
+# Use the rest of the disk as storage for pods.
+apiVersion: v1alpha1
+kind: UserVolumeConfig
+name: local-storage
+provisioning:
+  diskSelector:
+    match: disk.size > 1u * GB
+  grow: true
+  minSize: 1GB

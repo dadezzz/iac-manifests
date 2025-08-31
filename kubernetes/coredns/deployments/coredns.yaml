@@ -66,7 +66,7 @@ spec:
               name: config
       enableServiceLinks: false
       nodeSelector:
-        kubernetes.io/hostname: hetz-0
+        node-role.kubernetes.io/control-plane: ""
       securityContext:
         runAsGroup: 19516
         runAsNonRoot: true

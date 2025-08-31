@@ -1,8 +1,5 @@
 .:53 {
     errors
-    log . {
-        class error
-    }
     prometheus :9153
 
     kubernetes k8s.zarantonello.dev in-addr.arpa ip6.arpa {
@@ -11,10 +8,6 @@
         ttl 30
     }
 
-    forward . 10.96.0.11 {
-       max_concurrent 1000
-    }
-
+    forward . 10.97.0.11
     loop
-    loadbalance
 }
