@@ -19,7 +19,7 @@ spec:
             - file-server
             - --root=/srv
             - --browse
-          image: docker.io/library/caddy:2.10.2-alpine
+          image: docker.io/library/caddy:2.10.2-alpine@sha256:a4180db0805b3725ddf936d2e6290553745c7339c003565da717ee612fd8a888
           name: file-server
           ports:
             - containerPort: 80
