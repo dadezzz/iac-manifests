@@ -38,6 +38,7 @@ customDNS:
     ci-grpc-prem-0.zarantonello.dev: 100.125.56.122,fd7a:115c:a1e0::b001:387b
     grafana.zarantonello.net: 100.94.195.11
     immich-machine-learning.zarantonello.net: 100.94.195.11
+    ollama.zarantonello.dev: 100.94.195.11
     photos.zarantonello.net: 100.125.56.122,fd7a:115c:a1e0::b001:387b
     vault.zarantonello.net: 100.94.195.11
 fqdnOnly:

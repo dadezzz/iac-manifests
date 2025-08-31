@@ -1,0 +1,9 @@
+# Ephemeral storage for nodes with smaller system disks.
+apiVersion: v1alpha1
+kind: VolumeConfig
+name: EPHEMERAL
+provisioning:
+  diskSelector:
+    match: system_disk && disk.size < 50u * GB
+  maxSize: 20GB
+  minSize: 20GB

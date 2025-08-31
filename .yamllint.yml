@@ -1,6 +1,9 @@
 # yaml-language-server: $schema=https://json.schemastore.org/yamllint.json
 
 extends: default
+ignore: |
+  talos/controlplane.yaml
+  talos/worker.yaml
 rules:
   braces:
     forbid: non-empty

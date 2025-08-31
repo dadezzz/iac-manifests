@@ -16,4 +16,4 @@ spec:
             - key: kubernetes.io/hostname
               operator: In
               values:
-                - prem-1
+                - srv-0-cor-home

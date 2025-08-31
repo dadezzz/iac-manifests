@@ -1,7 +1,0 @@
-apiVersion: cilium.io/v2
-kind: CiliumLoadBalancerIPPool
-metadata:
-  name: tailscale-prem-1
-spec:
-  blocks:
-    - cidr: 100.94.195.11/32

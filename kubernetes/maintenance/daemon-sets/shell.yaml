@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: maintenance
+  name: shell
 spec:
   selector:
     matchLabels:
-      apps.zarantonello.dev/name: maintenance
+      apps.zarantonello.dev/name: shell
       apps.zarantonello.dev/namespace: maintenance
   template:
     metadata:
       labels:
-        apps.zarantonello.dev/name: maintenance
+        apps.zarantonello.dev/name: shell
         apps.zarantonello.dev/namespace: maintenance
     spec:
       containers:
