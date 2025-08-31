@@ -8,10 +8,11 @@ resources:
   - certificates/zarantonello-net.yaml
   - cilium-clusterwide-network-policies/dns-visibility-blocky.yaml
   - cilium-clusterwide-network-policies/dns-visibility-coredns.yaml
-  - cilium-loadbalancer-ip-pools/tailscale-hetz-0.yaml
-  - cilium-loadbalancer-ip-pools/tailscale-prem-1.yaml
-  - gateways/http-hetz-0.yaml
-  - gateways/http-prem-1.yaml
+  - cilium-loadbalancer-ip-pools/srv-0-fsk-hetz-public.yaml
+  - cilium-loadbalancer-ip-pools/srv-0-fsk-hetz-tailscale.yaml
+  - cilium-loadbalancer-ip-pools/srv-0-cor-home-tailscale.yaml
+  - gateways/srv-0-cor-home-http.yaml
+  - gateways/srv-0-fsk-hetz-http.yaml
   - helm-releases/cilium.yaml
   - helm-repositories/cilium.yaml
   - namespace.yaml

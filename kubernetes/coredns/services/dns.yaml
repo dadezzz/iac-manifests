@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: dns
 spec:
-  clusterIP: 10.96.0.10
+  clusterIP: 10.97.0.10
   ports:
     - name: dns-tcp
       port: 53

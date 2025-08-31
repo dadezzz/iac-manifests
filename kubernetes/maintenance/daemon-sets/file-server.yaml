@@ -1,30 +1,33 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: maintenance
+  name: file-server
 spec:
   selector:
     matchLabels:
-      apps.zarantonello.dev/name: maintenance
+      apps.zarantonello.dev/name: file-server
       apps.zarantonello.dev/namespace: maintenance
   template:
     metadata:
       labels:
-        apps.zarantonello.dev/name: maintenance
+        apps.zarantonello.dev/name: file-server
         apps.zarantonello.dev/namespace: maintenance
     spec:
       containers:
         - command:
-            - sleep
-            - infinity
-          image: docker.io/library/alpine:3.22@sha256:4bcff63911fcb4448bd4fdacec207030997caf25e9bea4045fa6c8c44de311d1
-          name: shell
+            - caddy
+            - file-server
+            - --root=/srv
+            - --browse
+          image: docker.io/library/caddy:2.10.2-alpine
+          name: file-server
+          ports:
+            - containerPort: 80
+              name: http
           volumeMounts:
-            - mountPath: /data
+            - mountPath: /srv
               name: data
       enableServiceLinks: false
-      hostNetwork: true
-      hostPID: true
       volumes:
         - hostPath:
             path: /var/mnt/local-storage

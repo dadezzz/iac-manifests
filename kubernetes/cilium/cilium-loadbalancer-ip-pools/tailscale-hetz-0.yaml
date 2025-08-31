@@ -1,7 +1,0 @@
-apiVersion: cilium.io/v2
-kind: CiliumLoadBalancerIPPool
-metadata:
-  name: tailscale-hetz-0
-spec:
-  blocks:
-    - cidr: 100.64.0.1/32
