@@ -11,6 +11,7 @@ resources:
   - grafana
   - immich
   - minecraft
+  - ollama
   - vaultwarden
   - victorialogs
   - victoriametrics
