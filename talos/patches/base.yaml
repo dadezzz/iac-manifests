@@ -17,6 +17,11 @@ cluster:
             namespaces: []
           kind: PodSecurityConfiguration
         name: PodSecurity
+    auditPolicy:
+      apiVersion: audit.k8s.io/v1
+      kind: Policy
+      rules:
+        - level: None
     # The default SAN for the endpoint will be added by `talosctl gen config`.
     # These additional ones are used to connect to the API server via tailscale.
     certSANs:
