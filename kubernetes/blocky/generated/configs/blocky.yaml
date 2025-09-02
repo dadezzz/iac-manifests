@@ -37,6 +37,7 @@ customDNS:
   mapping:
     grafana.zarantonello.net: 100.73.66.84
     immich-machine-learning.zarantonello.net: 100.73.66.84
+    minecraft.zarantonello.net: 100.73.66.84
     ollama.zarantonello.dev: 100.73.66.84
     photos.zarantonello.net: 100.125.56.122,fd7a:115c:a1e0::b001:387b
     vault.zarantonello.net: 100.73.66.84
