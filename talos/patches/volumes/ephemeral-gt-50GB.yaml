@@ -1,9 +1,0 @@
-# Ephemeral storage for nodes with a disk bigger than 50GB.
-apiVersion: v1alpha1
-kind: VolumeConfig
-name: EPHEMERAL
-provisioning:
-  diskSelector:
-    match: system_disk && disk.size > 50u * GB
-  maxSize: 40GB
-  minSize: 40GB

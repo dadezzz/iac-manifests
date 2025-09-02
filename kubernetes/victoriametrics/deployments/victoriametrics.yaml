@@ -37,7 +37,10 @@ spec:
             - mountPath: /victoria-metrics-data
               name: data
       enableServiceLinks: false
+      nodeSelector:
+        kubernetes.io/hostname: srv-0-cor-home
       securityContext:
+        fsGroup: 29986
         runAsGroup: 29986
         runAsNonRoot: true
         runAsUser: 29986

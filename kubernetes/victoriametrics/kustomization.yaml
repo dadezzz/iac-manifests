@@ -5,6 +5,5 @@ resources:
   - deployments/victoriametrics.yaml
   - namespace.yaml
   - persistent-volume-claims/data.yaml
-  - persistent-volumes/victoriametrics-data.yaml
   - service-accounts/default.yaml
   - services/http.yaml

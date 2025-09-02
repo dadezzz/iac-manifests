@@ -7,5 +7,5 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 5G
-  volumeName: minecraft-data
+      storage: 5Gi
+  storageClassName: longhorn
