@@ -1,0 +1,29 @@
+services:
+  woodpecker-agent:
+    cap_drop:
+      - ALL
+    env_file: .env
+    environment:
+      WOODPECKER_HOSTNAME: $HOSTNAME
+      WOODPECKER_SERVER: ci-grpc-prem-0.zarantonello.dev:80
+    # Add to docker group to use the docker socket.
+    group_add:
+      - "992"
+    healthcheck:
+      interval: 10s
+      retries: 5
+      test:
+        - CMD
+        - woodpecker-agent
+        - ping
+      timeout: 5s
+    image: docker.io/woodpeckerci/woodpecker-agent:v3.9.0@sha256:b5922cf06c8e2ed79c2feeebd96ba2c41976a378438cd614a11d7366d7ba2513
+    labels:
+      monitoring.collect: true
+    read_only: true
+    restart: always
+    security_opt:
+      - no-new-privileges=true
+    user: 36307:36307
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
