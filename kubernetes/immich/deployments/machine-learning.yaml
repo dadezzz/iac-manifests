@@ -7,6 +7,9 @@ spec:
     matchLabels:
       apps.zarantonello.dev/name: machine-learning
       apps.zarantonello.dev/namespace: immich
+  # Persistent volume cannot be read by 2 replicas.
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
