@@ -3,9 +3,9 @@ kind: PersistentVolumeClaim
 metadata:
   name: data
 spec:
-  storageClassName: longhorn
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: 1Gi
+  storageClassName: longhorn

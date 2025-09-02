@@ -19,23 +19,23 @@ spec:
   upgrade:
     crds: Create
   values:
-    persistence:
-      defaultClassReplicaCount: 1
-      defaultDataLocality: best-effort
-      reclaimPolicy: Retain
-      volumeBindingMode: WaitForFirstConsumer
-      migratable: false
     csi:
       attacherReplicaCount: 1
       provisionerReplicaCount: 1
       resizerReplicaCount: 1
       snapshotterReplicaCount: 1
     defaultSettings:
+      # Enables automatic upgrades of Longhorn engine.
+      concurrentAutomaticEngineUpgradePerNodeLimit: 1
       # Gets node disks from annotation.
       createDefaultDiskLabeledNodes: true
       # Removes update checker in the Longhorn UI.
       upgradeChecker: false
-      # Enables automatic upgrades of Longhorn engine.
-      concurrentAutomaticEngineUpgradePerNodeLimit: 1
     longhornUI:
       replicas: 1
+    persistence:
+      defaultClassReplicaCount: 1
+      defaultDataLocality: best-effort
+      migratable: false
+      reclaimPolicy: Retain
+      volumeBindingMode: WaitForFirstConsumer
