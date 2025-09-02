@@ -5,6 +5,5 @@ resources:
   - deployments/victorialogs.yaml
   - namespace.yaml
   - persistent-volume-claims/data.yaml
-  - persistent-volumes/victorialogs-data.yaml
   - service-accounts/default.yaml
   - services/http.yaml

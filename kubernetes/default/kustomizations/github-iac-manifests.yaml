@@ -13,8 +13,6 @@ spec:
     provider: sops
     secretRef:
       name: github-iac-manifests-age-key
-  # Too many times I accidentally deleted my persistent volumes.
-  deletionPolicy: Orphan
   interval: 5m
   path: kubernetes
   prune: true

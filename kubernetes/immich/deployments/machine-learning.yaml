@@ -32,7 +32,10 @@ spec:
             - mountPath: /.config
               name: tmp-config
       enableServiceLinks: false
+      nodeSelector:
+        kubernetes.io/hostname: srv-0-cor-home
       securityContext:
+        fsGroup: 56186
         runAsGroup: 56186
         runAsNonRoot: true
         runAsUser: 56186

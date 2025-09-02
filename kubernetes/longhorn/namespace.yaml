@@ -3,4 +3,4 @@ kind: Namespace
 metadata:
   labels:
     pod-security.kubernetes.io/enforce: privileged
-  name: storage-ssh
+  name: longhorn

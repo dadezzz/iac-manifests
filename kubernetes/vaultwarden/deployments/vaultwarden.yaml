@@ -41,6 +41,8 @@ spec:
             - mountPath: /data
               name: data
       enableServiceLinks: false
+      nodeSelector:
+        kubernetes.io/hostname: srv-0-cor-home
       securityContext:
         fsGroup: 53382
         runAsGroup: 53382

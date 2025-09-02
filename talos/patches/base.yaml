@@ -25,7 +25,7 @@ cluster:
     # The default SAN for the endpoint will be added by `talosctl gen config`.
     # These additional ones are used to connect to the API server via tailscale.
     certSANs:
-      - srv-0-fsk-hetz
+      - 100.111.94.27
   controllerManager:
     extraArgs:
       node-cidr-mask-size-ipv4: "24"
