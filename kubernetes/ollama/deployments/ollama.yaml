@@ -37,7 +37,10 @@ spec:
             - mountPath: /.ollama
               name: data
       enableServiceLinks: false
+      nodeSelector:
+        kubernetes.io/hostname: srv-0-cor-home
       securityContext:
+        fsGroup: 18385
         runAsGroup: 18385
         runAsNonRoot: true
         runAsUser: 18385
