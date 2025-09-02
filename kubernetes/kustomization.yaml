@@ -10,6 +10,7 @@ resources:
   - fluxcd
   - grafana
   - immich
+  - longhorn
   - maintenance
   - minecraft
   - ollama
