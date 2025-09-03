@@ -22,7 +22,7 @@ spec:
       containers:
         - args:
             - -retentionPeriod=180d
-          image: docker.io/victoriametrics/victoria-metrics:v1.125.0-scratch@sha256:41ee655acd8178de5fecc3d4022119225ce51be4c3338b432b0d456fa2593899
+          image: docker.io/victoriametrics/victoria-metrics:v1.125.1-scratch@sha256:77e91ca3a76af0a206e68ce00f060127f259a1232900db21a8c87846f0ce00f0
           name: victoriametrics
           ports:
             - containerPort: 8428
