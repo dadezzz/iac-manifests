@@ -9,4 +9,4 @@ spec:
       targetPort: postgres
   selector:
     apps.zarantonello.dev/name: postgres
-    apps.zarantonello.dev/namespace: authelia
+    apps.zarantonello.dev/namespace: keycloak
