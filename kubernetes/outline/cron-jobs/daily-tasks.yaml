@@ -18,7 +18,7 @@ spec:
               envFrom:
                 - secretRef:
                     name: outline-env
-              image: docker.io/library/busybox:1.37.0
+              image: docker.io/library/busybox:1.37.0@sha256:ab33eacc8251e3807b85bb6dba570e4698c3998eca6f0fc2ccb60575a563ea74
               name: job
               securityContext:
                 allowPrivilegeEscalation: false

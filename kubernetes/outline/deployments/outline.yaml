@@ -22,7 +22,7 @@ spec:
                 name: outline-env
             - secretRef:
                 name: outline-env
-          image: docker.io/outlinewiki/outline:0.87.3
+          image: docker.io/outlinewiki/outline:0.87.3@sha256:78909357ebf4f6165e1ad2a41567abfb62537c30da5832deba72fb16c0995651
           name: outline
           ports:
             - containerPort: 3000
