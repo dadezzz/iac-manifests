@@ -55,7 +55,7 @@ machine:
     apidCheckExtKeyUsage: true
     diskQuotaSupport: false
     hostDNS:
-      enabled: false
+      enabled: true
     kubePrism:
       enabled: false
     rbac: true
@@ -70,5 +70,11 @@ machine:
       validSubnets:
         - 10.95.0.0/24
         - fda9:b00c:8b29:33f9::1095:0/120
+  network:
+    # Causes issues in alpine pods.
+    disableSearchDomain: true
+    nameservers:
+      - 1.1.1.1
+      - 1.0.0.1
 persist: true
 version: v1alpha1
