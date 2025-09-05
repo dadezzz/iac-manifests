@@ -1,6 +1,6 @@
 all: generated/srv-0-fsk-hetz.yaml generated/srv-0-cor-home.yaml generated/srv-0-thi-home.yaml
 
-gen_config_shared_files = secrets.yaml patches/base.yaml patches/nameservers.yaml patches/tailscale.yaml patches/controlplane.yaml
+gen_config_shared_files = secrets.yaml patches/base.yaml patches/tailscale.yaml patches/controlplane.yaml
 
 gen_config_shared_args = \
 	--force \
@@ -9,7 +9,6 @@ gen_config_shared_args = \
 	--with-secrets=secrets.yaml \
 	--config-patch=@patches/base.yaml \
 	--config-patch=@patches/tailscale.yaml \
-	--config-patch=@patches/nameservers.yaml \
 	--config-patch-control-plane=@patches/controlplane.yaml \
 	k8s.zarantonello.dev \
 	https://10.95.0.1:6443
