@@ -4,27 +4,22 @@ apiVersion: v1alpha1
 # - TS_ENABLE_METRICS=true
 # Also remember to set TS_AUTHKEY.
 environment:
-  - ENC[AES256_GCM,data:hcUbVSHN9q/J/OQp5CPLvG0C/r0fYA==,iv:7tOeuM9sgJDXkL1V68TlDL4GGYiFE4m2NwHUQNHziDg=,tag:2xUCLgezbBEr3GACALda9A==,type:str]
-  - ENC[AES256_GCM,data:6YzEhnqHaCrLQyChjm6z9aHS5eILkbMPEKG0/2EpXMPCNlwp5nXmPj9uRRY8v2aWhy5bDzELvQIXkEnML+hc0Ne8jI0kQwEC,iv:20ygx00V6fOGFfRz5DX8SEnQrHrIuIwZkRW3RidylH0=,tag:ngEKDP4d2sngRXticdvi/w==,type:str]
+  - ENC[AES256_GCM,data:S1sw91SZWN1WaOWcgix/alY/lvPzng==,iv:1UDoRtT7BYdEqtGzqQvHZfFEjoLI5O0qQrMKhQsb4Ng=,tag:vS835Ae4V5NVZ2XmYPnQOg==,type:str]
+  - ENC[AES256_GCM,data:OBAxieMC0II2LffnMAxvaVbbu+Rs/NJUtlDbFn1y//zIwtAJ0OrRifL3U/teNrKsVH/Z186dx8fYBtsZRZrtfLhUnCNBBzZt,iv:t+ypZ7Ew+EP6wIVdNyNmnKkOS1wmKJCxKeWywr0T3Aw=,tag:1EpGdLRzlfjaiua0JgGYpA==,type:str]
 kind: ExtensionServiceConfig
 name: tailscale
 sops:
   age:
     - enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB1VXBvVDA3K3VxL0xiVmhz
-        Sk1KWUdtdHdjSG9uRUx3WUZmR0dYelVpTUVNCm1YSlJoMzdyVjhLaXJBTk9nanIz
-        RnlyaXhCTEdGSzJZSkVqWlFmTjhQYmMKLS0tIEpZQk1vcDBUZWFwU3Uxdnh1eHZo
-        NmxqUG1CQmJrWmMrOFZuMVRFWWs1am8Ke/g2lfKApXoGjk9SCSc4BGQ+WtKuA+G8
-        QXDpV3WjXprsiXr1NxPuRE8slhTS0fMfqKb1KeC1fO+iHFy/ZOjR3w==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBqMXVrZy9ZV2RWN2RHLzBP
+        aitxZlFLc3NidXdYTG9KZDYxTkd0bngxNUVBCmhyUUh4c09FNUYyUDJlbGRmUUti
+        ZVV1ZFh4OTJjZU85NUhFblB1T2FYMDgKLS0tIGRRUTBGZms5TjlRcHZhTmcxaDhE
+        SXF4Y25MR3owZFRjbllTUWFJdXRsQVkKsJeeC0Tu9NkZ1KmlAPfVM4K6lKC8nez4
+        uiwJpzDsLEJ+nHC6qO5cFXNMXOcjdmYECpkAWg7ic6/RP9YU+WF/6A==
         -----END AGE ENCRYPTED FILE-----
       recipient: age10s8xudjc20ujqjsk0asex5vgxqtm3fzrx2g3lzt5lls4rsay6cpqx6rhcc
-  azure_kv: []
   encrypted_regex: environment
-  gcp_kms: []
-  hc_vault: []
-  kms: []
-  lastmodified: "2025-08-31T19:24:33Z"
-  mac: ENC[AES256_GCM,data:EOFkxYmITmyRjQGzU3LHlEG8JVN+ayAA95eclYDhZ2xSLlfDNiZa8De9gxgjcifAm6iBW/QXs50FTXSByLS6yOUt8cITXD9AFjlVqUEl2Aaq/7kiN7qoMtObeZrD+N/DQ8QqsNK+ku2SHNONjCoJQzr4BLTz8Mu04Y66yHUHJlg=,iv:xThi94rPMBeLDrBbbJs9pU05Jt892cm+Mn/3e/k4j20=,tag:Giiz0v2Iao37ssCsUbbt2g==,type:str]
-  pgp: []
-  version: 3.9.4
+  lastmodified: "2025-09-05T09:30:47Z"
+  mac: ENC[AES256_GCM,data:znNhi+9+G5H/YhIyE+dcY8hM8+XNAIpGpb+YWQJaBgTd/kg7pUiCVocaP6zfDTMCWkmZksF/BYFIt289snc67ovV/PqUAfJVcFeT8ca+UcPgKoZo0XdbVyVmF6OUQWcp08aRRLkh1AWfXnE9dqMalP0Q07jR3LYI6TBqm/dAIM0=,iv:7V6a3lokR0SobEjz2NWtEjcko6+SHjtREbqSZeDNevk=,tag:F+vHQ0hhk3wh1k6n9IlJzw==,type:str]
+  version: 3.10.2

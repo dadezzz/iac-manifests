@@ -25,11 +25,14 @@ spec:
             - --storage.path=/var/tmp/alloy
             - /etc/alloy/alloy.alloy
           env:
-            # Let alloy know what is the hostname of the node its running on.
             - name: NODE_HOSTNAME
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
           image: docker.io/grafana/alloy:v1.10.2@sha256:bcf27f18c4402869af112fb39e35e1db3804a404686f4caa20bdf77814219223
           name: alloy
           ports:

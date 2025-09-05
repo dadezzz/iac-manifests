@@ -17,10 +17,15 @@ cluster:
             namespaces: []
           kind: PodSecurityConfiguration
         name: PodSecurity
+    auditPolicy:
+      apiVersion: audit.k8s.io/v1
+      kind: Policy
+      rules:
+        - level: None
     # The default SAN for the endpoint will be added by `talosctl gen config`.
     # These additional ones are used to connect to the API server via tailscale.
     certSANs:
-      - srv-0-fsk-hetz
+      - 100.111.94.27
   controllerManager:
     extraArgs:
       node-cidr-mask-size-ipv4: "24"
@@ -50,7 +55,7 @@ machine:
     apidCheckExtKeyUsage: true
     diskQuotaSupport: false
     hostDNS:
-      enabled: false
+      enabled: true
     kubePrism:
       enabled: false
     rbac: true
@@ -65,5 +70,11 @@ machine:
       validSubnets:
         - 10.95.0.0/24
         - fda9:b00c:8b29:33f9::1095:0/120
+  network:
+    # Causes issues in alpine pods.
+    disableSearchDomain: true
+    nameservers:
+      - 1.1.1.1
+      - 1.0.0.1
 persist: true
 version: v1alpha1

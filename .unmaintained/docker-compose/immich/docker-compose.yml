@@ -1,0 +1,98 @@
+networks:
+  alloy_default:
+    external: true
+  traefik_default:
+    external: true
+
+services:
+  postgres:
+    build:
+      dockerfile: postgres.Dockerfile
+    cap_drop:
+      - ALL
+    env_file: .env
+    environment:
+      # Configures the user used for healthchecking.
+      PGUSER: ${POSTGRES_USER}
+    healthcheck:
+      interval: 10s
+      retries: 5
+      test:
+        - CMD
+        - pg_isready
+      timeout: 5s
+    labels:
+      monitoring.collect: true
+    read_only: true
+    restart: always
+    security_opt:
+      - no-new-privileges=true
+    tmpfs:
+      - /tmp:uid=70,gid=70
+      - /var/run/postgresql:uid=70,gid=70
+    # User has to be 70, otherwise the container tries to chown the postgres
+    # volume but fails due to insufficient permissions.
+    user: 70:70
+    volumes:
+      - $HOME/volumes/immich/postgres:/var/lib/postgresql/data
+      - $HOME/volumes/immich/postgres-dumps:/var/lib/postgresql/dumps
+
+  redis:
+    cap_drop:
+      - ALL
+    healthcheck:
+      interval: 10s
+      retries: 5
+      test:
+        - CMD
+        - redis-cli
+        - ping
+      timeout: 5s
+    image: docker.io/library/redis:8.2.1-alpine@sha256:987c376c727652f99625c7d205a1cba3cb2c53b92b0b62aade2bd48ee1593232
+    labels:
+      monitoring.collect: true
+    read_only: true
+    restart: always
+    security_opt:
+      - no-new-privileges=true
+    user: 9243:9243
+    volumes:
+      - $HOME/volumes/immich/redis:/data
+
+  server:
+    cap_drop:
+      - ALL
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    env_file: .env
+    environment:
+      DB_DATABASE_NAME: ${POSTGRES_DB}
+      DB_HOSTNAME: postgres
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_USERNAME: ${POSTGRES_USER}
+      IMMICH_TELEMETRY_INCLUDE: all
+      REDIS_HOSTNAME: redis
+    image: ghcr.io/immich-app/immich-server:v1.140.1@sha256:d97aea4b3f59989a79c6adffb39a1a8b95dd27c90a7f79280b1176a6220cf17b
+    labels:
+      monitoring.collect: true
+      monitoring.metrics.port: 8081
+      traefik.enable: true
+      # The app connects via http, it's less resource intensive and encryption
+      # is provided by tailscale anyway.
+      traefik.http.routers.immich.entrypoints: https,http
+      traefik.http.routers.immich.rule: Host(`photos.zarantonello.net`)
+      traefik.http.routers.immich.service: immich
+      traefik.http.services.immich.loadbalancer.server.port: 2283
+    networks:
+      - alloy_default
+      - default
+      - traefik_default
+    restart: always
+    security_opt:
+      - no-new-privileges=true
+    user: 5551:5551
+    volumes:
+      - $HOME/volumes/immich/data:/usr/src/app/upload

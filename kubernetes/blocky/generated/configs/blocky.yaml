@@ -35,12 +35,13 @@ caching:
   prefetching: true
 customDNS:
   mapping:
-    ci-grpc-prem-0.zarantonello.dev: 100.125.56.122,fd7a:115c:a1e0::b001:387b
-    grafana.zarantonello.net: 100.103.112.116
-    immich-machine-learning.zarantonello.net: 100.103.112.116
-    ollama.zarantonello.dev: 100.103.112.116
+    grafana.zarantonello.net: 100.73.66.84
+    immich-machine-learning.zarantonello.net: 100.73.66.84
+    minecraft.zarantonello.net: 100.73.66.84
+    ollama.zarantonello.dev: 100.73.66.84
     photos.zarantonello.net: 100.125.56.122,fd7a:115c:a1e0::b001:387b
-    vault.zarantonello.net: 100.103.112.116
+    stalwart.zarantonello.dev: 100.111.94.27
+    vault.zarantonello.net: 100.73.66.84
 fqdnOnly:
   enable: true
 log:

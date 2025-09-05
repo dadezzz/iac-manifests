@@ -1,0 +1,58 @@
+machine:
+  install:
+    disk: /dev/nvme0n1
+    image: factory.talos.dev/metal-installer/93bbd8a98ea31454170f516202309c0a4a31bef1e4ddf35cb32b2029ad7cb8cc:v1.11.0
+  kubelet:
+    extraMounts:
+      - destination: /var/mnt/longhorn-0
+        options:
+          - bind
+          - rshared
+          - rw
+        source: /var/mnt/longhorn-0
+        type: bind
+  network:
+    hostname: srv-0-cor-home.servers.zarantonello.dev
+    interfaces:
+      - dhcp: true
+        interface: enp3s0
+      - addresses:
+          - 10.95.0.2/24
+          - fda9:b00c:8b29:33f9::1095:2/120
+        interface: wg0
+        mtu: 1400
+        wireguard:
+          listenPort: 51000
+          peers:
+            # srv-0-fsk-hetz
+            - allowedIPs:
+                - 10.95.0.1/32
+                - fda9:b00c:8b29:33f9::1095:1/128
+              endpoint: srv-0-fsk-hetz.servers.zarantonello.dev:51000
+              publicKey: BgTeLVv2UKMD86N0XyQoTjh9sKSo/SkMfYKr1VQ3VRc=
+            # srv-0-thi-home (no endpoint due to firewall restrictions)
+            - allowedIPs:
+                - 10.95.0.3/32
+                - fda9:b00c:8b29:33f9::1095:3/128
+              publicKey: j5Afx7hXJkjHHmDuzmScMrjL3oWpZxT6WL6xMIX87H0=
+          privateKey: ENC[AES256_GCM,data:L05TWu0ZR5zwaA1Dl1Is1E/Qym1JSIJB/CUFXCLqcNODvziuN6NcEUlI39I=,iv:9xk65MlK3BuCC9zhS/6I6Yk570V2KBGAVxLlO+4CKQI=,tag:n5dYI+65r60bqaJOyIlKmA==,type:str]
+  nodeAnnotations:
+    # yamllint disable-line rule:quoted-strings
+    node.longhorn.io/default-disks-config: '[{ "path": "/var/mnt/longhorn-0", "allowScheduling":true }]'
+  nodeLabels:
+    node.longhorn.io/create-default-disk: config
+sops:
+  age:
+    - enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAxeUROTjdYTmZCMmw1MkFo
+        eXU2TTFCaG1xa0x3c0J0WDRrRW1WQlJmbkZFCmtBeGprS3BwV2grYVBVSjZWTVVx
+        VDZ0aU0rK242V1pxVXVub0RrUWpIZ0kKLS0tIGVJUkhCMlJyUDN1OFNhdVdqQ1RL
+        ZTZJY0dNbmhtcTBGeDJrTC9jSUR0UGcKm63PcOQgrIX23gzVqKy/2h/gKH7Gy335
+        R/pCaaX/Ao8BQevNZQJiVfqaYSS8RxWPO9ks6fPiusFrsXZR10eyYQ==
+        -----END AGE ENCRYPTED FILE-----
+      recipient: age10s8xudjc20ujqjsk0asex5vgxqtm3fzrx2g3lzt5lls4rsay6cpqx6rhcc
+  encrypted_regex: privateKey
+  lastmodified: "2025-09-05T09:30:57Z"
+  mac: ENC[AES256_GCM,data:P/NBJiCragzhyYq5NWXSbvXy49sXiJrIil3n2W5rMhQSg8vPp6ig7riYwKxitCej/zGoGSCBZiNt174sJtPYdgmjyLXJKkYjlfTwUghL3GmG9ioUR8O/Yd9+0nGjsqEiStkE/+lpXA962PhZlOLGvHi5pMev8A1Obd0oTrIRI/0=,iv:JZaGw7g9teU14TKyeyB7I6d3/xS5Fw53+quQTMCedlk=,tag:VPOuSGd2aC8GPFKi+uvcLg==,type:str]
+  version: 3.10.2

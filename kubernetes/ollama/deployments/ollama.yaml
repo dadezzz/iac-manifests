@@ -17,12 +17,7 @@ spec:
         apps.zarantonello.dev/namespace: ollama
     spec:
       containers:
-        - env:
-            # Pulling models makes the node become unresponsive and when the
-            # pod is restarted upload progress would be lost.
-            - name: OLLAMA_NOPRUNE
-              value: "true"
-          image: docker.io/ollama/ollama:0.11.4@sha256:be17b353bf3cfab0b6980530284e64716a57589ed753a82d9a6a2a5fa9a61a31
+        - image: docker.io/ollama/ollama:0.11.10@sha256:a5409cb903d30f9cd67e9f430dd336ddc9274e16fd78f75b675c42065991b4fd
           name: ollama
           ports:
             - containerPort: 11434
@@ -37,7 +32,10 @@ spec:
             - mountPath: /.ollama
               name: data
       enableServiceLinks: false
+      nodeSelector:
+        kubernetes.io/hostname: srv-0-cor-home
       securityContext:
+        fsGroup: 18385
         runAsGroup: 18385
         runAsNonRoot: true
         runAsUser: 18385

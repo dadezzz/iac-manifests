@@ -10,7 +10,10 @@ resources:
   - fluxcd
   - grafana
   - immich
+  - longhorn
   - minecraft
+  - ollama
+  - outline
   - vaultwarden
   - victorialogs
   - victoriametrics

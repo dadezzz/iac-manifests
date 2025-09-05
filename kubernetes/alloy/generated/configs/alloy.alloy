@@ -29,16 +29,16 @@ prometheus.relabel "unix_exporter" {
   }
 }
 
-////////////////////////
-/// Kubelet CAdvisor ///
-////////////////////////
+///////////////
+/// Kubelet ///
+///////////////
 
 prometheus.scrape "kubelet_cadvisor" {
   forward_to = [prometheus.relabel.victoriametrics.receiver]
   targets = [
     {
-       __address__ = sys.env("KUBERNETES_SERVICE_HOST"),
-       __metrics_path__ = "/api/v1/nodes/" + sys.env("NODE_HOSTNAME") + "/proxy/metrics/cadvisor",
+       __address__ = sys.env("NODE_IP") + ":10250",
+       __metrics_path__ = "/metrics/cadvisor",
        __scheme__ = "https",
        job = "node.kubelet.cadvisor",
        instance = sys.env("NODE_HOSTNAME"),
@@ -46,7 +46,24 @@ prometheus.scrape "kubelet_cadvisor" {
   ]
   bearer_token_file = "/var/run/secrets/kubernetes.io/serviceaccount/token"
   tls_config {
-    ca_file = "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
+    insecure_skip_verify = true
+  }
+}
+
+prometheus.scrape "kubelet_metrics" {
+  forward_to = [prometheus.relabel.victoriametrics.receiver]
+  targets = [
+    {
+       __address__ = sys.env("NODE_IP") + ":10250",
+       __metrics_path__ = "/metrics",
+       __scheme__ = "https",
+       job = "node.kubelet",
+       instance = sys.env("NODE_HOSTNAME"),
+    },
+  ]
+  bearer_token_file = "/var/run/secrets/kubernetes.io/serviceaccount/token"
+  tls_config {
+    insecure_skip_verify = true
   }
 }
 
@@ -60,9 +77,9 @@ discovery.kubelet "kubelet_pods" {
   // Use longer interval than default (5s) to reduce system load a bit.
   refresh_interval = "30s"
   tls_config {
-    ca_file = "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
+    insecure_skip_verify = true
   }
-  url = "https://" + sys.env("KUBERNETES_SERVICE_HOST") + "/api/v1/nodes/" + sys.env("NODE_HOSTNAME") + "/proxy"
+  url = "https://" + sys.env("NODE_IP") + ":10250"
 }
 
 // Common relabeling for targets. See below for specific further processing

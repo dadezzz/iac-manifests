@@ -2,8 +2,7 @@
 
 extends: default
 ignore: |
-  talos/controlplane.yaml
-  talos/worker.yaml
+  talos/generated/*
 rules:
   braces:
     forbid: non-empty

@@ -23,7 +23,7 @@ spec:
             - java
             - -jar
             - fabric.jar
-          image: docker.io/library/eclipse-temurin:24-jre-alpine@sha256:4044b6c87cb088885bcd0220f7dc7a8a4aab76577605fa471945d2e98270741f
+          image: docker.io/library/eclipse-temurin:24-jre
           name: minecraft
           ports:
             - containerPort: 25565
@@ -42,7 +42,10 @@ spec:
               name: tmp
           workingDir: /data
       enableServiceLinks: false
+      nodeSelector:
+        kubernetes.io/hostname: srv-0-cor-home
       securityContext:
+        fsGroup: 36506
         runAsGroup: 36506
         runAsNonRoot: true
         runAsUser: 36506

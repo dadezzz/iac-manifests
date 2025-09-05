@@ -1,4 +1,0 @@
-machine:
-  network:
-    nameservers:
-      - 100.106.99.101

@@ -7,7 +7,7 @@ spec:
   hostnames:
     - immich-machine-learning.zarantonello.net
   parentRefs:
-    - name: srv-0-cor-home-http
+    - name: srv-0-cor-home-tailscale-http
       namespace: cilium
   rules:
     - backendRefs:

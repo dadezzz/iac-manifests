@@ -6,6 +6,5 @@ resources:
   - http-routes/machine-learning-prem-1.yaml
   - namespace.yaml
   - persistent-volume-claims/machine-learning-cache.yaml
-  - persistent-volumes/immich-machine-learning-cache.yaml
   - service-accounts/default.yaml
   - services/machine-learning-http.yaml

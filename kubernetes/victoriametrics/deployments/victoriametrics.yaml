@@ -22,7 +22,7 @@ spec:
       containers:
         - args:
             - -retentionPeriod=180d
-          image: docker.io/victoriametrics/victoria-metrics:v1.124.0-scratch@sha256:26cc0933f80f0ada58d1f5598ac4197fafdfd570e4b31e30b58fcabacf41cfe1
+          image: docker.io/victoriametrics/victoria-metrics:v1.125.1-scratch@sha256:77e91ca3a76af0a206e68ce00f060127f259a1232900db21a8c87846f0ce00f0
           name: victoriametrics
           ports:
             - containerPort: 8428
@@ -37,7 +37,10 @@ spec:
             - mountPath: /victoria-metrics-data
               name: data
       enableServiceLinks: false
+      nodeSelector:
+        kubernetes.io/hostname: srv-0-cor-home
       securityContext:
+        fsGroup: 29986
         runAsGroup: 29986
         runAsNonRoot: true
         runAsUser: 29986
