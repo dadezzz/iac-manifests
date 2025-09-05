@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: web-ui
+  name: http
 spec:
   ports:
     - name: http
       port: 80
       targetPort: http
   selector:
-    apps.zarantonello.dev/name: authelia
-    apps.zarantonello.dev/namespace: authelia
+    apps.zarantonello.dev/name: keycloak
+    apps.zarantonello.dev/namespace: keycloak

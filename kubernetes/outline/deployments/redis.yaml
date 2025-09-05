@@ -17,7 +17,7 @@ spec:
         apps.zarantonello.dev/namespace: outline
     spec:
       containers:
-        - image: docker.io/library/redis:8.2.1-alpine@sha256:987c376c727652f99625c7d205a1cba3cb2c53b92b0b62aade2bd48ee1593232
+        - image: docker.io/library/redis:8.2.1
           name: redis
           ports:
             - containerPort: 6379
@@ -32,6 +32,8 @@ spec:
             - mountPath: /data
               name: data
       enableServiceLinks: false
+      nodeSelector:
+        kubernetes.io/hostname: srv-0-thi-home
       securityContext:
         fsGroup: 24056
         runAsGroup: 24056

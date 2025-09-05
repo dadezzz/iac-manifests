@@ -6,18 +6,21 @@ spec:
   selector:
     matchLabels:
       apps.zarantonello.dev/name: postgres
-      apps.zarantonello.dev/namespace: authelia
+      apps.zarantonello.dev/namespace: keycloak
+  # Persistent volume cannot be read by 2 replicas.
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
         apps.zarantonello.dev/name: postgres
-        apps.zarantonello.dev/namespace: authelia
+        apps.zarantonello.dev/namespace: keycloak
     spec:
       containers:
         - envFrom:
             - secretRef:
                 name: postgres-env
-          image: docker.io/library/postgres:17.4-alpine@sha256:c4c3cded22488238ed0df51b82913b5d3b426fad19fbe205a711f05f5dba5c45
+          image: docker.io/library/postgres:17.6-alpine@sha256:3406990b6e4c7192317b6fdc5680498744f6142f01f0287f4ee0420d8c74063c
           name: postgres
           ports:
             - containerPort: 5432
@@ -29,13 +32,17 @@ spec:
                 - ALL
             readOnlyRootFilesystem: true
           volumeMounts:
-            - mountPath: /var/lib/postgresql/data
+            - mountPath: /var/lib/postgresql
               name: data
+              # postgres complains about the lost+found dir.
+              subPath: data
             - mountPath: /tmp
               name: tmp
             - mountPath: /var/run/postgresql
-              name: tmp-sockets
+              name: sockets
       enableServiceLinks: false
+      nodeSelector:
+        kubernetes.io/hostname: srv-0-thi-home
       securityContext:
         fsGroup: 70
         runAsGroup: 70
@@ -47,7 +54,7 @@ spec:
         - emptyDir: {}
           name: tmp
         - emptyDir: {}
-          name: tmp-sockets
+          name: sockets
         - name: data
           persistentVolumeClaim:
             claimName: postgres-data

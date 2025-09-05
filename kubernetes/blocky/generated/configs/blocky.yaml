@@ -40,6 +40,7 @@ customDNS:
     minecraft.zarantonello.net: 100.73.66.84
     ollama.zarantonello.dev: 100.73.66.84
     photos.zarantonello.net: 100.125.56.122,fd7a:115c:a1e0::b001:387b
+    stalwart.zarantonello.dev: 100.111.94.27
     vault.zarantonello.net: 100.73.66.84
 fqdnOnly:
   enable: true

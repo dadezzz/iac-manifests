@@ -6,18 +6,19 @@ configMapGenerator:
 kind: Kustomization
 namespace: outline
 resources:
+  - cron-jobs/daily-tasks.yaml
   - deployments/outline.yaml
   - deployments/postgres.yaml
   - deployments/redis.yaml
+  - http-routes/default.yaml
   - namespace.yaml
+  - persistent-volume-claims/data.yaml
   - persistent-volume-claims/postgres-data.yaml
   - persistent-volume-claims/redis-data.yaml
-  - persistent-volumes/outline-postgres-data.yaml
-  - persistent-volumes/outline-redis-data.yaml
   - service-accounts/default.yml
+  - services/http.yaml
   - services/postgres.yaml
   - services/redis.yaml
-  - services/web-ui.yaml
 secretGenerator:
   - envs:
       - generated/secrets/outline.env

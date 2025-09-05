@@ -11,9 +11,11 @@ resources:
   - cilium-loadbalancer-ip-pools/srv-0-cor-home-tailscale.yaml
   - cilium-loadbalancer-ip-pools/srv-0-fsk-hetz-public.yaml
   - cilium-loadbalancer-ip-pools/srv-0-fsk-hetz-tailscale.yaml
+  - cilium-loadbalancer-ip-pools/srv-0-thi-home-tailscale.yaml
   - gateways/srv-0-cor-home-tailscale-http.yaml
   - gateways/srv-0-fsk-hetz-public-http.yaml
   - gateways/srv-0-fsk-hetz-tailscale-http.yaml
+  - gateways/srv-0-thi-home-tailscale-http.yaml
   - helm-releases/cilium.yaml
   - helm-repositories/cilium.yaml
   - namespace.yaml

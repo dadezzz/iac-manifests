@@ -35,7 +35,7 @@ spec:
       replicas: 1
     persistence:
       defaultClassReplicaCount: 1
-      defaultDataLocality: best-effort
+      defaultDataLocality: strict-local
       migratable: false
       reclaimPolicy: Retain
-      volumeBindingMode: WaitForFirstConsumer
+      volumeBindingMode: Immediate

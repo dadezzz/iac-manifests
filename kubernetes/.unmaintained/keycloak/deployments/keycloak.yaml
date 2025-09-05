@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak
+spec:
+  selector:
+    matchLabels:
+      apps.zarantonello.dev/name: keycloak
+      apps.zarantonello.dev/namespace: keycloak
+  template:
+    metadata:
+      annotations:
+        monitoring.zarantonello.dev/metrics-0-id: 477d0492-8c8b-45d9-842c-a38995237b46
+        monitoring.zarantonello.dev/metrics-0-port: "9000"
+      labels:
+        apps.zarantonello.dev/name: keycloak
+        apps.zarantonello.dev/namespace: keycloak
+    spec:
+      containers:
+        - args:
+            - start
+            - --http-enabled=true
+          envFrom:
+            - configMapRef:
+                name: keycloak-env
+            - secretRef:
+                name: keycloak-env
+          image: quay.io/keycloak/keycloak:26.3.3@sha256:6a7217a100bd3e5de4063a27a538ef999a3c5a88c4b4ec0ffc0a642aee7b2597
+          name: keycloak
+          ports:
+            - containerPort: 8080
+              name: http
+            - containerPort: 9000
+              name: http-metrics
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+      enableServiceLinks: false
+      nodeSelector:
+        kubernetes.io/hostname: srv-0-thi-home
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
