@@ -3,6 +3,7 @@ kind: CronJob
 metadata:
   name: daily-tasks
 spec:
+  concurrencyPolicy: Replace
   jobTemplate:
     spec:
       template:
@@ -34,6 +35,4 @@ spec:
             runAsUser: 32790
             seccompProfile:
               type: RuntimeDefault
-
   schedule: 0 2 * * *
-  concurrencyPolicy: Replace
