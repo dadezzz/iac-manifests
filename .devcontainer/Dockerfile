@@ -16,7 +16,7 @@ ENV PATH="/usr/local/share/pnpm:$PATH"
 # Install linting tools.
 
 # # renovate: datasource=npm depName=@biomejs/biome versioning=npm
-ENV BIOME_VERSION="2.2.2"
+ENV BIOME_VERSION="2.2.3"
 RUN pnpm install -g "@biomejs/biome@$BIOME_VERSION"
 
 # # renovate: datasource=npm depName=prettier versioning=npm
