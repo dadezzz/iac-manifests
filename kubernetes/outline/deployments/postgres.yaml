@@ -22,7 +22,7 @@ spec:
                 name: postgres-env
           # TODO: I use 18 because of changes with PGDATA (solves some volume
           # problems), need to set minor version when released.
-          image: docker.io/library/postgres:18beta3@sha256:9e64903e2ad74c67ece96d917344593b96dfa54af61e0c300bf2ac33c74dd091
+          image: docker.io/library/postgres:18rc1@sha256:23fb2416d877275c3367963c62f99922546ca8a25557e121666b106b0caf966f
           name: postgres
           ports:
             - containerPort: 5432
